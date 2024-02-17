@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    user-select: none;
+}
+
+$color_beige: #F2F1E4;
+
+.bg_beige {
+    background-color: $color_beige;
+}
