@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'GowunBatangRegular';
+  src: url('/font/GowunBatang-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GowunBatangBold';
+  src: url('/font/GowunBatang-Bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
  
 @layer base {
   :root {

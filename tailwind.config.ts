@@ -10,6 +10,10 @@ const config = {
 	],
   prefix: "",
   theme: {
+    fontFamily: {
+      "GowunBatang": ["GowunBatangRegular"],
+      "GowunBatangBold": ["GowunBatangBold"],
+    },
     container: {
       center: true,
       padding: "2rem",
