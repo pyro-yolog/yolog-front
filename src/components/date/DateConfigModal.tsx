@@ -15,12 +15,12 @@ export default function DateConfigModal({
   const { date, setDate } = useDateContext()
 
   return (
-    <div className={cn("grid gap-2", className)}>
+    <div className={cn(className)}>
       <Button
         id="date"
         variant={"outline"}
         className={cn(
-          "w-[300px] justify-start text-left font-normal",
+          "w-[330px] justify-start text-left font-normal",
           !date && "text-muted-foreground"
         )}
       >

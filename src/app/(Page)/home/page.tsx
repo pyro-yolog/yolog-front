@@ -1,31 +1,47 @@
-import React from 'react'
-import DateConfigModal from "@/components/date/DateConfigModal";
-import DatePicker from "@/components/date/DatePicker";
-import DateProvider from "@/components/date/DateProvider";
-import { Button } from '@/components/ui/button';
-
-type Props = {}
+import { Box, SpeedDialIcon, Typography } from "@mui/material";
+import Link from "next/link";
+import React from "react";
+type Props = {};
 
 function page({}: Props) {
   return (
-    <div className="flex flex-col items-center space-y-6">
-      <p className='font-GowunBatangBold text-xl'>
-        - 여행을 시작할까요? -
-      </p>
-      <Button className='font-GowunBatang bg-[#E1DEBF] text-black'>
-        여행 시작
-      </Button>
-      {/* <DateProvider>
-        <DatePicker />
-        <DateConfigModal />
-      </DateProvider> */}
-      <div className='w-full h-full bg-[#EBF3E1] rounded-lg'>
-        <Button className='bg-[#9CAA99]'>
-
-        </Button>
-      </div>
+    <div className="flex flex-col items-center space-y-6 w-full h-full sm:w-[500px] relative">
+      <Link
+        href={"/keep"}
+        className="drop-shadow-lg border-2 border-black absolute right-4 bottom-4 rounded-full"
+      >
+        <SpeedDialIcon />
+      </Link>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+          padding: "20px",
+        }}
+      >
+        <Typography
+          sx={{
+            fontWeight: "bold",
+            marginY: "8px",
+          }}
+          variant={"h6"}
+        >
+          일기 시작하기
+        </Typography>
+        <Typography sx={{
+          textAlign: "center",
+          lineHeight: "1.75rem",
+        }}>
+          나만의 여행 일기를 작성해보세요.<br/>
+          시작하려면 더하기 버튼을 탭하세요.
+        </Typography>
+      </Box>
     </div>
-  )
+  );
 }
 
-export default page
+export default page;
