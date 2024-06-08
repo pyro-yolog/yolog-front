@@ -1,12 +1,13 @@
-import { IconDiarySetting, IconDiaryShare, IconNavigateLeft } from './icon';
+import { IconDiarySetting, IconNavigateLeft } from './icon';
 
 function DiaryMenuBar() {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center mx-16pxr">
       <IconNavigateLeft />
-      <div className="flex gap-20pxr">
-        <IconDiaryShare />
-        <IconDiarySetting />
+      <div className="flex gap-20pxr items-center">
+        <button>
+          <IconDiarySetting />
+        </button>
       </div>
     </div>
   );
