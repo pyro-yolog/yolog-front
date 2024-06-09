@@ -19,10 +19,10 @@ function DiaryDetailHeader({
   return (
     <>
       <div
-        className={`bg-[#EAF2E4] pt-73pxr rounded-es-[46%] rounded-ee-[46%] bg-cover`}
         style={{
           backgroundImage: `rgba(255, 255, 255, 0.5)), url(${coverImageUrl})`,
         }}
+        className={`bg-[#EAF2E4] pt-73pxr rounded-es-[46%] rounded-ee-[46%] bg-cover`}
       >
         <DiaryMenuBar />
         <div className="flex flex-col justify-center items-center">

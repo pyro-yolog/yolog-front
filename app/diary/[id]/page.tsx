@@ -1,10 +1,11 @@
-import { DiaryDetailHeader, DiaryMenuBar } from '@/app/components';
+import { DiaryDetailHeader } from '@/app/components';
+import DiaryList from '@/app/components/diary-list';
 
 function DiaryDetailPage() {
-  //메뉴바 헤더 날짜 스와이프 일기리스트 ?
   return (
     <div>
       <DiaryDetailHeader />
+      <DiaryList />
     </div>
   );
 }

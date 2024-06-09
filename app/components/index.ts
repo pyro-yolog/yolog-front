@@ -17,5 +17,6 @@ export { default as OnboardingImageSwiper } from './ui/onboarding-image-swiper';
 export { default as OnboardingTextSwiper } from './ui/onboarding-text-swiper';
 export { default as DiaryMenuBar } from './diary-menu-bar';
 export { default as DiaryDetailHeader } from './diary-detail-header';
+export { default as DiaryList } from './diary-list';
 
 export * from './icon';

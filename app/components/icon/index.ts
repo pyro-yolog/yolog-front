@@ -5,3 +5,5 @@ export { default as IconPlus } from './icon-plus';
 export { default as IconNavigateLeft } from './icon-navigate-left';
 export { default as IconDiarySetting } from './icon-diary-setting';
 export { default as IconDiaryShare } from './icon-diary-share';
+export { default as IconMoodNormal } from './icon-mood-normal';
+export { default as IconWeatherSunny } from './icon-weather-sunny';
