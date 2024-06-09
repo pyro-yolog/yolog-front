@@ -7,7 +7,7 @@ function DiaryMenuBar() {
         <IconNavigateLeft />
       </button>
       <div className="flex gap-20pxr items-center">
-        <button>
+        <button className="p-6pxr rounded-md bg-white bg-opacity-30">
           <IconDiarySetting />
         </button>
       </div>

@@ -14,13 +14,15 @@ function DiaryDetailHeader({
   destination = 'HAWAII',
   startDate = '2024.03.21',
   finishDate = '2024.03.26',
-  coverImageUrl = 'https://images.unsplash.com/photo-1542259009477-d625272157b7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8OHx8fGVufDB8fHx8fA%3D%3D',
+  coverImageUrl = 'https://img1.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202209/14/newsade/20220914092507033xbze.jpg',
 }: Props) {
   return (
     <div className="relative">
       <div
         style={{
-          backgroundImage: `rgba(255, 255, 255, 0.5)), url(${coverImageUrl})`,
+          backgroundImage: `url(${coverImageUrl})`,
+          backgroundColor: 'rgba(255,255,255,0.3)',
+          backgroundBlendMode: 'color',
         }}
         className={`bg-[#EAF2E4] pt-65pxr bg-cover`}
       >
