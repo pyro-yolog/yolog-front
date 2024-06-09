@@ -13,8 +13,8 @@ function IconMoodColoredNormal({ size = 28 }: { size?: number }) {
       <path
         d="M6.4165 17.416C8.09306 19.9881 10.5415 21.0734 13.5286 21.078C16.4998 21.0827 19.2498 20.166 20.6248 17.416"
         stroke="black"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

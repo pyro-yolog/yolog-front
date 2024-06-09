@@ -13,13 +13,13 @@ function IconMoodColoredAngry({ size }: { size?: number }) {
       <path
         d="M8.25 20.7625C10.0833 18.9291 15.3082 16.3625 19.7082 20.7625"
         stroke="black"
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
       <path
         d="M11.4583 11.917L6.875 9.16699M16.0417 11.917L21.0833 9.16699"
         stroke="black"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

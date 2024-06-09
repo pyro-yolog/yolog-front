@@ -11,8 +11,8 @@ function IconMoodColoredTired({ size = 28 }: { size?: number }) {
       <path
         d="M6.4165 11H10.9998M9.1665 19.25H18.7915M16.4998 11H21.0832"
         stroke="black"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

@@ -26,7 +26,10 @@ export default function RootLayout({
       lang="kr"
       className={`${pretendard.variable} flex flex-col items-center justify-center`}
     >
-      <body className={`${pretendard.className} w-390pxr h-844pxr`}>
+      <body
+        className={`${pretendard.className} w-390pxr h-844pxr`}
+        suppressHydrationWarning={true}
+      >
         <Providers>
           <ToastContainer />
           {children}

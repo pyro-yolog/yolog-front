@@ -7,17 +7,12 @@ function IconPlus({ size = 26 }: { size?: number }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M1 13H25"
-        stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
+      <path d="M1 13H25" stroke="white" strokeWidth="2" strokeLinecap="round" />
       <path
         d="M13 1L13 25"
         stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
     </svg>
   );
