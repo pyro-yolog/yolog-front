@@ -17,7 +17,7 @@ function DiaryDetailHeader({
   coverImageUrl = 'https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202209/14/newsade/20220914092507033xbze.jpg',
 }: Props) {
   return (
-    <>
+    <div className="relative">
       <div
         style={{
           backgroundImage: `rgba(255, 255, 255, 0.5)), url(${coverImageUrl})`,
@@ -37,7 +37,7 @@ function DiaryDetailHeader({
           </h3>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

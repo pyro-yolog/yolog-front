@@ -46,3 +46,18 @@ body::-webkit-scrollbar {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+.swiper-clip-path {
+  clip-path: polygon(
+    0 52%,
+    0 67%,
+    20% 79%,
+    50% 83%,
+    80% 78%,
+    100% 65%,
+    100% 50%,
+    76% 66%,
+    50% 71%,
+    22% 67%
+  );
+}
