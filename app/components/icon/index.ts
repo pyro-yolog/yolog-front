@@ -23,3 +23,5 @@ export { default as IconPerson } from './icon-person';
 export { default as IconHeadPhone } from './icon-headphone';
 export { default as IconNavigateRight } from './icon-navigate-right';
 export { default as IconInquiryDone } from './icon-inquiry-done';
+export { default as IconGallery } from './icon-gallery';
+export { default as IconTimeline } from './icon-timeline';
