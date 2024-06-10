@@ -10,6 +10,7 @@ interface IDialogProps {
   dialogOutsideClick?: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => void;
+  className?: string;
 }
 
 function Dialog({
@@ -17,6 +18,7 @@ function Dialog({
   isOpen,
   dialogRef,
   dialogOutsideClick,
+  className,
 }: IDialogProps) {
   const portalRoot = usePortal('dialog-portal');
 
@@ -27,9 +29,11 @@ function Dialog({
           <div
             ref={dialogRef}
             onClick={dialogOutsideClick}
-            className="z-4 fixed bottom-0pxr left-0pxr right-0pxr top-0pxr bg-black bg-opacity-50"
+            className="z-50 fixed bottom-0pxr left-0pxr right-0pxr top-0pxr bg-black bg-opacity-50"
           />
-          <div className="z-4 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-276pxr py-16pxr px-9pxr gap-20pxr rounded-[20px] shadow-dialog bg-white text-black">
+          <div
+            className={`z-50 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-276pxr py-16pxr px-9pxr gap-20pxr rounded-[20px] shadow-dialog bg-white text-black ${className}`}
+          >
             {children}
           </div>
         </div>,

@@ -18,3 +18,8 @@ export { default as IconWeatherColoredWindy } from './icon-weather-colored-windy
 export { default as IconWeatherColoredSnowy } from './icon-weather-colored-snowy';
 export { default as IconWeatherColoredSunny } from './icon-weather-colored-sunny';
 export { default as IconWeatherColoredCloudy } from './icon-weather-colored-cloudy';
+export { default as IconMenu } from './icon-menu';
+export { default as IconPerson } from './icon-person';
+export { default as IconHeadPhone } from './icon-headphone';
+export { default as IconNavigateRight } from './icon-navigate-right';
+export { default as IconInquiryDone } from './icon-inquiry-done';

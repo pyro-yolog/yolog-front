@@ -51,6 +51,7 @@ const config: Config = {
         inputGray: '#686868',
         inputGreen: '#3E5C16',
         background: '#F8F7EE',
+        mainPageBackground: '#EAF2E4',
         gray: '#b1b1b1',
         error: '#ff0000',
       },
@@ -58,6 +59,7 @@ const config: Config = {
         dialog: '0px 20px 24px -4px rgba(16, 24, 40, 0.08)',
         button: '0px 1px 2px 0px rgba(16, 24, 40, 0.05);',
         floatingButton: '0px 2px 10px rgba(0, 0, 0, 0.18)',
+        mainDiaryList: '-2px -2px 10px 0px rgba(0, 0, 0, 0.03)',
       },
       keyframes: {
         showToast: {
@@ -111,6 +113,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar-hide')],
 };
 export default config;

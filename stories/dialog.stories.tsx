@@ -22,6 +22,9 @@ export const Delete: Story = {
   render: () => {
     const { isDialogOpen, setIsDialogOpen, dialogOutsideClick, dialogRef } =
       UseDialog();
+    const handleCloseLogoutDialog = () => {
+      setIsDialogOpen(false);
+    };
     return (
       <>
         <button
@@ -36,7 +39,7 @@ export const Delete: Story = {
           dialogOutsideClick={dialogOutsideClick}
           dialogRef={dialogRef}
         >
-          <DialogLogout />
+          <DialogLogout onClose={handleCloseLogoutDialog} />
         </Dialog>
       </>
     );

@@ -1,29 +1,27 @@
 'use client';
 
-import React from 'react';
-import Button from './button';
 import { useRouter } from 'next/navigation';
+import Button from './button';
 import useToast from '@/hooks/use-toast';
 
 interface Props {
-  onClose?: () => void;
+  onClose: () => void;
 }
 
-function DialogLogout({ onClose }: Props) {
+function DialogAccountWithDrawal({ onClose }: Props) {
   const router = useRouter();
   const showToast = useToast();
-  const handleLogout = () => {
+  const handleClickWithdrawal = () => {
     router.push('/onboarding');
-    showToast({ message: '로그아웃 되었어요.', type: 'success' });
+    showToast({ message: '계정 탈퇴를 완료했어요.', type: 'success' });
   };
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-17pxr mb-8pxr font-semibold leading-[22px] tracking-[-0.4px]">
-        로그아웃
+        계정 탈퇴
       </h1>
       <p className="text-13pxr mb-20pxr leading-[18px] tracking-[-0.4px] text-center">
-        로그아웃 상태에서 실수로 앱을 삭제하거나
-        <br /> 기기를 바꾸면 기록이 저장되지 않습니다.
+        모든 데이터가 삭제되며 복구할 수 없습니다.
       </p>
       <div className="flex items-center gap-14pxr">
         <Button
@@ -35,14 +33,14 @@ function DialogLogout({ onClose }: Props) {
         </Button>
         <Button
           size="small"
-          onClick={handleLogout}
+          onClick={handleClickWithdrawal}
           styles="bg-primary300 text-white text-16pxr font-semibold leading-[24px] py-10pxr px-18pxr w-115pxr rounded-[15px]"
         >
-          로그아웃
+          탈퇴하기
         </Button>
       </div>
     </div>
   );
 }
 
-export default DialogLogout;
+export default DialogAccountWithDrawal;

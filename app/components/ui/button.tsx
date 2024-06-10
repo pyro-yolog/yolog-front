@@ -13,7 +13,7 @@ function Button({
   disabled,
   angled,
   size = 'large',
-  styles = 'bg-primary400 text-white',
+  styles = 'bg-primary300 text-white',
   children,
   onClick,
 }: Props) {
