@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html
       lang="kr"
-      className={`${pretendard.variable} flex flex-col items-center justify-center bg-primary100`}
+      className={`${pretendard.variable} flex flex-col items-center justify-center`}
     >
       <body
         className={`${pretendard.className} w-390pxr h-844pxr`}
