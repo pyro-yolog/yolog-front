@@ -30,4 +30,6 @@ export { default as ChangeEmailMenu } from './ui/change-email-menu';
 export { default as InquiryMenu } from './ui/inquiry-menu';
 export { default as InquiryForm } from './inquiry-form';
 
+export * from './diary-book';
+
 export * from './icon';
