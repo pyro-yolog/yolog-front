@@ -33,7 +33,9 @@ export default function RootLayout({
           <ToastContainer />
           {children}
         </Providers>
+
         <div id="global-dialog"></div>
+        <div id="global-modal"></div>
         <div id="global-toast"></div>
       </body>
     </html>

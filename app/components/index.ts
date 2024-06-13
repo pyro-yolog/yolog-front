@@ -18,6 +18,7 @@ export { default as MainMenu } from './ui/main-menu';
 export { default as MainMenuHeader } from './ui/main-menu-header';
 export { default as Menu } from './menu';
 export { default as MenuBarButton } from './ui/menu-bar-button';
+export { default as Modal } from './modal';
 export { default as AccountMenuBarButton } from './ui/account-menu-bar-button';
 export { default as AccountMenu } from './ui/account-menu';
 export { default as CustomerServiceMenu } from './ui/customer-service-menu';
