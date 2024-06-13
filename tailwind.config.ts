@@ -101,12 +101,23 @@ const config: Config = {
             opacity: '1',
           },
         },
+        fadeInRight: {
+          from: {
+            transform: 'translateX(30px)',
+            opacity: '0',
+          },
+          to: {
+            transform: 'translateX(0px)',
+            opacity: '1',
+          },
+        },
       },
       animation: {
         showToast: 'showToast 2s ease-in-out',
         showBottomSheet: 'showBottomSheet 0.3s ease-in-out',
         closeBottomSheet: 'closeBottomSheet 0.3s ease-in-out',
         showSubTitle: 'showSubTitle 1.7s ease-in-out',
+        fadeInRight: 'fadeInRight 1.5s',
       },
       dropShadow: {
         textShadow: '1px 4px 4px rgba(0, 0, 0, 0.16)',
