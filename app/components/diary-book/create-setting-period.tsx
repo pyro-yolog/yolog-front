@@ -51,7 +51,7 @@ function DiaryBookCreateSettingPeriod({
       </div>
 
       <Modal
-        ref={dialogRef}
+        refEl={dialogRef}
         open={isDialogOpen}
         onOutsideClick={dialogOutsideClick}
       >

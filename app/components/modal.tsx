@@ -5,14 +5,14 @@ import React, { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 interface Props {
-  ref: React.ForwardedRef<HTMLDivElement>;
+  refEl: React.ForwardedRef<HTMLDivElement>;
   open: boolean;
   children?: ReactNode;
   className?: string;
   onOutsideClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-function Modal({ children, className, open, ref, onOutsideClick }: Props) {
+function Modal({ children, className, open, refEl, onOutsideClick }: Props) {
   const portalRoot = usePortal('dialog-modal');
 
   if (!open || !portalRoot) return null;
@@ -20,7 +20,7 @@ function Modal({ children, className, open, ref, onOutsideClick }: Props) {
   return createPortal(
     <div>
       <div
-        ref={ref}
+        ref={refEl}
         onClick={onOutsideClick}
         className="z-50 fixed bottom-0pxr left-0pxr right-0pxr top-0pxr bg-black bg-opacity-50"
       />
