@@ -65,13 +65,13 @@ function DiaryBookCreateCover() {
     setSelectOption(option);
   };
 
-  const handleClickButton = () => {
+  const handleClickButton = async () => {
     const name = params.get('name');
     const startDate = params.get('startDate');
     const endDate = params.get('endDate');
     const destination = params.get('destination');
 
-    console.log({ name, startDate, endDate, destination, color });
+    // TODO - API 요청 (일기장 생성)
   };
 
   return (
