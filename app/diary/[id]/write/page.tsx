@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  BottomSheetDiary,
   DiaryWritePopover,
   IconGallery,
   IconMoodColoredAngry,
@@ -19,10 +20,13 @@ import {
   IconWeatherSunny,
 } from '@/app/components';
 import IconCamera from '@/app/components/icon/icon-camera';
+import BottomSheetCancel from '@/app/components/ui/bottom-sheet-cancel';
 import { gowunBatang } from '@/app/components/ui/fonts';
 import IconCheck from '@/app/components/ui/icon-check';
 import { MOOD, POPOVERS, WEATHER } from '@/app/lib/constants/popover-write';
+import useBottomSheet from '@/hooks/use-bottom-sheet';
 import usePopover from '@/hooks/use-popover';
+import { useForm } from 'react-hook-form';
 
 function WritePage() {
   const {
@@ -35,6 +39,13 @@ function WritePage() {
     handleClickPopoverValue,
     handleOutsideClick,
   } = usePopover();
+
+  const {
+    isSheetOpen,
+    setIsSheetOpen,
+    handleOutsideClick: handleSheetOutsideClick,
+    bottomSheetRef,
+  } = useBottomSheet();
 
   const handleClickMoodPopover = () => {
     setIsPopoverOpen(!isPopoverOpen);
@@ -88,10 +99,33 @@ function WritePage() {
     }
   };
 
+  const { watch, register } = useForm();
+  console.log(watch('diaryContentInput'));
+  const handleClickCancelBtn = () => {
+    if (watch('diaryContentInput')) {
+      setIsSheetOpen(true);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
-    <div className="h-full relative">
+    <form className="h-full relative" onSubmit={handleSubmit}>
       <header className="flex justify-between items-center mb-20pxr pt-71pxr">
-        <IconNavigateLeft />
+        <button onClick={handleClickCancelBtn}>
+          <IconNavigateLeft />
+        </button>
+        <BottomSheetDiary
+          title="작성을 취소하시겠습니까?"
+          description="작성 취소 선택 시, 작성 중인 글은 저장되지 않습니다."
+          bottomSheetRef={bottomSheetRef}
+          onOutsideClick={handleSheetOutsideClick}
+          isOpen={isSheetOpen}
+        >
+          <BottomSheetCancel />
+        </BottomSheetDiary>
         <p
           className={`${gowunBatang.className} text-[#697a53] text-18pxr font-bold`}
         >
@@ -122,14 +156,22 @@ function WritePage() {
             </button>
           </div>
         </div>
-        <input
-          className={`h-42pxr indent-4pxr mt-13pxr w-full text-24pxr focus:outline-none border-b border-[#e3e3e3] ${gowunBatang.className} placeholder:text-24pxr placeholder:font-bold placeholder:font-[#b1b1b1] placeholder:${gowunBatang.className}`}
-          placeholder="제목"
-        />
-        <textarea
-          className={`${gowunBatang.className} text-16pxr resize-none w-full focus:outline-none indent-4pxr mt-26pxr placeholder:text-[#b1b1b1] placeholder:font-bold scrollbar-hide`}
-          placeholder="내용을 입력하세요"
-        />
+        <label htmlFor="diaryTitleInput">
+          <input
+            id="diaryTitleInput"
+            className={`h-42pxr indent-4pxr mt-13pxr w-full text-24pxr focus:outline-none border-b border-[#e3e3e3] ${gowunBatang.className} placeholder:text-24pxr placeholder:font-bold placeholder:font-[#b1b1b1] placeholder:${gowunBatang.className}`}
+            placeholder="제목"
+            {...register('diaryTitleInput')}
+          />
+        </label>
+        <label htmlFor="diaryContentInput">
+          <textarea
+            id="diaryContentInput"
+            className={`${gowunBatang.className} text-16pxr resize-none w-full focus:outline-none indent-4pxr mt-26pxr placeholder:text-[#b1b1b1] placeholder:font-bold scrollbar-hide`}
+            placeholder="내용을 입력하세요"
+            {...register('diaryContentInput')}
+          />
+        </label>
       </div>
       <div className="py-10pxr px-18pxr flex items-center w-full h-52pxr bg-[#eaf2e4] sticky bottom-0pxr">
         <div className="flex gap-26pxr">
@@ -144,7 +186,7 @@ function WritePage() {
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 

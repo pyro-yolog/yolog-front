@@ -25,3 +25,4 @@ export { default as IconNavigateRight } from './icon-navigate-right';
 export { default as IconInquiryDone } from './icon-inquiry-done';
 export { default as IconGallery } from './icon-gallery';
 export { default as IconTimeline } from './icon-timeline';
+export { default as IconBottomSheetBar } from './icon-bottom-sheet-bar';

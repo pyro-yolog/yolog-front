@@ -36,5 +36,6 @@ export { default as InquiryMenu } from './ui/inquiry-menu';
 export { default as InquiryForm } from './inquiry-form';
 export { default as DiaryWritePopover } from './diary-write-popover';
 export { default as PopoverIconList } from './ui/popover-icon-list';
+export { default as BottomSheetDiary } from './bottom-sheet-diary';
 
 export * from './icon';
