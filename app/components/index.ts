@@ -34,5 +34,7 @@ export { default as DialogAccountWithDrawal } from './ui/dialog-account-withdraw
 export { default as ChangeEmailMenu } from './ui/change-email-menu';
 export { default as InquiryMenu } from './ui/inquiry-menu';
 export { default as InquiryForm } from './inquiry-form';
+export { default as DiaryWritePopover } from './diary-write-popover';
+export { default as PopoverIconList } from './ui/popover-icon-list';
 
 export * from './icon';

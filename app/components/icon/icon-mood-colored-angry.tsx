@@ -1,4 +1,4 @@
-function IconMoodColoredAngry({ size }: { size?: number }) {
+function IconMoodColoredAngry({ size = 27.5 }: { size?: number }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

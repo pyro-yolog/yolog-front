@@ -1,4 +1,10 @@
-function IconWeatherSunny({ size = 24 }: { size?: number }) {
+function IconWeatherSunny({
+  size = 24,
+  color,
+}: {
+  size?: number;
+  color?: string;
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,28 +16,28 @@ function IconWeatherSunny({ size = 24 }: { size?: number }) {
       <g clipPath="url(#clip0_1395_2304)">
         <path
           d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z"
-          stroke="#8BA47B"
+          stroke={color}
           strokeWidth="1.25"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M12 1V3"
-          stroke="#8BA47B"
+          stroke={color}
           strokeWidth="1.25"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M12 21V23"
-          stroke="#8BA47B"
+          stroke={color}
           strokeWidth="1.25"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M4.21997 4.21973L5.63997 5.63973"
-          stroke="#8BA47B"
+          stroke={color}
           strokeWidth="1.25"
           strokeLinecap="round"
           strokeLinejoin="round"

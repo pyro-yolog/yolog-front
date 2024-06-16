@@ -1,4 +1,4 @@
-function IconMoodColoredUpset({ size }: { size?: number }) {
+function IconMoodColoredUpset({ size = 27.5 }: { size?: number }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
