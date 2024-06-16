@@ -10,9 +10,9 @@ function IconNavigateRight({ size = 33 }: { size?: number }) {
       <path
         d="M12.375 8.25L20.625 16.5L12.375 24.75"
         stroke="black"
-        stroke-width="1.25"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

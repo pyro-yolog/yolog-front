@@ -2,7 +2,6 @@
 
 import usePortal from '@/hooks/use-portal';
 import { createPortal } from 'react-dom';
-import { useEffect, useState } from 'react';
 import { IconBottomSheetBar } from './icon';
 
 interface Props {
@@ -23,21 +22,8 @@ function BottomSheetDiary({
   description,
 }: Props) {
   const portalRoot = usePortal('bottomSheetDiary');
-  const [isAnimating, setIsAnimating] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      setIsAnimating(true);
-    }
-  }, [isOpen]);
-
-  const handleAnimationEnd = () => {
-    if (!isOpen) {
-      setIsAnimating(false);
-    }
-  };
-
-  if (!isOpen && !isAnimating) return null;
+  if (!isOpen) return null;
   return portalRoot
     ? createPortal(
         <>
@@ -47,8 +33,7 @@ function BottomSheetDiary({
             className="z-50 fixed bottom-0pxr left-0pxr right-0pxr top-0pxr bg-black bg-opacity-50"
           />
           <div
-            onAnimationEnd={handleAnimationEnd}
-            className={`z-50 min-w-390pxr absolute bottom-0pxr left-1/2 -translate-x-1/2 bg-white rounded-tr-[10px] rounded-tl-[10px] ${isOpen ? 'animate-showBottomSheet' : 'animate-closeBottomSheet'} transition duration-300`}
+            className={`z-50 min-w-390pxr absolute bottom-0pxr left-1/2 -translate-x-1/2 bg-white rounded-tr-[10px] rounded-tl-[10px] `}
           >
             <IconBottomSheetBar className="absolute top-10pxr left-1/2 -translate-x-1/2" />
             <div className="flex flex-col mt-23pxr pb-14pxr gap-8pxr border-b border-primary400 px-19pxr">

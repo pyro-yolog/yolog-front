@@ -11,8 +11,8 @@ function IconBottomSheetBar({ className }: { className?: string }) {
       <path
         d="M2 2.12598H38"
         stroke="#737373"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
     </svg>
   );

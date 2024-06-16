@@ -26,6 +26,7 @@ import IconCheck from '@/app/components/ui/icon-check';
 import { MOOD, POPOVERS, WEATHER } from '@/app/lib/constants/popover-write';
 import useBottomSheet from '@/hooks/use-bottom-sheet';
 import usePopover from '@/hooks/use-popover';
+import { useParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 function WritePage() {
@@ -100,10 +101,14 @@ function WritePage() {
   };
 
   const { watch, register } = useForm();
-  console.log(watch('diaryContentInput'));
+  const router = useRouter();
+  const params = useParams();
+  const { id } = params;
   const handleClickCancelBtn = () => {
     if (watch('diaryContentInput')) {
       setIsSheetOpen(true);
+    } else {
+      router.push(`/diary/${id}`);
     }
   };
 
@@ -124,7 +129,7 @@ function WritePage() {
           onOutsideClick={handleSheetOutsideClick}
           isOpen={isSheetOpen}
         >
-          <BottomSheetCancel />
+          <BottomSheetCancel onClose={() => setIsSheetOpen(false)} id={id} />
         </BottomSheetDiary>
         <p
           className={`${gowunBatang.className} text-[#697a53] text-18pxr font-bold`}
