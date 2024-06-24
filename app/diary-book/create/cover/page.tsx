@@ -8,7 +8,7 @@ import {
 } from '@/app/components';
 import { gowunBatang } from '@/app/components/ui/fonts';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 
 function DiaryBookCreateCover() {
   const defaultOptionStyles =
@@ -75,48 +75,50 @@ function DiaryBookCreateCover() {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full h-screen pt-32pxr px-16pxr bg-white">
-      <div className="flex flex-col gap-19pxr">
-        <h1 className={`${gowunBatang.className} text-20pxr`}>
-          <p className="animate-fadeInRight">일기장 커버를 선택해주세요.</p>
-        </h1>
+    <Suspense>
+      <div className="flex flex-col justify-between w-full h-screen pt-32pxr px-16pxr bg-white">
+        <div className="flex flex-col gap-19pxr">
+          <h1 className={`${gowunBatang.className} text-20pxr`}>
+            <p className="animate-fadeInRight">일기장 커버를 선택해주세요.</p>
+          </h1>
 
-        <div className="flex flex-col gap-12pxr items-end animate-fadeInRight">
-          <div className="flex gap-16pxr w-full">
-            {options.map((option) => (
-              <div
-                key={option.id}
-                className={`${defaultOptionStyles} ${selectOption === option.id && selectOptionStyles}`}
-                onClick={() => handleClickOption(option.id)}
-              >
-                {option.icon}
-
-                <span
-                  className={`text-${selectOption === option.id ? 'inputGreen' : 'black'} text-15pxr font-semibold transition-colors duration-100`}
+          <div className="flex flex-col gap-12pxr items-end animate-fadeInRight">
+            <div className="flex gap-16pxr w-full">
+              {options.map((option) => (
+                <div
+                  key={option.id}
+                  className={`${defaultOptionStyles} ${selectOption === option.id && selectOptionStyles}`}
+                  onClick={() => handleClickOption(option.id)}
                 >
-                  {option.name}
-                </span>
-              </div>
-            ))}
+                  {option.icon}
+
+                  <span
+                    className={`text-${selectOption === option.id ? 'inputGreen' : 'black'} text-15pxr font-semibold transition-colors duration-100`}
+                  >
+                    {option.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <span className="text-13pxr text-gray">
+              *일기장 설정탭에서 커버를 수정할 수 있어요.
+            </span>
           </div>
 
-          <span className="text-13pxr text-gray">
-            *일기장 설정탭에서 커버를 수정할 수 있어요.
-          </span>
+          {selectOption === 'COLOR' && (
+            <DiaryBookCreateCoverPalette
+              selectColor={color}
+              onChangeColor={setColor}
+            />
+          )}
         </div>
 
-        {selectOption === 'COLOR' && (
-          <DiaryBookCreateCoverPalette
-            selectColor={color}
-            onChangeColor={setColor}
-          />
-        )}
+        <Button disabled={!color} onClick={handleClickButton}>
+          다음
+        </Button>
       </div>
-
-      <Button disabled={!color} onClick={handleClickButton}>
-        다음
-      </Button>
-    </div>
+    </Suspense>
   );
 }
 
