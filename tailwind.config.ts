@@ -121,6 +121,8 @@ const config: Config = {
       },
       dropShadow: {
         textShadow: '1px 4px 4px rgba(0, 0, 0, 0.16)',
+        modalShadow:
+          '0 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03)',
       },
     },
   },
