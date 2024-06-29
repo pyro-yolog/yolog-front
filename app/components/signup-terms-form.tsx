@@ -52,9 +52,9 @@ function SignupTermsForm() {
 
   const { underFourteen, terms, privacyPolicy, all } = isChecked;
   return (
-    <form className="flex flex-col justify-between flex-grow">
-      <div className="flex flex-col gap-32pxr ml-45pxr">
-        <div className="mt-40pxr flex flex-col gap-18pxr">
+    <form className="flex flex-col justify-between flex-grow px-16pxr">
+      <div className="flex flex-col gap-32pxr px-29pxr">
+        <div className="flex flex-col gap-18pxr">
           <div className="flex items-center gap-11pxr">
             <Checkbox
               checked={underFourteen}
@@ -89,7 +89,8 @@ function SignupTermsForm() {
           <p className="font-semibold">전체 동의</p>
         </div>
       </div>
-      <Link className="mx-16pxr mb-34pxr" href="/signup/profile">
+
+      <Link href="/signup/profile">
         <Button disabled={!isChecked.all} styles="!bg-primary300 text-white">
           확인
         </Button>
