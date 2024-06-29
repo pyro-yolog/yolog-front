@@ -14,6 +14,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'dbkpop.com',
       },
+      {
+        protocol: 'https',
+        hostname: 't2.daumcdn.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
   },
 };
