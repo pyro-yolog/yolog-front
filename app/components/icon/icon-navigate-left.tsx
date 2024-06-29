@@ -3,7 +3,7 @@ import React from 'react';
 interface Props {
   size?: number;
   className?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<SVGSVGElement>;
 }
 
 function IconNavigateLeft({ size = 33, className, onClick }: Props) {
@@ -20,9 +20,9 @@ function IconNavigateLeft({ size = 33, className, onClick }: Props) {
       <path
         d="M20.625 24.75L12.375 16.5L20.625 8.25"
         stroke="#121212"
-        stroke-width="1.25"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

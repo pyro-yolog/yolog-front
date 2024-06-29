@@ -9,4 +9,5 @@ export { default as IconHeadPhone } from './icon-headphone';
 export { default as IconImage } from './icon-image';
 export { default as IconNavigateRight } from './icon-navigate-right';
 export { default as IconPalette } from './icon-palette';
+export { default as IconPen } from './icon-pen';
 export { default as IconInquiryDone } from './icon-inquiry-done';
