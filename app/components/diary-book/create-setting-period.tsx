@@ -2,8 +2,9 @@
 
 import dayjs from 'dayjs';
 import Modal from '../modal';
-import useDialog from '@/hooks/use-dialog';
 import Calendar from '../calendar';
+import useBoolean from '@/hooks/useBoolean';
+import Input from '../input';
 
 interface Props {
   startDate?: string;
@@ -22,15 +23,12 @@ function DiaryBookCreateSettingPeriod({
   endDate,
   onChangePeriod,
 }: Props) {
-  const { isDialogOpen, setIsDialogOpen, dialogOutsideClick, dialogRef } =
-    useDialog();
+  const [isOpen, , open, close] = useBoolean();
 
   const inputText = () => {
     if (!startDate) {
-      return '여행 기간을 선택해주세요.';
-    }
-
-    if (endDate) {
+      return '';
+    } else if (endDate) {
       return `${dayjs(startDate).format('YYYY.MM.DD')} - ${dayjs(endDate).format('YYYY.MM.DD')}`;
     }
 
@@ -39,28 +37,28 @@ function DiaryBookCreateSettingPeriod({
 
   return (
     <>
-      <div className="flex flex-col animate-fadeInRight">
-        <span className="text-14pxr font-semibold text-gray">여행 기간</span>
-
+      <div className="relative">
         <div
-          className={`pl-5pxr pb-5pxr mt-18pxr border-b-[3px] border-inputGray cursor-pointer text-17pxr font-semibold text-${startDate ? '[#626262]' : 'gray'}`}
-          onClick={() => setIsDialogOpen(true)}
-        >
-          {inputText()}
-        </div>
+          className="absolute left-0 top-0 w-full h-full z-10 cursor-pointer"
+          onClick={open}
+        />
+
+        <Input
+          id="period"
+          title="여행 기간"
+          placeholder="여행 기간을 선택해주세요."
+          value={inputText()}
+          disabled
+        />
       </div>
 
-      <Modal
-        refEl={dialogRef}
-        open={isDialogOpen}
-        onOutsideClick={dialogOutsideClick}
-      >
+      <Modal isOpen={isOpen} onClose={close}>
         <Calendar
           startDate={startDate}
           endDate={endDate}
           onChange={(date) => {
             onChangePeriod(date);
-            setIsDialogOpen(false);
+            close();
           }}
         />
       </Modal>
