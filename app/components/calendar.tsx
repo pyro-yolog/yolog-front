@@ -198,7 +198,10 @@ function Calendar({ startDate, endDate, onChange }: Props) {
                 <div
                   key={col.date}
                   className={col.className}
-                  onClick={() => handleClickDate(col)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleClickDate(col);
+                  }}
                 >
                   <div
                     className={`relative flex items-center justify-center w-full h-full rounded-full text-14pxr ${col.selected && 'bg-primary300 text-white'}`}
