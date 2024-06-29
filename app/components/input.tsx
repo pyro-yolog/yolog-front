@@ -1,89 +1,123 @@
 'use client';
 
-import {
-  FieldErrors,
-  FieldValues,
-  RegisterOptions,
-  UseFormRegister,
-} from 'react-hook-form';
+import { HTMLInputTypeAttribute, useState } from 'react';
+import { FieldError } from 'react-hook-form';
 
-interface IInputProps {
-  placeholder?: string;
-  registerName: string;
-  register: UseFormRegister<FieldValues>;
-  errors: FieldErrors;
-  title: string;
-  type?: 'text';
-  rules?: RegisterOptions;
-  validMessage: string;
+interface Props {
+  id: string;
   value: string;
-  defaultMessage?: string;
+  disabled?: boolean;
+  error?: FieldError;
+  type?: HTMLInputTypeAttribute;
+  title: string;
+  placeholder?: string;
+  helpText?: string | JSX.Element;
+  validText?: string | JSX.Element;
+  validStyle?: boolean;
+  bgStyle?: boolean;
+  onChange?: (...event: any[]) => void;
 }
 
 function Input({
-  placeholder,
-  registerName,
+  id,
+  value,
+  disabled = false,
+  error,
   type = 'text',
   title,
-  rules,
-  validMessage,
-  register,
-  errors,
-  value,
-  defaultMessage,
-}: IInputProps) {
-  const titleStyle = `text-14pxr font-semibold text-gray mb-18pxr`;
-  const inputStyle = `indent-[5px] w-356pxr border-0 border-b-[3px] focus:outline-none border-inputGray text-17pxr font-semibold text-[#626262] placeholder:font-normal`;
-  const isValid = !errors[registerName];
-  const valid = isValid && value?.length !== 0;
+  placeholder,
+  helpText,
+  validText,
+  validStyle = false,
+  bgStyle = false,
+  onChange,
+}: Props) {
+  const [isFocus, setIsFocus] = useState(false);
+  const isValid = !error && value?.length > 0;
 
-  const getTitleClassName = () => {
-    if (valid) {
-      return `${titleStyle} !text-[#3e5c16]`;
-    } else if (!isValid) {
-      return `${titleStyle} !text-[#ff0000]`;
-    } else if (value?.length === 0) {
-      return titleStyle;
+  const getTitleStyles = () => {
+    const style = 'text-14pxr font-semibold';
+
+    if (error) {
+      return `${style} text-[#ff0000]`;
+    } else if (isValid && (isFocus || validStyle)) {
+      return `${style} text-[#3E5C16]`;
     }
+
+    return `${style} text-gray`;
   };
 
-  const getInputClassName = () => {
-    if (valid) {
-      return `${inputStyle} !border-[#3E5C16]`;
-    } else if (!isValid) {
-      return `${inputStyle} !border-[#ff0000]`;
-    } else {
-      return inputStyle;
+  const getInputStyles = () => {
+    const backgroundStyle =
+      'pt-13pxr pb-11pxr !bg-[#F3F3F3] px-16pxr !border border-[#F3F3F3] rounded-[10px]';
+    let style =
+      'w-full h-43pxr py-9pxr border-0 border-b-[3px] text-17pxr font-semibold text-[#626262] bg-transparent placeholder:font-normal focus:outline-none focus:border-inputGray transition-colors duration-50 ';
+
+    if (bgStyle) {
+      style += backgroundStyle;
+    }
+
+    if (error) {
+      return `${style} !border-[#ff0000]`;
+    } else if (isValid && (isFocus || validStyle)) {
+      return `${style} !border-[#3E5C16]`;
+    }
+
+    return `${style} border-[#CBCBCB]`;
+  };
+
+  const getMessageStyles = () => {
+    const style = 'text-13pxr leading-[18px]';
+
+    if (error) {
+      return `${style} text-error`;
+    } else if (isValid && (isFocus || validStyle)) {
+      if (!validText) {
+        return `${style} text-gray`;
+      }
+
+      return `${style} text-inputGreen`;
+    }
+
+    return `${style} text-gray`;
+  };
+
+  const getMessage = () => {
+    if (error) {
+      return error?.message as string;
+    } else if (isValid && (isFocus || validStyle)) {
+      if (!validText) {
+        return helpText;
+      }
+
+      return validText;
+    } else if (isFocus) {
+      return helpText;
     }
   };
 
   return (
-    <div>
-      <p className={getTitleClassName()}>{title}</p>
-      <label htmlFor={registerName}></label>
+    <div className="flex flex-col gap-9pxr w-full">
+      <label htmlFor={id}>
+        <p className={getTitleStyles()}>{title}</p>
+      </label>
+
       <div className="flex">
         <input
           autoComplete="off"
-          className={`${inputStyle} ${getInputClassName()} bg-transparent`}
+          id={id}
           type={type}
-          id={registerName}
+          value={value}
+          disabled={disabled}
           placeholder={placeholder}
-          {...register(registerName, rules)}
+          className={getInputStyles()}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          onChange={onChange}
         />
       </div>
-      {valid ? (
-        <p className="text-13pxr leading-[18pxr] mt-9pxr text-inputGreen w-356pxr h-18pxr">
-          {validMessage}
-        </p>
-      ) : (
-        <pre
-          className={`text-13pxr leading-[18pxr] mt-9pxr w-356pxr h-18pxr ${value.length === 0 ? 'text-gray' : `text-error`}`}
-        >
-          {value.length === 0
-            ? defaultMessage
-            : (errors[registerName]?.message as string)}
-        </pre>
-      )}
+
+      {getMessage() && <p className={getMessageStyles()}>{getMessage()}</p>}
     </div>
   );
 }

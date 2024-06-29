@@ -12,26 +12,22 @@ import {
 } from '@/app/lib/constants/validation';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { Controller, FieldValues, useForm } from 'react-hook-form';
 
 function DiaryBookCreateSetting() {
   const router = useRouter();
   const {
-    register,
     handleSubmit,
-    watch,
-    formState: { errors, isValid },
-  } = useForm<FieldValues>({
-    mode: 'onSubmit',
+    control,
+    formState: { isValid },
+  } = useForm({
+    mode: 'onChange',
   });
   const [step, setStep] = useState(0);
   const [startDate, setStartDate] = useState<string>();
   const [endDate, setEndDate] = useState<string>();
-  const name = watch('name');
-  const destination = watch('destination');
 
-  const isDisabled =
-    !isValid || destination === '' || name === '' || (step > 0 && !startDate);
+  const isDisabled = !isValid || (step > 0 && !startDate);
 
   const handleChangePeriod = ({
     startDate,
@@ -73,17 +69,24 @@ function DiaryBookCreateSetting() {
 
           {step === 2 && (
             <div className="animate-fadeInRight">
-              <Input
-                type="text"
-                registerName="name"
-                title="일기장 이름"
-                placeholder="일기장 이름을 입력해주세요."
-                defaultMessage="1~17자 입력할 수 있어요."
-                validMessage=""
-                value={name}
-                errors={errors}
+              <Controller
+                name="name"
+                control={control}
                 rules={DIARY_BOOK_NAME_VALIDATION}
-                register={register}
+                render={({
+                  field: { value = '', onChange },
+                  fieldState: { error },
+                }) => (
+                  <Input
+                    id="name"
+                    title="일기장 이름"
+                    placeholder="일기장 이름을 입력해주세요."
+                    helpText="1~17자 입력할 수 있어요."
+                    value={value}
+                    error={error}
+                    onChange={onChange}
+                  />
+                )}
               />
             </div>
           )}
@@ -97,17 +100,24 @@ function DiaryBookCreateSetting() {
           )}
 
           <div className="animate-fadeInRight">
-            <Input
-              type="text"
-              registerName="destination"
-              title="여행지"
-              placeholder="여행지를 입력해주세요."
-              defaultMessage="1~35자 입력할 수 있어요."
-              validMessage=""
-              value={destination}
-              errors={errors}
+            <Controller
+              name="destination"
+              control={control}
               rules={TRAVEL_DESTINATION_VALIDATION}
-              register={register}
+              render={({
+                field: { value = '', onChange },
+                fieldState: { error },
+              }) => (
+                <Input
+                  id="destination"
+                  title="여행지"
+                  placeholder="여행지를 입력해주세요."
+                  helpText="1~35자 입력할 수 있어요."
+                  value={value}
+                  error={error}
+                  onChange={onChange}
+                />
+              )}
             />
           </div>
         </div>
