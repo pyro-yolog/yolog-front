@@ -1,12 +1,12 @@
 'use client';
 
-import { DiaryBookCreateCoverForm } from '@/app/components';
+import { DiaryCreateCoverForm } from '@/app/components';
 import { Suspense } from 'react';
 
 function DiaryBookCreateCover() {
   return (
     <Suspense>
-      <DiaryBookCreateCoverForm />
+      <DiaryCreateCoverForm />
     </Suspense>
   );
 }

@@ -1,3 +1,4 @@
+export { default as BackgroundColor } from './background-color';
 export { default as Calendar } from './calendar';
 export { default as Checkbox } from './checkbox';
 export { default as Input } from './input';
