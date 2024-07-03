@@ -1,9 +1,9 @@
-import { BottomSheet, SocialBottomSheet } from '@/app/components';
-import useBottomSheet from '@/hooks/use-bottom-sheet';
+import { BottomSheet } from '@/app/components';
+import useBoolean from '@/hooks/useBoolean';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'bottom-sheet',
+  title: 'BottomSheet',
   component: BottomSheet,
   parameters: {
     layout: 'centered',
@@ -14,29 +14,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SocialSigninBottomSheet: Story = {
+export const Default: Story = {
   args: {
-    children: <SocialBottomSheet />,
-    title: '기존 계정으로 로그인',
     isOpen: false,
+    onClose: () => {},
   },
-  render: (args) => {
-    const { isSheetOpen, setIsSheetOpen, bottomSheetRef, handleOutsideClick } =
-      useBottomSheet();
+  render: () => {
+    const [isOpen, , open, close] = useBoolean();
 
     return (
       <div style={{ position: 'relative' }}>
-        <button onClick={() => setIsSheetOpen(!isSheetOpen)}>
-          바텀시트 열기
-        </button>
-        <BottomSheet
-          title={args.title}
-          isOpen={isSheetOpen}
-          bottomSheetRef={bottomSheetRef}
-          onOutsideClick={handleOutsideClick}
-          onClose={() => setIsSheetOpen(false)}
-        >
-          {args.children}
+        <button onClick={open}>바텀시트 열기</button>
+
+        <BottomSheet isOpen={isOpen} onClose={close}>
+          <div>asdf</div>
         </BottomSheet>
       </div>
     );
