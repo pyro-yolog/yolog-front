@@ -7,7 +7,7 @@ interface Props {
 }
 
 function SocialButton({ type, onClick }: Props) {
-  const buttonStyles = 'relative text-16pxr font-semibold';
+  const buttonStyles = 'relative !text-16pxr font-semibold';
   const logoStyles = 'absolute top-1/2 left-33pxr -translate-y-1/2';
 
   const getStyles = () => {
