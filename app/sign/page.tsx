@@ -1,40 +1,48 @@
-import Link from 'next/link';
-import { SigninBottom, SocialButton } from '../components';
+import Image from 'next/image';
+import { SocialButton } from '../components';
 import { gowunBatang } from '../components/ui/fonts';
-import { SOCIAL_BUTTONS } from '../lib/constants/social-buttons';
 
 function SignPage() {
   return (
-    <div className="bg-gradient-to-b from-[#8DAC67] to-[#F8F7EE] h-full">
-      <div className="h-54pxr bg-transparent" />
-      <div className="flex flex-col">
-        <div className="flex flex-col gap-16pxr ml-35pxr mt-47pxr mb-205pxr">
-          <p
-            className={`drop-shadow-textShadow ${gowunBatang.className} text-28pxr leading-[47px] tracking-[0.28px] text-white`}
-          >
-            여행의 모든 감동을
-            <br />
-            나만의 이야기로
-            <br />
-            기록해보세요.
-          </p>
-          <p
-            className={`text-white ${gowunBatang.className} text-18pxr font-normal`}
-          >
-            3초면 회원가입이 가능해요!
-          </p>
+    <div className="flex flex-col pt-47pxr pb-12pxr justify-between gap-27pxr w-full h-full">
+      <div
+        className={`relative ${gowunBatang.className} flex flex-auto flex-col gap-16pxr px-35pxr text-inputGreen`}
+      >
+        <p className="text-28pxr font-bold">
+          여행의 모든 감동을
+          <br />
+          나만의 이야기로
+          <br />
+          기록해보세요.
+        </p>
+
+        <p className="text-18pxr">3초면 회원가입이 가능해요!</p>
+
+        <div className="absolute left-0pxr bottom-0pxr flex flex-col items-end w-[90%]">
+          <Image
+            src="/images/sign2.png"
+            alt="sign_image"
+            width={42}
+            height={42}
+          />
+
+          <Image
+            src="/images/sign1.png"
+            alt="sign_image"
+            width={0}
+            height={0}
+            style={{ width: '100%', height: 'auto' }}
+            sizes="100vw"
+          />
         </div>
-        <div>
-          <div className="flex flex-col gap-16pxr items-center mx-16pxr">
-            {SOCIAL_BUTTONS.map((button) => (
-              <Link href="/signup/terms" key={button.id} className="w-full">
-                <SocialButton type={button.type} />
-              </Link>
-            ))}
-          </div>
-        </div>
-        <SigninBottom className="mt-22pxr mb-12pxr flex items-center justify-center" />
-        <div className="h-21pxr" />
+      </div>
+
+      <div className="flex flex-col gap-12pxr px-16pxr">
+        <SocialButton type="kakao" />
+
+        <SocialButton type="google" />
+
+        <SocialButton type="apple" />
       </div>
     </div>
   );
