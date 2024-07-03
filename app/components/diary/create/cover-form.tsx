@@ -1,16 +1,12 @@
 'use client';
 
-import {
-  Button,
-  DiaryBookCreateCoverPalette,
-  IconImage,
-  IconPalette,
-} from '@/app/components';
+import { Button, IconImage, IconPalette } from '@/app/components';
 import { gowunBatang } from '@/app/components/ui/fonts';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import DiaryCreateCoverPalette from './cover-palette';
 
-function DiaryBookCreateCover() {
+function DiaryCreateCover() {
   const defaultOptionStyles =
     'flex flex-col items-center justify-center gap-13pxr w-1/2 h-213pxr border border-primary400 rounded-[20px] transition-colors duration-100 cursor-pointer';
   const selectOptionStyles = 'bg-primary400/30';
@@ -75,7 +71,7 @@ function DiaryBookCreateCover() {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full h-screen pt-32pxr px-16pxr bg-white">
+    <div className="flex flex-col justify-between w-full h-full pt-32pxr px-16pxr bg-white">
       <div className="flex flex-col gap-19pxr">
         <h1 className={`${gowunBatang.className} text-20pxr`}>
           <p className="animate-fadeInRight">일기장 커버를 선택해주세요.</p>
@@ -106,7 +102,7 @@ function DiaryBookCreateCover() {
         </div>
 
         {selectOption === 'COLOR' && (
-          <DiaryBookCreateCoverPalette
+          <DiaryCreateCoverPalette
             selectColor={color}
             onChangeColor={setColor}
           />
@@ -120,4 +116,4 @@ function DiaryBookCreateCover() {
   );
 }
 
-export default DiaryBookCreateCover;
+export default DiaryCreateCover;

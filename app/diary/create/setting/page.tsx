@@ -2,8 +2,8 @@
 
 import {
   Button,
-  DiaryBookCreateSettingPeriod,
-  DiaryBookCreateSettingTitle,
+  DiaryCreateSettingPeriod,
+  DiaryCreateSettingTitle,
   Input,
 } from '@/app/components';
 import {
@@ -52,20 +52,20 @@ function DiaryBookCreateSetting() {
         params.append('endDate', endDate);
       }
 
-      router.push(`/diary-book/create/cover?${params}`);
+      router.push(`/diary/create/cover?${params}`);
     } else {
       setStep(step + 1);
     }
   };
 
   return (
-    <div className="flex flex-col justify-between w-full h-screen pt-32pxr bg-white">
+    <div className="flex flex-col justify-between w-full h-full pt-32pxr bg-white">
       <form
         className="flex flex-col justify-between w-full h-full"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col gap-28pxr w-full px-16pxr">
-          <DiaryBookCreateSettingTitle step={step} />
+          <DiaryCreateSettingTitle step={step} />
 
           {step === 2 && (
             <div className="animate-fadeInRight">
@@ -92,7 +92,7 @@ function DiaryBookCreateSetting() {
           )}
 
           {step > 0 && (
-            <DiaryBookCreateSettingPeriod
+            <DiaryCreateSettingPeriod
               startDate={startDate}
               endDate={endDate}
               onChangePeriod={handleChangePeriod}

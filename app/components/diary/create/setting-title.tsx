@@ -1,7 +1,7 @@
-import { gowunBatang } from '../ui/fonts';
 import { SwitchCase } from '@/app/components';
+import { gowunBatang } from '@/app/components/ui/fonts';
 
-function DiaryBookCreateSettingTitle({ step }: { step: number }) {
+function DiaryCreateSettingTitle({ step }: { step: number }) {
   return (
     <h1 className={`${gowunBatang.className} text-20pxr`}>
       <SwitchCase
@@ -28,4 +28,4 @@ function DiaryBookCreateSettingTitle({ step }: { step: number }) {
   );
 }
 
-export default DiaryBookCreateSettingTitle;
+export default DiaryCreateSettingTitle;

@@ -1,10 +1,8 @@
 'use client';
 
 import dayjs from 'dayjs';
-import Modal from '../modal';
-import Calendar from '../calendar';
+import { Calendar, Modal, Input } from '@/app/components';
 import useBoolean from '@/hooks/useBoolean';
-import Input from '../input';
 
 interface Props {
   startDate?: string;
@@ -18,7 +16,7 @@ interface Props {
   }) => void;
 }
 
-function DiaryBookCreateSettingPeriod({
+function DiaryCreateSettingPeriod({
   startDate,
   endDate,
   onChangePeriod,
@@ -66,4 +64,4 @@ function DiaryBookCreateSettingPeriod({
   );
 }
 
-export default DiaryBookCreateSettingPeriod;
+export default DiaryCreateSettingPeriod;
