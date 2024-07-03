@@ -1,18 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { gowunBatang } from './components/ui/fonts';
 import { useRouter } from 'next/navigation';
 
 function Home() {
-  const [isAfterTwoSeconds, setIsAfterTwoSeconds] = useState(false);
   const router = useRouter();
-
-  const handleSubTitleAnimation = () => {
-    setTimeout(() => {
-      setIsAfterTwoSeconds(true);
-    }, 1500);
-  };
 
   useEffect(() => {
     router.prefetch('/onboarding');
@@ -20,23 +13,20 @@ function Home() {
 
   const routeToOnboarding = () => {
     setTimeout(() => {
-      router.push('/onboarding');
-    }, 500);
+      router.replace('/onboarding');
+    }, 1000);
   };
 
-  useEffect(() => {
-    handleSubTitleAnimation();
-  }, []);
-
   return (
-    <div className="bg-onboardingBg relative flex flex-col justify-center h-full items-center">
+    <div className="relative flex flex-col justify-center h-full items-center">
       <p
         className={`text-white ${gowunBatang.className} text-40pxr font-bold leading-[45px]`}
       >
         여록
       </p>
+
       <p
-        className={`text-white ${gowunBatang.className} text-20pxr font-bold leading-[45px] invisible ${isAfterTwoSeconds ? '!visible animate-showSubTitle' : ''}`}
+        className={`text-white ${gowunBatang.className} text-20pxr font-bold leading-[45px] opacity-0 animate-[fadeInLeft_1s_ease-in-out_1s_forwards]`}
         onAnimationEnd={routeToOnboarding}
       >
         ; 여행을 기록하다
