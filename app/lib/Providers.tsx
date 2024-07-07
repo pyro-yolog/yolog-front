@@ -1,13 +1,18 @@
 'use client';
 
-import { Provider } from 'react-redux';
-import { store } from './redux/store';
-import { SessionProvider } from 'next-auth/react';
+import { useState } from 'react';
+import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  const [client] = useState(new QueryClient());
+
   return (
-    <Provider store={store}>
-      <SessionProvider>{children}</SessionProvider>
-    </Provider>
+    <QueryClientProvider client={client}>
+      <RecoilRoot>{children}</RecoilRoot>
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }

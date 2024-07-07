@@ -1,23 +1,17 @@
-import { addToast, removeToast } from '@/app/lib/redux/toast-slice';
-import { useDispatch } from 'react-redux';
-
-interface IUseToastProps {
-  message: string;
-  type: 'default' | 'error' | 'success';
-}
+import { IToast, toastState } from '@/app/lib/store/toast';
+import { useSetRecoilState } from 'recoil';
 
 const TOAST_AVAILABLE_TIME = 2000;
 
 function useToast() {
-  const dispatch = useDispatch();
+  const setToastList = useSetRecoilState(toastState);
 
-  const showToast = ({ message, type }: IUseToastProps) => {
-    const id = Date.now();
+  const showToast = ({ id = Date.now(), message, type }: IToast) => {
     const newToast = { id, message, type };
-    dispatch(addToast(newToast));
+    setToastList((toast) => [...toast, newToast]);
 
     setTimeout(() => {
-      dispatch(removeToast(id));
+      setToastList((toast) => toast.filter((t) => t.id !== id));
     }, TOAST_AVAILABLE_TIME);
   };
 
