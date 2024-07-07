@@ -1,8 +1,8 @@
 'use client';
 
-import { Button, Input } from './index';
-import { PROFILE_NAME_VALIDATION } from '../lib/constants/validation';
 import { Controller, useForm } from 'react-hook-form';
+import { Button, Input } from '@/app/components';
+import { PROFILE_NAME_VALIDATION } from '@/app/lib/constants/validation';
 
 function SignupProfileForm() {
   const {
@@ -47,6 +47,7 @@ function SignupProfileForm() {
           />
         )}
       />
+
       <Button disabled={!isValid}>가입 완료</Button>
     </form>
   );
