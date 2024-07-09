@@ -24,6 +24,14 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://yolog.store:8080/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
