@@ -1,4 +1,4 @@
-import MENUS from '@/app/lib/constants/menus';
+import MENUS from '@/lib/constants/menus';
 import { IconInquiryDone } from '../icon';
 import Button from './button';
 

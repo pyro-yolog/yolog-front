@@ -1,5 +1,5 @@
 import { Input } from '@/app/components';
-import { TRAVEL_DESTINATION_VALIDATION } from '@/app/lib/constants/validation';
+import { TRAVEL_DESTINATION_VALIDATION } from '@/lib/constants/validation';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Controller, useForm } from 'react-hook-form';
 

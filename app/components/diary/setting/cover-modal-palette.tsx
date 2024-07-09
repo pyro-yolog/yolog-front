@@ -1,5 +1,5 @@
 import { IconNavigateLeft } from '@/app/components/icon';
-import COLORS from '@/app/lib/constants/colors';
+import COLORS from '@/lib/constants/colors';
 
 interface Props {
   onClose: () => void;

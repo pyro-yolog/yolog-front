@@ -3,9 +3,9 @@
 import { Controller, useForm } from 'react-hook-form';
 import { Input } from '@/app/components';
 import {
-  DIARY_BOOK_NAME_VALIDATION,
-  TRAVEL_DESTINATION_VALIDATION,
-} from '@/app/lib/constants/validation';
+  TRIP_DESTINATION_VALIDATION,
+  TRIP_NAME_VALIDATION,
+} from '@/lib/constants/validation';
 import useBoolean from '@/hooks/useBoolean';
 import DiarySettingCalendarModal from './calendar-modal';
 import DiarySettingDateConfirmModal from './date-confirm-modal';
@@ -40,7 +40,7 @@ function DiarySettingForm() {
           <Controller
             name="name"
             control={control}
-            rules={DIARY_BOOK_NAME_VALIDATION}
+            rules={TRIP_NAME_VALIDATION}
             render={({
               field: { name, value = 'aa', onChange },
               fieldState: { error },
@@ -60,7 +60,7 @@ function DiarySettingForm() {
           <Controller
             name="destination"
             control={control}
-            rules={TRAVEL_DESTINATION_VALIDATION}
+            rules={TRIP_DESTINATION_VALIDATION}
             render={({
               field: { name, value = 'bb', onChange },
               fieldState: { error },

@@ -1,7 +1,7 @@
 'use client';
 
-import { POPOVERS } from '@/app/lib/constants/popover-write';
-import { PopoverValue, WritePopoverType } from '@/app/lib/types/popover-type';
+import { POPOVERS } from '@/lib/constants/popover-write';
+import { PopoverValue, WritePopoverType } from '@/lib/types/popover-type';
 import { useRef, useState } from 'react';
 
 function usePopover() {

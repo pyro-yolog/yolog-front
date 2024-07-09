@@ -1,7 +1,7 @@
-import { IToast, toastState } from '@/app/lib/store/toast';
+import { IToast, toastState } from '@/lib/store/toast';
 import { useSetRecoilState } from 'recoil';
 
-const TOAST_AVAILABLE_TIME = 2000;
+const TOAST_AVAILABLE_TIME = 2500;
 
 function useToast() {
   const setToastList = useSetRecoilState(toastState);
