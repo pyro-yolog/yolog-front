@@ -1,7 +1,7 @@
 import { SwitchCase } from '@/app/components';
 import { gowunBatang } from '@/app/components/ui/fonts';
 
-function DiaryCreateSettingTitle({ step }: { step: number }) {
+function TripCreateSettingTitle({ step }: { step: number }) {
   return (
     <h1 className={`${gowunBatang.className} text-20pxr`}>
       <SwitchCase
@@ -28,4 +28,4 @@ function DiaryCreateSettingTitle({ step }: { step: number }) {
   );
 }
 
-export default DiaryCreateSettingTitle;
+export default TripCreateSettingTitle;

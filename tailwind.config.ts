@@ -65,7 +65,7 @@ const config: Config = {
       keyframes: {
         showToast: {
           '0%': {
-            transform: 'translateX(-50%) translateY(-65px)',
+            transform: 'translateX(-50%) translateY(-40px)',
             opacity: '0',
           },
           '20%': { transform: 'translateX(-50%) translateY(0)', opacity: '1' },
@@ -114,7 +114,7 @@ const config: Config = {
         },
       },
       animation: {
-        showToast: 'showToast 2s',
+        showToast: 'showToast 2.5s',
         showBottomSheet: 'fadeInBottom 0.4s forwards',
         closeBottomSheet: 'fadeOutBottom 0.4s forwards',
         fadeInLeft: 'fadeInLeft 1.5s',

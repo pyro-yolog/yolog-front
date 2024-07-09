@@ -16,7 +16,7 @@ interface Props {
   }) => void;
 }
 
-function DiaryCreateSettingPeriod({
+function TripCreateSettingPeriod({
   startDate,
   endDate,
   onChangePeriod,
@@ -64,4 +64,4 @@ function DiaryCreateSettingPeriod({
   );
 }
 
-export default DiaryCreateSettingPeriod;
+export default TripCreateSettingPeriod;

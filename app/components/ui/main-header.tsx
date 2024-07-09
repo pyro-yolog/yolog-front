@@ -20,12 +20,12 @@ function MainHeader() {
       <Menu isOpen={isMenuOpen}>
         <MainMenu onClose={handleClose} />
       </Menu>
+
       <div className="mx-16pxr flex justify-center pt-20pxr items-center">
-        <span
-          className={`text-primary400 ${gowunBatang.className} text-20pxr font-bold`}
-        >
-          여록하다
+        <span className={`${gowunBatang.className} text-primary500 text-20pxr`}>
+          여록
         </span>
+
         <button
           className="absolute right-16pxr"
           onClick={() => setIsMenuOpen(!isMenuOpen)}

@@ -1,18 +1,33 @@
 'use client';
 
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, FieldValues, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { socialLoginAPI } from '@/apis/social-login';
 import { Button, Input } from '@/app/components';
-import { PROFILE_NAME_VALIDATION } from '@/app/lib/constants/validation';
+import { PROFILE_NAME_VALIDATION } from '@/lib/constants/validation';
 
 function SignupProfileForm() {
+  const router = useRouter();
   const {
     handleSubmit,
+    setError,
     control,
     formState: { isValid },
-  } = useForm({ mode: 'onChange' });
+  } = useForm<FieldValues>({ mode: 'onChange' });
 
-  const onSubmit = () => {
-    console.log('submitted');
+  const onSubmit = async ({ nickname }: FieldValues) => {
+    try {
+      const { data: isSuccess } = await socialLoginAPI(nickname);
+
+      if (isSuccess) {
+        router.push('/trip');
+      } else {
+        setError('nickname', { message: '이미 사용 중인 이름이에요.' });
+      }
+    } catch (e) {
+      console.error(e);
+      setError('nickname', { message: '서버 요청에 문제가 발생했어요.' });
+    }
   };
 
   return (
@@ -21,7 +36,7 @@ function SignupProfileForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
-        name="name"
+        name="nickname"
         control={control}
         rules={PROFILE_NAME_VALIDATION}
         render={({

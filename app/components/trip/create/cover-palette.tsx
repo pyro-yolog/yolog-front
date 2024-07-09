@@ -1,11 +1,11 @@
-import COLORS from '@/app/lib/constants/colors';
+import COLORS from '@/lib/constants/colors';
 
 interface Props {
   selectColor?: string;
   onChangeColor: (color: string) => void;
 }
 
-function DiaryCreateCoverPalette({ selectColor, onChangeColor }: Props) {
+function TripCreateCoverPalette({ selectColor, onChangeColor }: Props) {
   return (
     <div className="grid grid-cols-4 gap-x-17pxr gap-y-15pxr w-full p-20pxr bg-[#F4F4F4] rounded-[20px]">
       {COLORS.map((color) => (
@@ -23,4 +23,4 @@ function DiaryCreateCoverPalette({ selectColor, onChangeColor }: Props) {
   );
 }
 
-export default DiaryCreateCoverPalette;
+export default TripCreateCoverPalette;

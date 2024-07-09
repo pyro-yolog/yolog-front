@@ -2,14 +2,16 @@
 
 import {
   Button,
-  DiaryCreateSettingPeriod,
-  DiaryCreateSettingTitle,
+  IconNavigateLeft,
   Input,
+  TripCreateSettingPeriod,
+  TripCreateSettingTitle,
 } from '@/app/components';
 import {
-  DIARY_BOOK_NAME_VALIDATION,
-  TRAVEL_DESTINATION_VALIDATION,
-} from '@/app/lib/constants/validation';
+  TRIP_DESTINATION_VALIDATION,
+  TRIP_NAME_VALIDATION,
+} from '@/lib/constants/validation';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
@@ -52,27 +54,31 @@ function DiaryBookCreateSetting() {
         params.append('endDate', endDate);
       }
 
-      router.push(`/diary/create/cover?${params}`);
+      router.push(`/trip/create/cover?${params}`);
     } else {
       setStep(step + 1);
     }
   };
 
   return (
-    <div className="flex flex-col justify-between w-full h-full pt-32pxr bg-white">
+    <div className="flex flex-col justify-between gap-30pxr w-full h-full pt-21pxr">
+      <Link href="/trip" className="px-8pxr">
+        <IconNavigateLeft />
+      </Link>
+
       <form
         className="flex flex-col justify-between w-full h-full"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col gap-28pxr w-full px-16pxr">
-          <DiaryCreateSettingTitle step={step} />
+          <TripCreateSettingTitle step={step} />
 
           {step === 2 && (
             <div className="animate-fadeInRight">
               <Controller
                 name="name"
                 control={control}
-                rules={DIARY_BOOK_NAME_VALIDATION}
+                rules={TRIP_NAME_VALIDATION}
                 render={({
                   field: { value = '', onChange },
                   fieldState: { error },
@@ -92,7 +98,7 @@ function DiaryBookCreateSetting() {
           )}
 
           {step > 0 && (
-            <DiaryCreateSettingPeriod
+            <TripCreateSettingPeriod
               startDate={startDate}
               endDate={endDate}
               onChangePeriod={handleChangePeriod}
@@ -103,7 +109,7 @@ function DiaryBookCreateSetting() {
             <Controller
               name="destination"
               control={control}
-              rules={TRAVEL_DESTINATION_VALIDATION}
+              rules={TRIP_DESTINATION_VALIDATION}
               render={({
                 field: { value = '', onChange },
                 fieldState: { error },
