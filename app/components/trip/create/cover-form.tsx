@@ -11,16 +11,22 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import TripCreateCoverPalette from './cover-palette';
 import Link from 'next/link';
+import { createTripAPI } from '@/apis/trips';
+import { uploadImageAPI } from '@/apis/images';
+import { AxiosError } from 'axios';
+import useToast from '@/hooks/use-toast';
 
 function TripCreateCover() {
   const defaultOptionStyles =
     'flex flex-col items-center justify-center gap-13pxr w-1/2 h-213pxr border border-primary400 rounded-[20px] transition-colors duration-100 cursor-pointer';
   const selectOptionStyles = 'bg-primary400/30';
 
+  const showToast = useToast();
   const router = useRouter();
   const params = useSearchParams();
   const [selectOption, setSelectOption] = useState<string>();
   const [color, setColor] = useState<string>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const options = [
     {
@@ -61,19 +67,56 @@ function TripCreateCover() {
       input.accept = 'image/*';
       input.click();
 
+      input.addEventListener('change', () => handleChangeInput(input));
+
       return;
     }
 
     setSelectOption(option);
   };
 
-  const handleClickButton = async () => {
-    const name = params.get('name');
-    const startDate = params.get('startDate');
-    const endDate = params.get('endDate');
-    const destination = params.get('destination');
+  const handleChangeInput = async (input: HTMLInputElement) => {
+    if (!input.files) return;
 
-    // TODO - API 요청 (일기장 생성)
+    const [image] = input.files;
+    const formData = new FormData();
+    formData.append('image', image);
+
+    try {
+      const { imageUrl } = (await uploadImageAPI(formData)).data;
+
+      handleClickButton(null, imageUrl);
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        if (e.response?.status === 413) {
+          showToast({ type: 'error', message: '사진 용량이 너무 커요!' });
+        }
+      }
+      console.error(e);
+    }
+  };
+
+  const handleClickButton = async (_: any, imageUrl?: string) => {
+    const name = params.get('name') as string;
+    const startDate = params.get('startDate') as string;
+    const finishDate = params.get('endDate') || startDate;
+    const destination = params.get('destination') as string;
+
+    try {
+      await createTripAPI({
+        name,
+        startDate,
+        finishDate,
+        destination,
+        coverImageUrl: (imageUrl || color) as string,
+      });
+
+      router.push('/trip');
+    } catch (e) {
+      console.error(e);
+
+      showToast({ type: 'error', message: '서버 요청에 문제가 발생했어요!' });
+    }
   };
 
   return (
@@ -122,7 +165,7 @@ function TripCreateCover() {
       </div>
 
       <div className="w-full px-16pxr">
-        <Button disabled={!color} onClick={handleClickButton}>
+        <Button disabled={!color && !isLoading} onClick={handleClickButton}>
           다음
         </Button>
       </div>

@@ -72,7 +72,7 @@ const config: Config = {
           '75%': { transform: 'translateX(-50%) translateY(0)', opacity: '1' },
           '100%': { transform: 'translateX(-50%) translateY(0)', opacity: '0' },
         },
-        fadeInBottom: {
+        showBottomSheet: {
           '0%': {
             transform: 'translateY(100%)',
             opacity: '0',
@@ -82,7 +82,7 @@ const config: Config = {
             opacity: '1',
           },
         },
-        fadeOutBottom: {
+        closeBottomSheet: {
           '0%': {
             transform: 'translateY(0)',
             opacity: '1',
@@ -90,6 +90,26 @@ const config: Config = {
           '100%': {
             transform: 'translateY(100%)',
             opacity: '0',
+          },
+        },
+        fadeInBottom: {
+          '0%': {
+            transform: 'translateY(30px)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: '1',
+          },
+        },
+        fadeInTop: {
+          '0%': {
+            transform: 'translateY(-30px)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: '1',
           },
         },
         fadeInLeft: {
@@ -115,8 +135,9 @@ const config: Config = {
       },
       animation: {
         showToast: 'showToast 2.5s',
-        showBottomSheet: 'fadeInBottom 0.4s forwards',
-        closeBottomSheet: 'fadeOutBottom 0.4s forwards',
+        showBottomSheet: 'showBottomSheet 0.4s forwards',
+        closeBottomSheet: 'closeBottomSheet 0.4s forwards',
+        fadeInTop: 'fadeInTop 1.2s',
         fadeInLeft: 'fadeInLeft 1.5s',
         fadeInRight: 'fadeInRight 1.5s',
       },

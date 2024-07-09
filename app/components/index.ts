@@ -39,3 +39,4 @@ export * from './icon';
 export * from './onboarding';
 export * from './signup';
 export * from './trip/create';
+export * from './trip/main';

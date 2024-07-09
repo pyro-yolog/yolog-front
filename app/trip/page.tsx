@@ -1,12 +1,17 @@
 import Link from 'next/link';
-import { FloatingButton, IconPlus, MainHeader } from '../components';
-import MainDiaryList from '../components/ui/main-diary-list';
+import {
+  FloatingButton,
+  IconPlus,
+  MainHeader,
+  TripMainView,
+} from '@/app/components';
 
-function MainPage() {
+function TripPage() {
   return (
-    <div className="relative h-full bg-[#eaf2e4] flex flex-col justify-end">
+    <div className="relative h-full flex flex-col">
       <MainHeader />
-      <MainDiaryList />
+
+      <TripMainView />
 
       <Link
         className="absolute bottom-38pxr left-1/2 -translate-x-1/2"
@@ -20,4 +25,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default TripPage;
