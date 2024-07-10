@@ -15,6 +15,7 @@ import { createTripAPI } from '@/apis/trips';
 import { uploadImageAPI } from '@/apis/images';
 import { AxiosError } from 'axios';
 import useToast from '@/hooks/use-toast';
+import { TripRequest } from '@/models/trip.model';
 
 function TripCreateCover() {
   const defaultOptionStyles =
@@ -102,14 +103,16 @@ function TripCreateCover() {
     const finishDate = params.get('endDate') || startDate;
     const destination = params.get('destination') as string;
 
+    const data: TripRequest = { name, startDate, finishDate, destination };
+
+    if (imageUrl) {
+      data.coverImageUrl = imageUrl;
+    } else {
+      data.colorCover = color;
+    }
+
     try {
-      await createTripAPI({
-        name,
-        startDate,
-        finishDate,
-        destination,
-        coverImageUrl: (imageUrl || color) as string,
-      });
+      await createTripAPI(data);
 
       router.push('/trip');
     } catch (e) {

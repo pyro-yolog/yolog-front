@@ -7,7 +7,7 @@ interface Props {
 
 function TripMainList({ data }: Props) {
   return (
-    <div className="w-full py-52pxr pl-57pxr pr-50pxr">
+    <div className="flex flex-col gap-35pxr w-full py-52pxr pl-57pxr pr-50pxr">
       {data.map((trip) => (
         <TripMainItem key={trip.id} {...trip} />
       ))}

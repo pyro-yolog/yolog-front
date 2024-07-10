@@ -1,7 +1,8 @@
 export interface TripRequest {
   name: string;
   destination: string;
-  coverImageUrl: string;
+  coverImageUrl?: string;
+  colorCover?: string;
   startDate: string;
   finishDate: string;
 }

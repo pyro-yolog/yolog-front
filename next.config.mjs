@@ -4,15 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'c4.wallpaperflare.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.tvtime.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'dbkpop.com',
+        hostname: 's3.ap-northeast-2.amazonaws.com',
       },
       {
         protocol: 'https',

@@ -12,7 +12,7 @@ function TripMainView() {
   });
 
   return (
-    <div className="w-full h-[calc(100%-65px)] bg-white rounded-t-[27px] shadow-mainDiaryList overflow-y-auto scrollbar-hide">
+    <div className="w-full h-[calc(100%-65px)] bg-white rounded-t-[27px] shadow-tripViewBox overflow-y-auto scrollbar-hide">
       {data ? <TripMainList data={data} /> : <TripMainEmpty />}
     </div>
   );
