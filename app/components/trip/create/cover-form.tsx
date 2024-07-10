@@ -97,7 +97,7 @@ function TripCreateCover() {
     }
   };
 
-  const handleClickButton = async (_: any, imageUrl?: string) => {
+  const handleClickButton = async (_?: any, imageUrl?: string) => {
     const name = params.get('name') as string;
     const startDate = params.get('startDate') as string;
     const finishDate = params.get('endDate') || startDate;
@@ -168,7 +168,10 @@ function TripCreateCover() {
       </div>
 
       <div className="w-full px-16pxr">
-        <Button disabled={!color && !isLoading} onClick={handleClickButton}>
+        <Button
+          disabled={!color && !isLoading}
+          onClick={() => handleClickButton()}
+        >
           다음
         </Button>
       </div>

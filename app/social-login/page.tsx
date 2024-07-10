@@ -1,11 +1,11 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { tokenState } from '@/lib/store/user';
 import { useSetRecoilState } from 'recoil';
 
-function SocialLoginPage() {
+function SocialLogin() {
   const setToken = useSetRecoilState(tokenState);
   const router = useRouter();
   const params = useSearchParams();
@@ -26,6 +26,14 @@ function SocialLoginPage() {
   }, []);
 
   return <></>;
+}
+
+function SocialLoginPage() {
+  return (
+    <Suspense>
+      <SocialLogin />
+    </Suspense>
+  );
 }
 
 export default SocialLoginPage;

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { SocialButton } from '@/app/components';
 
 const meta = {
@@ -9,7 +8,6 @@ const meta = {
     layout: 'padded',
   },
   tags: ['autodocs'],
-  args: { onClick: fn() },
 } satisfies Meta<typeof SocialButton>;
 
 export default meta;

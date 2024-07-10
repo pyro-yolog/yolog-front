@@ -2,6 +2,7 @@ import { TripResponse } from '@/models/trip.model';
 import { diphylleia, gowunBatang } from '@/app/components/ui/fonts';
 import Image from 'next/image';
 import Link from 'next/link';
+import { formatViewDate } from '@/lib/utils/date';
 
 function TripMainItem({
   id,
@@ -41,7 +42,8 @@ function TripMainItem({
           </div>
 
           <p className="text-[#6C6C6C] text-12pxr font-semibold">
-            {startDate} - {finishDate}
+            {formatViewDate(startDate)}{' '}
+            {startDate !== finishDate && `- ${formatViewDate(finishDate)}`}
           </p>
         </div>
 
