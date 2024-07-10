@@ -1,5 +1,5 @@
 import { Input } from '@/app/components';
-import { TRAVEL_DESTINATION_VALIDATION } from '@/app/lib/constants/validation';
+import { TRIP_DESTINATION_VALIDATION } from '@/lib/constants/validation';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -31,7 +31,7 @@ export const ProfileInput: Story = {
       <Controller
         name="name"
         control={control}
-        rules={TRAVEL_DESTINATION_VALIDATION}
+        rules={TRIP_DESTINATION_VALIDATION}
         render={({
           field: { name, value = '', onChange },
           fieldState: { error },

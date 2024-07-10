@@ -60,19 +60,20 @@ const config: Config = {
         dialog: '0px 20px 24px -4px rgba(16, 24, 40, 0.08)',
         button: '0px 1px 2px 0px rgba(16, 24, 40, 0.05);',
         floatingButton: '0px 2px 10px rgba(0, 0, 0, 0.18)',
-        mainDiaryList: '-2px -2px 10px 0px rgba(0, 0, 0, 0.03)',
+        tripViewBox: '-2px -2px 10px 0px rgba(0, 0, 0, 0.03)',
+        trip: '2px -2px 5px 0px rgba(0, 0, 0, 0.10)',
       },
       keyframes: {
         showToast: {
           '0%': {
-            transform: 'translateX(-50%) translateY(-65px)',
+            transform: 'translateX(-50%) translateY(-40px)',
             opacity: '0',
           },
           '20%': { transform: 'translateX(-50%) translateY(0)', opacity: '1' },
           '75%': { transform: 'translateX(-50%) translateY(0)', opacity: '1' },
           '100%': { transform: 'translateX(-50%) translateY(0)', opacity: '0' },
         },
-        fadeInBottom: {
+        showBottomSheet: {
           '0%': {
             transform: 'translateY(100%)',
             opacity: '0',
@@ -82,7 +83,7 @@ const config: Config = {
             opacity: '1',
           },
         },
-        fadeOutBottom: {
+        closeBottomSheet: {
           '0%': {
             transform: 'translateY(0)',
             opacity: '1',
@@ -90,6 +91,26 @@ const config: Config = {
           '100%': {
             transform: 'translateY(100%)',
             opacity: '0',
+          },
+        },
+        fadeInBottom: {
+          '0%': {
+            transform: 'translateY(30px)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: '1',
+          },
+        },
+        fadeInTop: {
+          '0%': {
+            transform: 'translateY(-30px)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: '1',
           },
         },
         fadeInLeft: {
@@ -114,9 +135,10 @@ const config: Config = {
         },
       },
       animation: {
-        showToast: 'showToast 2s',
-        showBottomSheet: 'fadeInBottom 0.4s forwards',
-        closeBottomSheet: 'fadeOutBottom 0.4s forwards',
+        showToast: 'showToast 2.5s',
+        showBottomSheet: 'showBottomSheet 0.4s forwards',
+        closeBottomSheet: 'closeBottomSheet 0.4s forwards',
+        fadeInTop: 'fadeInTop 1.2s',
         fadeInLeft: 'fadeInLeft 1.5s',
         fadeInRight: 'fadeInRight 1.5s',
       },

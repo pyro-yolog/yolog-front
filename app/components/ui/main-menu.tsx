@@ -10,7 +10,7 @@ import {
   MainMenuHeader,
   MenuBarButton,
 } from '../index';
-import MENUS from '@/app/lib/constants/menus';
+import MENUS from '@/lib/constants/menus';
 
 interface Props {
   onClose: () => void;

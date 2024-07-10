@@ -1,4 +1,4 @@
-import MENUS from '@/app/lib/constants/menus';
+import MENUS from '@/lib/constants/menus';
 import Image from 'next/image';
 import React from 'react';
 

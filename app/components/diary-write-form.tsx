@@ -1,9 +1,8 @@
 'use client';
 
-import useBottomSheet from '@/hooks/use-bottom-sheet';
 import usePopover from '@/hooks/use-popover';
 import React, { useState } from 'react';
-import { MOOD, POPOVERS, WEATHER } from '../lib/constants/popover-write';
+import { MOOD, POPOVERS, WEATHER } from '@/lib/constants/popover-write';
 import {
   IconCamera,
   IconGallery,
@@ -53,13 +52,6 @@ function DiaryWriteForm() {
     handleClickPopoverValue,
     handleOutsideClick,
   } = usePopover();
-
-  const {
-    isSheetOpen,
-    setIsSheetOpen,
-    handleOutsideClick: handleSheetOutsideClick,
-    bottomSheetRef,
-  } = useBottomSheet();
 
   const handleClickMoodPopover = () => {
     setIsPopoverOpen(!isPopoverOpen);
@@ -119,7 +111,7 @@ function DiaryWriteForm() {
   const { id } = params;
   const handleClickCancelBtn = () => {
     if (watch('diaryContentInput')) {
-      setIsSheetOpen(true);
+      // setIsSheetOpen(true);
     } else {
       router.push(`/diary/${id}`);
     }
@@ -135,7 +127,7 @@ function DiaryWriteForm() {
         <button onClick={handleClickCancelBtn}>
           <IconNavigateLeft />
         </button>
-        <BottomSheetDiary
+        {/* <BottomSheetDiary
           title="작성을 취소하시겠습니까?"
           description="작성 취소 선택 시, 작성 중인 글은 저장되지 않습니다."
           bottomSheetRef={bottomSheetRef}
@@ -143,7 +135,7 @@ function DiaryWriteForm() {
           isOpen={isSheetOpen}
         >
           <BottomSheetCancel onClose={() => setIsSheetOpen(false)} id={id} />
-        </BottomSheetDiary>
+        </BottomSheetDiary> */}
         <p
           className={`${gowunBatang.className} text-[#697a53] text-18pxr font-bold`}
         >

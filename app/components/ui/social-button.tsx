@@ -1,14 +1,30 @@
+'use client';
+
 import Image from 'next/image';
 import Button from './button';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   type: 'kakao' | 'naver' | 'google' | 'apple';
-  onClick?: () => void;
 }
 
-function SocialButton({ type, onClick }: Props) {
+function SocialButton({ type }: Props) {
+  const router = useRouter();
   const buttonStyles = 'relative !text-16pxr font-semibold';
   const logoStyles = 'absolute top-1/2 left-33pxr -translate-y-1/2';
+
+  const onClick = () => {
+    switch (type) {
+      case 'kakao':
+        router.push('https://yolog.store/oauth2/authorization/kakao');
+        return;
+      case 'google':
+        router.push('https://yolog.store/oauth2/authorization/google');
+        return;
+      default:
+        return;
+    }
+  };
 
   const getStyles = () => {
     switch (type) {
@@ -29,7 +45,7 @@ function SocialButton({ type, onClick }: Props) {
         return (
           <Image
             className={logoStyles}
-            src={`/images/kakao-logo.png`}
+            src="/images/kakao-logo.png"
             alt="소셜 로그인 로고"
             width={29}
             height={30}
@@ -39,7 +55,7 @@ function SocialButton({ type, onClick }: Props) {
         return (
           <Image
             className={logoStyles}
-            src={`/images/naver-logo.png`}
+            src="/images/naver-logo.png"
             alt="소셜 로그인 로고"
             width={33}
             height={30}
@@ -49,7 +65,7 @@ function SocialButton({ type, onClick }: Props) {
         return (
           <Image
             className={logoStyles}
-            src={`/images/google-logo.png`}
+            src="/images/google-logo.png"
             alt="소셜 로그인 로고"
             width={25}
             height={25}
@@ -59,7 +75,7 @@ function SocialButton({ type, onClick }: Props) {
         return (
           <Image
             className={logoStyles}
-            src={`/images/apple-logo.png`}
+            src="/images/apple-logo.png"
             alt="소셜 로그인 로고"
             width={18}
             height={22}

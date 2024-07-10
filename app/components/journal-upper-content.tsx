@@ -11,7 +11,7 @@ import {
   IconWeatherColoredSunny,
   IconWeatherColoredWindy,
 } from './icon';
-import { MoodType, WeatherType } from '../lib/types/journal-type';
+import { MoodType, WeatherType } from '@/lib/types/journal-type';
 
 interface Props {
   title?: string;

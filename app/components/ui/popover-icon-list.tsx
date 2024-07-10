@@ -1,11 +1,11 @@
 import { gowunBatang } from './fonts';
-import { MoodType, WeatherType } from '@/app/lib/types/journal-type';
+import { MoodType, WeatherType } from '@/lib/types/journal-type';
 import {
   MOOD_POPOVER,
   POPOVERS,
   WEATHER_POPOVER,
-} from '@/app/lib/constants/popover-write';
-import { PopoverValue, WritePopoverType } from '@/app/lib/types/popover-type';
+} from '@/lib/constants/popover-write';
+import { PopoverValue, WritePopoverType } from '@/lib/types/popover-type';
 
 interface Props {
   onClick: (value: PopoverValue, type: WritePopoverType) => void;

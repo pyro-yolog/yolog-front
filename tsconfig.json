@@ -7,13 +7,13 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "target": "ES2022",
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"

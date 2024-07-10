@@ -1,8 +1,8 @@
 import React from 'react';
-import { POPOVERS } from '../lib/constants/popover-write';
+import { POPOVERS } from '@/lib/constants/popover-write';
 import { gowunBatang } from './ui/fonts';
 import PopoverIconList from './ui/popover-icon-list';
-import { PopoverValue, WritePopoverType } from '../lib/types/popover-type';
+import { PopoverValue, WritePopoverType } from '@/lib/types/popover-type';
 
 interface Props {
   type: WritePopoverType;
