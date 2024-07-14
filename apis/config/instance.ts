@@ -1,8 +1,7 @@
 import { IToken } from '@/models/token.model';
 import axios from 'axios';
 
-const baseURL =
-  process.env.NODE_ENV === 'development' ? '/api' : 'http://yolog.store:8080';
+const baseURL = '/api';
 
 const axiosInstance = axios.create({ baseURL, timeout: 1000 * 60 * 5 });
 
