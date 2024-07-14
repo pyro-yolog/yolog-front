@@ -16,10 +16,10 @@ function SocialButton({ type }: Props) {
   const onClick = () => {
     switch (type) {
       case 'kakao':
-        router.push('https://yolog.store/oauth2/authorization/kakao');
+        router.push('https://yolog.store/api/oauth2/authorization/kakao');
         return;
       case 'google':
-        router.push('https://yolog.store/oauth2/authorization/google');
+        router.push('https://yolog.store/api/oauth2/authorization/google');
         return;
       default:
         return;
