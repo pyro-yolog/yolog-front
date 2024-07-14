@@ -20,7 +20,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: `${process.env.NODE_ENV === 'development' ? 'http' : 'https'}://yolog.store:8080/:path*`,
+        destination: `https://yolog.store/api/:path*`,
       },
     ];
   },
