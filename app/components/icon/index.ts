@@ -1,9 +1,12 @@
 export { default as IconCalendar } from './icon-calendar';
+export { default as IconChevronDown } from './icon-chevron-down';
 export { default as IconChevronLeft } from './icon-chevron-left';
 export { default as IconChevronRight } from './icon-chevron-right';
 export { default as IconEdit } from './icon-edit';
 export { default as IconPlus } from './icon-plus';
 export { default as IconSetting } from './icon-setting';
+export { default as IconSmile } from './icon-smile';
+export { default as IconSun } from './icon-sun';
 export { default as IconNavigateLeft } from './icon-navigate-left';
 export { default as IconDiarySetting } from './icon-diary-setting';
 export { default as IconDiaryShare } from './icon-diary-share';
