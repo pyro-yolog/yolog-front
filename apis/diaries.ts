@@ -1,3 +1,4 @@
+import { DiaryResponse } from '@/models/diary.model';
 import axios from './config/instance';
 
 const PREFIX = '/diaries';
