@@ -39,6 +39,8 @@ const config: Config = {
         'check-icon': 'url("/icons/check.svg")',
         'onboarding-gradient':
           'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, white 72.2%)',
+        'trip-cover':
+          'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0.71%, rgba(67, 67, 67, 0.51) 64.06%, rgba(17, 17, 17, 0.80) 100%)',
       },
       fontFamily: {
         pretendard: ['var(--font-pretendard)'],
@@ -139,6 +141,7 @@ const config: Config = {
         showBottomSheet: 'showBottomSheet 0.4s forwards',
         closeBottomSheet: 'closeBottomSheet 0.4s forwards',
         fadeInTop: 'fadeInTop 1.2s',
+        fadeInBottom: 'fadeInBottom 1.2s',
         fadeInLeft: 'fadeInLeft 1.5s',
         fadeInRight: 'fadeInRight 1.5s',
       },
