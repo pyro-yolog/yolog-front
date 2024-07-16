@@ -34,9 +34,10 @@ export { default as DiaryWritePopover } from './diary-write-popover';
 export { default as PopoverIconList } from './ui/popover-icon-list';
 export { default as BottomSheetDiary } from './bottom-sheet-diary';
 
-export * from './diary/setting';
 export * from './icon';
 export * from './onboarding';
 export * from './signup';
 export * from './trip/create';
+export * from './trip/detail';
 export * from './trip/main';
+export * from './trip/setting';

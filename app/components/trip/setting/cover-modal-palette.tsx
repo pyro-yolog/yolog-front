@@ -5,7 +5,7 @@ interface Props {
   onClose: () => void;
 }
 
-function DiarySettingCoverModalPalette({ onClose }: Props) {
+function TripSettingCoverModalPalette({ onClose }: Props) {
   return (
     <div className="flex flex-col p-16pxr pb-20pxr gap-25pxr w-318pxr bg-white rounded-[24px]">
       <div className="relative flex items-center justify-center h-33pxr">
@@ -33,4 +33,4 @@ function DiarySettingCoverModalPalette({ onClose }: Props) {
   );
 }
 
-export default DiarySettingCoverModalPalette;
+export default TripSettingCoverModalPalette;

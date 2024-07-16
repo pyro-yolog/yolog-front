@@ -15,14 +15,20 @@ function ToastContainer() {
         <div>
           {toastList.map((toast) => (
             <div
-              className="w-358pxr h-58pxr shrink-0 rounded-[15px] bg-[#dfedd5] fixed top-9pxr -translate-x-1/2 flex items-center z-50 space-y-3 left-1/2 animate-showToast border-[#A4BF82] border"
+              className="w-358pxr h-58pxr px-24pxr rounded-[15px] fixed top-9pxr -translate-x-1/2 flex items-center z-50 space-y-3 left-1/2 animate-showToast border"
               key={toast.id}
+              style={{
+                backgroundColor: toast.type === 'error' ? '#ffc9c9' : '#dfedd5',
+                borderColor: toast.type === 'error' ? 'red' : '#A4BF82',
+              }}
             >
-              <div className="absolute left-22pxr">
-                <IconCheck />
-              </div>
+              {toast.type !== 'error' && (
+                <div className="mr-20pxr">
+                  <IconCheck />
+                </div>
+              )}
 
-              <p className="text-[#313131] text-15pxr font-medium absolute left-64pxr">
+              <p className="text-[#313131] text-15pxr font-medium">
                 {toast.message}
               </p>
             </div>

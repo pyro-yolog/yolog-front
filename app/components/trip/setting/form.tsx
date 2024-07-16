@@ -7,10 +7,10 @@ import {
   TRIP_NAME_VALIDATION,
 } from '@/lib/constants/validation';
 import useBoolean from '@/hooks/useBoolean';
-import DiarySettingCalendarModal from './calendar-modal';
-import DiarySettingDateConfirmModal from './date-confirm-modal';
+import TripSettingCalendarModal from './calendar-modal';
+import TripSettingDateConfirmModal from './date-confirm-modal';
 
-function DiarySettingForm() {
+function TripSettingForm() {
   const [isCalendarOpen, , openCalendar, closeCalendar] = useBoolean();
   const [isDateConfirmOpen, , openDateConfirm, closeDateConfrim] = useBoolean();
   const { control } = useForm({
@@ -94,14 +94,14 @@ function DiarySettingForm() {
         </form>
       </div>
 
-      <DiarySettingCalendarModal
+      <TripSettingCalendarModal
         isOpen={isCalendarOpen}
         startDate={startDate}
         onClose={closeCalendar}
         onChange={handleChangePeriod}
       />
 
-      <DiarySettingDateConfirmModal
+      <TripSettingDateConfirmModal
         isOpen={isDateConfirmOpen}
         onClose={closeDateConfrim}
         onConfirm={() => {}}
@@ -110,4 +110,4 @@ function DiarySettingForm() {
   );
 }
 
-export default DiarySettingForm;
+export default TripSettingForm;

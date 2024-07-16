@@ -1,16 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import DiarySettingCoverModalOption from './cover-modal-option';
-import DiarySettingCoverModalPalette from './cover-modal-palette';
-import Modal from '../../modal';
+import TripSettingCoverModalOption from './cover-modal-option';
+import TripSettingCoverModalPalette from './cover-modal-palette';
+import { Modal } from '@/app/components';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
-function DiarySettingCoverModal({ isOpen, onClose }: Props) {
+function TripSettingCoverModal({ isOpen, onClose }: Props) {
   const [option, setOption] = useState<string | null>(null);
 
   const handleSelectOption = (option: string) => {
@@ -24,15 +24,13 @@ function DiarySettingCoverModal({ isOpen, onClose }: Props) {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      {!option && (
-        <DiarySettingCoverModalOption onSelect={handleSelectOption} />
-      )}
+      {!option && <TripSettingCoverModalOption onSelect={handleSelectOption} />}
 
       {option === 'COLOR' && (
-        <DiarySettingCoverModalPalette onClose={() => setOption(null)} />
+        <TripSettingCoverModalPalette onClose={() => setOption(null)} />
       )}
     </Modal>
   );
 }
 
-export default DiarySettingCoverModal;
+export default TripSettingCoverModal;
