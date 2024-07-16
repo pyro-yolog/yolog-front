@@ -5,7 +5,7 @@ interface Props {
   onSelect: (option: string) => void;
 }
 
-function DiarySettingCoverModalOption({ onSelect }: Props) {
+function TripSettingCoverModalOption({ onSelect }: Props) {
   const handleClickOption = (e: MouseEvent, option: string) => {
     e.stopPropagation();
 
@@ -43,4 +43,4 @@ function DiarySettingCoverModalOption({ onSelect }: Props) {
   );
 }
 
-export default DiarySettingCoverModalOption;
+export default TripSettingCoverModalOption;

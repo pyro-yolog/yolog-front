@@ -1,10 +1,10 @@
 'use client';
 
 import { IconPen } from '@/app/components/icon';
-import DiarySettingCoverModal from './cover-modal';
+import TripSettingCoverModal from './cover-modal';
 import useBoolean from '@/hooks/useBoolean';
 
-function DiarySettingCover() {
+function TripSettingCover() {
   const [isOpen, , open, close] = useBoolean();
 
   return (
@@ -26,9 +26,9 @@ function DiarySettingCover() {
         </div>
       </div>
 
-      <DiarySettingCoverModal isOpen={isOpen} onClose={close} />
+      <TripSettingCoverModal isOpen={isOpen} onClose={close} />
     </>
   );
 }
 
-export default DiarySettingCover;
+export default TripSettingCover;

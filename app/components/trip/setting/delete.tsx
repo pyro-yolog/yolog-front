@@ -1,9 +1,9 @@
 'use client';
 
-import { Button, DiarySettingDeleteModal } from '@/app/components';
+import { Button, TripSettingDeleteModal } from '@/app/components';
 import useBoolean from '@/hooks/useBoolean';
 
-function DiarySettingDelete() {
+function TripSettingDelete() {
   const [isOpen, , open, close] = useBoolean();
 
   const handleDelete = async () => {
@@ -20,7 +20,7 @@ function DiarySettingDelete() {
         일기장 삭제하기
       </Button>
 
-      <DiarySettingDeleteModal
+      <TripSettingDeleteModal
         isOpen={isOpen}
         onClose={close}
         onDelete={handleDelete}
@@ -29,4 +29,4 @@ function DiarySettingDelete() {
   );
 }
 
-export default DiarySettingDelete;
+export default TripSettingDelete;

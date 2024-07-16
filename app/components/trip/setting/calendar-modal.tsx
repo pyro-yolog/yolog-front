@@ -15,7 +15,7 @@ interface Props {
   }) => void;
 }
 
-function DiarySettingCalendarModal({
+function TripSettingCalendarModal({
   isOpen,
   startDate,
   endDate,
@@ -29,4 +29,4 @@ function DiarySettingCalendarModal({
   );
 }
 
-export default DiarySettingCalendarModal;
+export default TripSettingCalendarModal;
