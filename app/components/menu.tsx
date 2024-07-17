@@ -16,7 +16,7 @@ function Menu({ isOpen, children }: Props) {
 
   return portalRoot
     ? createPortal(
-        <div className="bg-white z-20 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-390pxr w-full h-844pxr">
+        <div className="bg-white z-20 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-600pxr w-full h-844pxr">
           {children}
         </div>,
         portalRoot,

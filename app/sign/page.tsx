@@ -42,7 +42,7 @@ function SignPage() {
 
         <SocialButton type="google" />
 
-        <SocialButton type="apple" />
+        {/* <SocialButton type="apple" /> */}
       </div>
     </div>
   );

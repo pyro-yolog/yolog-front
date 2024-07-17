@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Button from './button';
-import useToast from '@/hooks/use-toast';
+import useToast from '@/hooks/useToast';
 
 interface Props {
   onClose: () => void;

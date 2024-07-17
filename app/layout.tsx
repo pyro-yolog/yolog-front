@@ -28,7 +28,7 @@ export default function RootLayout({
       className={`${pretendard.variable} flex items-center justify-center`}
     >
       <body
-        className={`${pretendard.className} w-390pxr h-full`}
+        className={`${pretendard.className} max-w-600pxr w-full h-full`}
         suppressHydrationWarning={true}
       >
         <Providers>
