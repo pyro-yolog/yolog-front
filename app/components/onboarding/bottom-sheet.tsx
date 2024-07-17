@@ -30,7 +30,7 @@ function OnboardingBottomSheet({ isOpen, onClose }: Props) {
 
           <SocialButton type="google" />
 
-          <SocialButton type="apple" />
+          {/* <SocialButton type="apple" /> */}
         </div>
       </div>
     </BottomSheet>

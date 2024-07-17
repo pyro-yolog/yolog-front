@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { createTripAPI } from '@/apis/trips';
 import { uploadImageAPI } from '@/apis/images';
 import { AxiosError } from 'axios';
-import useToast from '@/hooks/use-toast';
+import useToast from '@/hooks/useToast';
 import { TripRequest } from '@/models/trip.model';
 
 function TripCreateCover() {

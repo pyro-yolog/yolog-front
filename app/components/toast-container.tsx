@@ -12,10 +12,10 @@ function ToastContainer() {
 
   return portalRoot
     ? createPortal(
-        <div>
+        <div className="flex flex-col gap-8pxr max-w-600pxr w-full px-16pxr fixed top-9pxr -translate-x-1/2 left-1/2 z-50">
           {toastList.map((toast) => (
             <div
-              className="w-358pxr h-58pxr px-24pxr rounded-[15px] fixed top-9pxr -translate-x-1/2 flex items-center z-50 space-y-3 left-1/2 animate-showToast border"
+              className="w-full h-58pxr px-24pxr rounded-[15px] flex items-center space-y-3 animate-showToast border"
               key={toast.id}
               style={{
                 backgroundColor: toast.type === 'error' ? '#ffc9c9' : '#dfedd5',

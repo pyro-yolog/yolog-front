@@ -36,7 +36,7 @@ function BottomSheet({ isOpen, children, onClose }: Props) {
 
       <div
         ref={ref}
-        className={`z-50 fixed bottom-0pxr bg-white rounded-tl-[15px] rounded-tr-[15px] w-390pxr ${isOpen ? 'animate-showBottomSheet' : 'animate-closeBottomSheet'}`}
+        className={`z-50 fixed bottom-0pxr bg-white rounded-tl-[15px] rounded-tr-[15px] w-full max-w-600pxr ${isOpen ? 'animate-showBottomSheet' : 'animate-closeBottomSheet'}`}
         onAnimationEnd={handleAnimationEnd}
       >
         {children}

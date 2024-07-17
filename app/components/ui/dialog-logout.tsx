@@ -3,7 +3,7 @@
 import React from 'react';
 import Button from './button';
 import { useRouter } from 'next/navigation';
-import useToast from '@/hooks/use-toast';
+import useToast from '@/hooks/useToast';
 
 interface Props {
   onClose?: () => void;
