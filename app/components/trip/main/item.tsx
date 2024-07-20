@@ -55,6 +55,7 @@ function TripMainItem({
                 sizes="100%"
                 alt="trip-cover-image"
                 fill
+                priority
               />
             ) : (
               <div

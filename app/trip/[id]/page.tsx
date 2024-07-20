@@ -37,7 +37,7 @@ function TripDetailPage({
   }
 
   if (error instanceof AxiosError) {
-    if (error.response?.status === 404) {
+    if (error.response?.status === 400) {
       redirect('/trip');
     }
   }

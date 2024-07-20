@@ -27,3 +27,8 @@ export const getBetweenDateList = (startDate: string, endDate: string) => {
     .fill(dayjs(startDate))
     .map((date: Dayjs, i) => date.add(i, 'day'));
 };
+
+export const getDayname = (startDate: string, date: string) => {
+  const day = dayjs(date).diff(startDate) / DAY + 1;
+  return `Day ${day}`;
+};

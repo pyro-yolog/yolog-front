@@ -39,5 +39,6 @@ export * from './onboarding';
 export * from './signup';
 export * from './trip/create';
 export * from './trip/detail';
+export * from './trip/diary/write';
 export * from './trip/main';
 export * from './trip/setting';

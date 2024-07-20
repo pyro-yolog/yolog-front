@@ -3,7 +3,7 @@
 import { DiaryResponse } from '@/models/diary.model';
 import TripDetailDiaryItem from './diary-item';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 
 interface Props {
   data: DiaryResponse[];
@@ -11,6 +11,7 @@ interface Props {
 
 function TripDetailDiaryList({ data }: Props) {
   const { id } = useParams();
+  const params = useSearchParams();
 
   return (
     <div className="flex flex-col items-center justify-between min-h-full pb-17pxr w-full px-26pxr">
@@ -22,7 +23,7 @@ function TripDetailDiaryList({ data }: Props) {
 
       <Link
         className="text-14pxr text-[#9A9A9A] font-medium cursor-pointer"
-        href={`/trip/${id}/write`}
+        href={`/trip/${id}/diary/write?${params}`}
       >
         일기 추가
       </Link>

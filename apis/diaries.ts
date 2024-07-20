@@ -1,4 +1,8 @@
-import { DiaryResponse } from '@/models/diary.model';
+import {
+  DiaryCreateReqeust,
+  DiaryCreateResponse,
+  DiaryResponse,
+} from '@/models/diary.model';
 import axios from './config/instance';
 
 const PREFIX = '/diaries';
@@ -8,5 +12,13 @@ export const getDiaryListByDateAPI = async (
   date: string,
 ) => {
   return (await axios.get<DiaryResponse[]>(`${PREFIX}/${tripId}/days/${date}`))
+    .data;
+};
+
+export const createDiaryAPI = async (
+  tripId: string | number,
+  data: DiaryCreateReqeust,
+) => {
+  return (await axios.post<DiaryCreateResponse>(`${PREFIX}/${tripId}`, data))
     .data;
 };
