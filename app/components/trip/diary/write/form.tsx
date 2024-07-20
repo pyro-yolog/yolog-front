@@ -18,7 +18,7 @@ function DiaryWriteForm() {
   const showToast = useToast();
   const [{ title }, setWriteData] = useRecoilState(diaryWriteState);
   const [isTimeline, setIsTimeline] = useState(false);
-  const contentRef = useRef<HTMLDivElement>();
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const handleChangeTitle: ChangeEventHandler<HTMLInputElement> = (e) => {
     setWriteData((writeData) => {

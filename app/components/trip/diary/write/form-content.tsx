@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef } from 'react';
 
-function DiaryWriteFormContent(props: any, ref: ForwardedRef<HTMLDivElement>) {
+function DiaryWriteFormContent(props: any, ref?: ForwardedRef<HTMLDivElement>) {
   return (
     <div
       ref={ref}
