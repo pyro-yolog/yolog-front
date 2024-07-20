@@ -1,3 +1,4 @@
+export { default as IconAlignLeft } from './icon-align-left';
 export { default as IconCalendar } from './icon-calendar';
 export { default as IconChevronDown } from './icon-chevron-down';
 export { default as IconChevronLeft } from './icon-chevron-left';

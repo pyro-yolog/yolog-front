@@ -1,6 +1,6 @@
 function IconCamera({
   size = 21,
-  stroke = '#707070',
+  stroke = 'black',
 }: {
   size?: number;
   stroke?: string;
