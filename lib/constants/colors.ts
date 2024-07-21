@@ -1,4 +1,4 @@
-const COLORS = [
+export const DIARY_COVER_COLORS = [
   '#FFFFB5',
   '#D2F5F5',
   '#C6DCE9',
@@ -17,4 +17,17 @@ const COLORS = [
   '#ECD5E3',
 ];
 
-export default COLORS;
+export const DIARY_SPINE_COLORS = [
+  '#A38AAE',
+  '#8BC1BE',
+  '#7C98AC',
+  '#8E8E8C',
+  '#D3A685',
+  '#BD7E7E',
+  '#CA96A6',
+  '#907C6A',
+  '#B1A285',
+  '#93A47E',
+  '#77977E',
+  '#535354',
+];

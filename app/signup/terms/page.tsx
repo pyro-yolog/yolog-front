@@ -5,7 +5,7 @@ function SignupPage() {
   return (
     <div className="h-full pb-13pxr flex flex-col gap-40pxr">
       <p
-        className={`text-center ${gowunBatang.className} text-22pxr leading-[35px] tracking-[0.22px] pt-47pxr`}
+        className={`${gowunBatang.className} pt-40pxr text-23pxr leading-[38px] text-center text-inputGreen font-semibold`}
       >
         서비스 이용을 위해
         <br />

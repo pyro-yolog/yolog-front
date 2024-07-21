@@ -11,16 +11,17 @@ function TripMainItem({
   startDate,
   finishDate,
   coverImageUrl,
-  colorCover,
+  coverColor,
+  spineColor,
 }: TripResponse) {
-  const color = colorCover ?? '#536C82';
+  const color = coverColor || spineColor;
 
   return (
     <Link href={`/trip/${id}?date=${startDate}`}>
       <div className="flex w-full bg-white rounded-l-[10px] rounded-r-[29px] shadow-trip">
         <div
           className={`w-25pxr rounded-l-[10px] content-stretch`}
-          style={{ backgroundColor: color, filter: 'brightness(0.9)' }}
+          style={{ backgroundColor: color }}
         />
 
         <div className="flex flex-col w-[calc(100%-25px)]">
@@ -28,14 +29,14 @@ function TripMainItem({
             <div className="flex flex-col">
               <p
                 className={`${gowunBatang.className} text-30pxr font-bold`}
-                style={{ color: color, filter: 'brightness(0.8)' }}
+                style={{ color: color, filter: 'brightness(0.9)' }}
               >
                 {name}
               </p>
 
               <p
                 className={`${diphylleia.className} text-20pxr`}
-                style={{ color: color, filter: 'brightness(0.8)' }}
+                style={{ color: color, filter: 'brightness(0.9)' }}
               >
                 {destination}
               </p>
@@ -55,11 +56,12 @@ function TripMainItem({
                 sizes="100%"
                 alt="trip-cover-image"
                 fill
+                priority
               />
             ) : (
               <div
                 className="w-full h-full"
-                style={{ backgroundColor: color }}
+                style={{ backgroundColor: color, filter: 'brightness(1.1)' }}
               />
             )}
           </div>
