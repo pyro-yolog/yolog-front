@@ -28,6 +28,7 @@ function TripDetailVisual() {
                 sizes="100%"
                 alt="trip-image"
                 fill
+                priority
               />
 
               <div className="absolute w-full h-full bg-trip-cover" />
@@ -35,7 +36,7 @@ function TripDetailVisual() {
           ) : (
             <div
               className="w-full h-full"
-              style={{ backgroundColor: data.colorCover }}
+              style={{ backgroundColor: data.coverColor }}
             />
           )}
         </div>

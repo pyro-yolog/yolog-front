@@ -59,6 +59,7 @@ function OnboardingPage() {
               height={0}
               style={{ width: '100%', height: 'auto', marginTop: 32 }}
               sizes="100vw"
+              priority
             />
 
             <div className="absolute left-0pxr bottom-0pxr w-full h-93pxr bg-onboarding-gradient" />
@@ -82,6 +83,7 @@ function OnboardingPage() {
               height={0}
               style={{ width: '100%', height: 'auto', marginTop: 16 }}
               sizes="100vw"
+              priority
             />
 
             <div className="absolute left-0pxr bottom-0pxr w-full h-93pxr bg-onboarding-gradient" />

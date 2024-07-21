@@ -1,5 +1,9 @@
 'use client';
 
+import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { createTripAPI } from '@/apis/trips';
 import {
   Button,
   IconImage,
@@ -7,15 +11,11 @@ import {
   IconPalette,
 } from '@/app/components';
 import { gowunBatang } from '@/app/components/ui/fonts';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
-import TripCreateCoverPalette from './cover-palette';
-import Link from 'next/link';
-import { createTripAPI } from '@/apis/trips';
-import { uploadImageAPI } from '@/apis/images';
-import { AxiosError } from 'axios';
 import useToast from '@/hooks/useToast';
 import { TripRequest } from '@/models/trip.model';
+import TripCreateCoverPalette from './cover-palette';
+import TripCreateSpinePalette from './spine-palette';
+import TripCreateCoverImage from './cover-image';
 
 function TripCreateCover() {
   const defaultOptionStyles =
@@ -26,8 +26,12 @@ function TripCreateCover() {
   const router = useRouter();
   const params = useSearchParams();
   const [selectOption, setSelectOption] = useState<string>();
-  const [color, setColor] = useState<string>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [coverColor, setCoverColor] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [spineColor, setSpineColor] = useState<string | null>(null);
+  const isEnabled =
+    (selectOption === 'COLOR' && coverColor) ||
+    (selectOption === 'IMAGE' && imageUrl && spineColor);
 
   const options = [
     {
@@ -62,53 +66,27 @@ function TripCreateCover() {
   }
 
   const handleClickOption = (option: string) => {
-    if (option === 'IMAGE') {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'image/*';
-      input.click();
-
-      input.addEventListener('change', () => handleChangeInput(input));
-
-      return;
-    }
-
     setSelectOption(option);
   };
 
-  const handleChangeInput = async (input: HTMLInputElement) => {
-    if (!input.files) return;
-
-    const [image] = input.files;
-    const formData = new FormData();
-    formData.append('image', image);
-
-    try {
-      const { imageUrl } = (await uploadImageAPI(formData)).data;
-
-      handleClickButton(null, imageUrl);
-    } catch (e) {
-      if (e instanceof AxiosError) {
-        if (e.response?.status === 413) {
-          showToast({ type: 'error', message: '사진 용량이 너무 커요!' });
-        }
-      }
-      console.error(e);
-    }
-  };
-
-  const handleClickButton = async (_?: any, imageUrl?: string) => {
+  const handleClickButton = async () => {
     const name = params.get('name') as string;
     const startDate = params.get('startDate') as string;
     const finishDate = params.get('endDate') || startDate;
     const destination = params.get('destination') as string;
 
-    const data: TripRequest = { name, startDate, finishDate, destination };
+    const data: TripRequest = {
+      name,
+      startDate,
+      finishDate,
+      destination,
+    };
 
-    if (imageUrl) {
-      data.coverImageUrl = imageUrl;
-    } else {
-      data.colorCover = color;
+    if (selectOption === 'COLOR') {
+      data.coverColor = coverColor as string;
+    } else if (selectOption === 'IMAGE') {
+      data.coverImageUrl = imageUrl as string;
+      data.spineColor = spineColor as string;
     }
 
     try {
@@ -124,12 +102,12 @@ function TripCreateCover() {
 
   return (
     <div className="flex flex-col justify-between w-full h-full pt-32pxr pb-13pxr">
-      <div className="flex flex-col gap-30pxr">
+      <div className="flex flex-col gap-30pxr w-full h-[calc(100%-68px)]">
         <Link href="/trip/create/setting" className="px-8pxr">
           <IconNavigateLeft />
         </Link>
 
-        <div className="flex flex-col gap-19pxr px-16pxr">
+        <div className="flex flex-col gap-19pxr px-16pxr h-[calc(100%-63px)]">
           <h1 className={`${gowunBatang.className} text-20pxr`}>
             <p className="animate-fadeInRight">일기장 커버를 선택해주세요.</p>
           </h1>
@@ -158,20 +136,35 @@ function TripCreateCover() {
             </span>
           </div>
 
-          {selectOption === 'COLOR' && (
-            <TripCreateCoverPalette
-              selectColor={color}
-              onChangeColor={setColor}
-            />
-          )}
+          <div className="flex flex-col w-full h-[calc(100%-315px)]">
+            {/* 컬러 이미지 */}
+            {selectOption === 'COLOR' && (
+              <TripCreateCoverPalette
+                selectColor={coverColor}
+                onChangeColor={setCoverColor}
+              />
+            )}
+
+            {/* 사진 선택 */}
+            {selectOption === 'IMAGE' && (
+              <div className="flex flex-col gap-10pxr w-full h-full overflow-y-auto scrollbar-hide">
+                <TripCreateCoverImage
+                  imageUrl={imageUrl}
+                  onUploadImage={setImageUrl}
+                />
+
+                <TripCreateSpinePalette
+                  selectColor={spineColor}
+                  onChangeColor={setSpineColor}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       <div className="w-full px-16pxr">
-        <Button
-          disabled={!color && !isLoading}
-          onClick={() => handleClickButton()}
-        >
+        <Button disabled={!isEnabled} onClick={handleClickButton}>
           다음
         </Button>
       </div>
