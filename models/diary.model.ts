@@ -29,11 +29,9 @@ export interface DiaryDetailResponse extends DiaryResponse {
 }
 
 export interface DiaryCreateReqeust {
-  date: string;
-}
-
-export interface DiaryCreateResponse {
-  id: number;
-  dayName: string;
+  title: string;
+  content: string;
   travelDate: string;
+  mood: string;
+  weather: string;
 }

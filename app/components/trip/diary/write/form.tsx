@@ -34,6 +34,15 @@ function DiaryWriteForm() {
     input.type = 'file';
     input.accept = 'image/*';
     input.multiple = true;
+
+    // document.body.onfocus = () => {
+    //   if (input.files?.length === 0) {
+    //     input.remove();
+    //   }
+
+    //   document.body.onfocus = null;
+    // };
+
     input.onchange = async () => {
       const [image] = input.files as FileList;
       const formData = new FormData();
@@ -44,13 +53,14 @@ function DiaryWriteForm() {
           'https://s3.ap-northeast-2.amazonaws.com/yolog-aws-bucket/image/54e31772-eimages.png';
         // const { imageUrl } = (await uploadImageAPI(formData)).data;
 
-        // console.log(imageUrl);
-        if (contentRef.current) {
-          contentRef.current.insertAdjacentHTML(
-            'beforeend',
-            `<img src='${imageUrl}' />`,
-          );
-        }
+        input.insertAdjacentHTML('beforeend', `<img src='${imageUrl}' />`);
+
+        // if (contentRef.current) {
+        //   contentRef.current.insertAdjacentHTML(
+        //     'beforeend',
+        //     `<img src='${imageUrl}' />`,
+        //   );
+        // }
       } catch (e) {
         showToast({
           type: 'error',
@@ -58,9 +68,23 @@ function DiaryWriteForm() {
         });
         console.error(e);
       }
+
+      input.remove();
     };
 
-    input.click();
+    const selection = window.getSelection();
+
+    if (selection) {
+      const range = selection.getRangeAt(0);
+
+      range.insertNode(input);
+      range.setStartAfter(input);
+      range.setEndAfter(input);
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      input.click();
+    }
   };
 
   const handleClickTimelineIcon = () => {
@@ -92,7 +116,7 @@ function DiaryWriteForm() {
       </div>
 
       <div className="flex items-center w-full gap-26pxr bg-[#EAF2E4] px-18pxr pt-16pxr pb-35pxr">
-        <span className="cursor-pointer" onClick={handleClickImageIcon}>
+        <span className="cursor-pointer" onMouseDown={handleClickImageIcon}>
           <IconImage size={22} />
         </span>
 
