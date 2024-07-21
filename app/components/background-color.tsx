@@ -29,7 +29,7 @@ function BackgroundColor() {
           return;
         case '/signup/terms':
         case '/signup/profile':
-          el.style.backgroundColor = '#F8F7EE';
+          el.style.backgroundColor = '#EDF6E1';
           return;
         case '/trip':
           el.style.backgroundColor = '#eaf2e4';

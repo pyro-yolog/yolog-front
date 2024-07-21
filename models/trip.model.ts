@@ -2,7 +2,8 @@ export interface TripRequest {
   name: string;
   destination: string;
   coverImageUrl?: string;
-  colorCover?: string;
+  coverColor?: string;
+  spineColor?: string;
   startDate: string;
   finishDate: string;
 }

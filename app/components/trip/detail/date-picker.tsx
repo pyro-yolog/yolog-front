@@ -2,16 +2,17 @@
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
+import { useRecoilState } from 'recoil';
 import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { getTripAPI } from '@/apis/trips';
 import { getBetweenDateList } from '@/lib/utils/date';
 import { IconCalendar, IconChevronDown } from '@/app/components/icon';
 import { gowunBatang } from '@/app/components/ui/fonts';
-import useBoolean from '@/hooks/useBoolean';
+import { isOpenDatePickerState } from '@/lib/store/ui';
 
 function TripDetailDatePicker() {
-  const [isOpen, , , , setIsOpen] = useBoolean();
+  const [isOpen, setIsOpen] = useRecoilState(isOpenDatePickerState);
   const { id } = useParams();
   const params = useSearchParams();
   const date = params.get('date') as string;
@@ -29,18 +30,17 @@ function TripDetailDatePicker() {
   return (
     <div className="flex flex-col w-full bg-white">
       <div className="flex justify-between pl-15pxr pr-24pxr pt-8pxr">
-        <div className="flex items-center">
+        <div
+          className="flex items-center cursor-pointer"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           <span className="w-32pxr text-[#696969] text-12pxr text-center font-semibold">
             {dateObj.month() + 1}월
           </span>
 
-          <div
-            className="cursor-pointer"
-            style={{ transform: `rotateZ(${isOpen ? 0 : 180}deg)` }}
-            onClick={() => setIsOpen(!isOpen)}
-          >
+          <span style={{ transform: `rotateZ(${isOpen ? 0 : 180}deg)` }}>
             <IconChevronDown />
-          </div>
+          </span>
         </div>
 
         <div>

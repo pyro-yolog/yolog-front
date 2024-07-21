@@ -1,5 +1,5 @@
 import { IconNavigateLeft } from '@/app/components/icon';
-import COLORS from '@/lib/constants/colors';
+import { DIARY_COVER_COLORS } from '@/lib/constants/colors';
 
 interface Props {
   onClose: () => void;
@@ -21,7 +21,7 @@ function TripSettingCoverModalPalette({ onClose }: Props) {
       </div>
 
       <div className="grid grid-cols-4 gap-x-15pxr gap-y-13pxr py-17pxr px-15pxr w-full bg-[#F4F4F4] rounded-[17px]">
-        {COLORS.map((color) => (
+        {DIARY_COVER_COLORS.map((color) => (
           <div
             key={color}
             style={{ backgroundColor: color }}
