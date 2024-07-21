@@ -3,12 +3,7 @@
 import { ChangeEventHandler, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { gowunBatang } from '@/app/components/ui/fonts';
-import {
-  IconAlignLeft,
-  IconCamera,
-  IconImage,
-  IconTimeline,
-} from '@/app/components/icon';
+import { IconAlignLeft, IconImage, IconTimeline } from '@/app/components/icon';
 import { uploadImageAPI } from '@/apis/images';
 import useToast from '@/hooks/useToast';
 import { diaryWriteState } from '@/lib/store/diary';
@@ -35,32 +30,22 @@ function DiaryWriteForm() {
     input.accept = 'image/*';
     input.multiple = true;
 
-    // document.body.onfocus = () => {
-    //   if (input.files?.length === 0) {
-    //     input.remove();
-    //   }
-
-    //   document.body.onfocus = null;
-    // };
-
     input.onchange = async () => {
       const [image] = input.files as FileList;
       const formData = new FormData();
       formData.append('image', image);
 
+      const imgList = document.createElement('div');
+
       try {
-        const imageUrl =
-          'https://s3.ap-northeast-2.amazonaws.com/yolog-aws-bucket/image/54e31772-eimages.png';
-        // const { imageUrl } = (await uploadImageAPI(formData)).data;
+        const img = document.createElement('img');
 
-        input.insertAdjacentHTML('beforeend', `<img src='${imageUrl}' />`);
+        // const imageUrl =
+        //   'https://s3.ap-northeast-2.amazonaws.com/yolog-aws-bucket/image/54e31772-eimages.png';
+        const { imageUrl } = (await uploadImageAPI(formData)).data;
+        img.src = imageUrl;
 
-        // if (contentRef.current) {
-        //   contentRef.current.insertAdjacentHTML(
-        //     'beforeend',
-        //     `<img src='${imageUrl}' />`,
-        //   );
-        // }
+        imgList.appendChild(img);
       } catch (e) {
         showToast({
           type: 'error',
@@ -69,22 +54,23 @@ function DiaryWriteForm() {
         console.error(e);
       }
 
-      input.remove();
+      const writeBox = document.getElementById('write-box') as HTMLDivElement;
+      const selection = window.getSelection();
+
+      if (selection?.focusNode && writeBox.contains(selection.focusNode)) {
+        const range = selection.getRangeAt(0);
+
+        range.insertNode(imgList);
+        range.setStartAfter(imgList);
+        range.setEndAfter(imgList);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      } else {
+        writeBox.insertAdjacentElement('afterbegin', imgList);
+      }
     };
 
-    const selection = window.getSelection();
-
-    if (selection) {
-      const range = selection.getRangeAt(0);
-
-      range.insertNode(input);
-      range.setStartAfter(input);
-      range.setEndAfter(input);
-      selection.removeAllRanges();
-      selection.addRange(range);
-
-      input.click();
-    }
+    input.click();
   };
 
   const handleClickTimelineIcon = () => {
@@ -116,13 +102,13 @@ function DiaryWriteForm() {
       </div>
 
       <div className="flex items-center w-full gap-26pxr bg-[#EAF2E4] px-18pxr pt-16pxr pb-35pxr">
-        <span className="cursor-pointer" onMouseDown={handleClickImageIcon}>
+        <div
+          className="cursor-pointer"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={handleClickImageIcon}
+        >
           <IconImage size={22} />
-        </span>
-
-        <span className="cursor-pointer">
-          <IconCamera size={22} />
-        </span>
+        </div>
 
         <span className="cursor-pointer" onClick={handleClickTimelineIcon}>
           {isTimeline ? (

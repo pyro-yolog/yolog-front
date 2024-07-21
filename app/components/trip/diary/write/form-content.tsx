@@ -1,7 +1,6 @@
 import useToast from '@/hooks/useToast';
 import {
   ClipboardEventHandler,
-  FormEventHandler,
   ForwardedRef,
   forwardRef,
   RefObject,
@@ -9,10 +8,6 @@ import {
 
 function DiaryWriteFormContent(_: any, ref?: ForwardedRef<HTMLDivElement>) {
   const showToast = useToast();
-
-  const handleInput: FormEventHandler<HTMLDivElement> = (e) => {
-    const content = e.currentTarget.innerHTML;
-  };
 
   const handlePaste: ClipboardEventHandler<HTMLDivElement> = (e) => {
     if (
@@ -42,9 +37,9 @@ function DiaryWriteFormContent(_: any, ref?: ForwardedRef<HTMLDivElement>) {
   return (
     <div
       ref={ref}
+      id="write-box"
       className="w-full min-h-full outline-none"
       contentEditable
-      onInput={handleInput}
       onPaste={handlePaste}
     ></div>
   );
