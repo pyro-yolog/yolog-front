@@ -28,10 +28,10 @@ function TripCreateCoverImage({ imageUrl, onUploadImage }: Props) {
 
     const [image] = input.files;
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append('images', image);
 
     try {
-      const { imageUrl } = (await uploadImageAPI(formData)).data;
+      const [{ imageUrl }] = (await uploadImageAPI(formData)).data;
 
       onUploadImage(imageUrl);
     } catch (e) {
