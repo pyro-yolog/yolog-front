@@ -38,7 +38,8 @@ function DiaryWriteFormContent(_: any, ref?: ForwardedRef<HTMLDivElement>) {
     <div
       ref={ref}
       id="write-box"
-      className="w-full min-h-full outline-none"
+      className="w-full min-h-full outline-none animate-fadeInRight"
+      aria-placeholder="내용을 입력하세요"
       contentEditable
       onPaste={handlePaste}
     ></div>

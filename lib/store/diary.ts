@@ -5,7 +5,6 @@ export interface DiaryWriteData {
   emotion: DiaryEmotionType | null;
   weather: DiaryWeatherType | null;
   title: string;
-  content: string;
 }
 
 export const diaryWriteState = atom<DiaryWriteData>({
@@ -14,6 +13,5 @@ export const diaryWriteState = atom<DiaryWriteData>({
     emotion: null,
     weather: null,
     title: '',
-    content: '',
   },
 });

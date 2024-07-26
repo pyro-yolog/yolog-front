@@ -1,5 +1,5 @@
-export type DiaryEmotionType = 'HAPPY' | 'COMMON' | 'TIRED' | 'SAD' | 'ANGRY';
-export type DiaryWeatherType = 'SUNNY' | 'CLOUDY' | 'RAINY' | 'SNOWY' | 'WINDY';
+export type DiaryEmotionType = 'HAPPY' | 'NORMAL' | 'TIRED' | 'UPSET' | 'ANGRY';
+export type DiaryWeatherType = 'SUNNY' | 'CLOUDY' | 'RAIN' | 'SNOW' | 'WINDS';
 
 export interface DiaryAdditionalData {
   type: string;
@@ -30,8 +30,13 @@ export interface DiaryDetailResponse extends DiaryResponse {
 
 export interface DiaryCreateReqeust {
   title: string;
-  content: string;
+  content: string | null;
   travelDate: string;
-  mood: string;
-  weather: string;
+  mood: string | null;
+  weather: string | null;
+}
+
+export interface DiaryContent {
+  type: 'DEFAULT' | 'TIMELINE';
+  data: string;
 }

@@ -28,3 +28,9 @@ body::-webkit-scrollbar {
 #onboarding .swiper-slide {
   overflow: hidden;
 }
+
+[contenteditable]:empty:before {
+  content: attr(aria-placeholder);
+  color: #b1b1b1;
+  font-weight: bold;
+}

@@ -1,18 +1,21 @@
 'use client';
 
-import { ChangeEventHandler, useRef, useState } from 'react';
+import { ChangeEventHandler, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { gowunBatang } from '@/app/components/ui/fonts';
 import { IconAlignLeft, IconImage, IconTimeline } from '@/app/components/icon';
 import { uploadImageAPI } from '@/apis/images';
 import useToast from '@/hooks/useToast';
 import { diaryWriteState } from '@/lib/store/diary';
+import { isTimelineState } from '@/lib/store/ui';
 import DiaryWriteFormContent from './form-content';
+import DiaryWriteFormTimeline from './form-timeline';
+import { AxiosError } from 'axios';
 
 function DiaryWriteForm() {
   const showToast = useToast();
   const [{ title }, setWriteData] = useRecoilState(diaryWriteState);
-  const [isTimeline, setIsTimeline] = useState(false);
+  const [isTimeline, setIsTimeline] = useRecoilState(isTimelineState);
   const contentRef = useRef<HTMLDivElement>(null);
 
   const handleChangeTitle: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -24,6 +27,46 @@ function DiaryWriteForm() {
     });
   };
 
+  const handleAppendImage = (el: HTMLDivElement) => {
+    const selection = window.getSelection();
+    let hasFocusEl = false;
+
+    if (isTimeline) {
+      const writeBoxList = document.querySelectorAll('.write-box');
+
+      hasFocusEl = !!(
+        selection?.focusNode &&
+        Array.from(writeBoxList).some((el) => el.contains(selection.focusNode))
+      );
+    } else {
+      const writeBox = document.getElementById('write-box') as HTMLDivElement;
+
+      hasFocusEl = !!(
+        selection?.focusNode && writeBox.contains(selection.focusNode)
+      );
+    }
+
+    if (selection && hasFocusEl) {
+      const range = selection.getRangeAt(0);
+
+      range.insertNode(el);
+      range.setStartAfter(el);
+      range.setEndAfter(el);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    } else {
+      if (isTimeline) {
+        const writeBoxList = document.querySelectorAll('.write-box');
+
+        writeBoxList[0].insertAdjacentElement('afterbegin', el);
+      } else {
+        const writeBox = document.getElementById('write-box') as HTMLDivElement;
+
+        writeBox.insertAdjacentElement('afterbegin', el);
+      }
+    }
+  };
+
   const handleClickImageIcon = () => {
     const input = document.createElement('input');
     input.type = 'file';
@@ -31,43 +74,52 @@ function DiaryWriteForm() {
     input.multiple = true;
 
     input.onchange = async () => {
-      const [image] = input.files as FileList;
+      if (!input.files) return;
+
+      if (input.files.length > 50) {
+        showToast({
+          type: 'error',
+          message: '이미지는 한번에 최대 50장 첨부할 수 있어요!',
+        });
+        return;
+      }
+
       const formData = new FormData();
-      formData.append('image', image);
+      Array.from(input.files).forEach((image) =>
+        formData.append('images', image),
+      );
 
       const imgList = document.createElement('div');
 
       try {
-        const img = document.createElement('img');
+        const { data: imageUrlList } = await uploadImageAPI(formData);
 
-        // const imageUrl =
-        //   'https://s3.ap-northeast-2.amazonaws.com/yolog-aws-bucket/image/54e31772-eimages.png';
-        const { imageUrl } = (await uploadImageAPI(formData)).data;
-        img.src = imageUrl;
+        imageUrlList.forEach(({ imageUrl }) => {
+          const img = document.createElement('img');
 
-        imgList.appendChild(img);
-      } catch (e) {
-        showToast({
-          type: 'error',
-          message: '이미지를 업로드하는 도중 오류가 발생했어요!',
+          img.src = imageUrl;
+
+          imgList.appendChild(img);
         });
+      } catch (e) {
+        if (e instanceof AxiosError) {
+          if (e.status === 413) {
+            showToast({
+              type: 'error',
+              message: '이미지 업로드 크기가 초과되었어요!',
+            });
+          }
+        } else {
+          showToast({
+            type: 'error',
+            message: '이미지를 업로드하는 도중 오류가 발생했어요!',
+          });
+        }
+
         console.error(e);
       }
 
-      const writeBox = document.getElementById('write-box') as HTMLDivElement;
-      const selection = window.getSelection();
-
-      if (selection?.focusNode && writeBox.contains(selection.focusNode)) {
-        const range = selection.getRangeAt(0);
-
-        range.insertNode(imgList);
-        range.setStartAfter(imgList);
-        range.setEndAfter(imgList);
-        selection.removeAllRanges();
-        selection.addRange(range);
-      } else {
-        writeBox.insertAdjacentElement('afterbegin', imgList);
-      }
+      handleAppendImage(imgList);
     };
 
     input.click();
@@ -94,7 +146,7 @@ function DiaryWriteForm() {
           className={`${gowunBatang.className} relative w-full h-[calc(100%-70px)] px-7pxr overflow-y-auto scrollbar-hide`}
         >
           {isTimeline ? (
-            <>Timeline</>
+            <DiaryWriteFormTimeline />
           ) : (
             <DiaryWriteFormContent ref={contentRef} />
           )}

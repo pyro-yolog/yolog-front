@@ -1,9 +1,10 @@
 'use client';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import dayjs from 'dayjs';
 import { useRecoilValue } from 'recoil';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import { getTripAPI } from '@/apis/trips';
 import { IconNavigateLeft } from '@/app/components/icon';
 import { gowunBatang } from '@/app/components/ui/fonts';
@@ -14,12 +15,19 @@ import { getDayname } from '@/lib/utils/date';
 import DiaryWriteEmotionBox from './emotion-box';
 import DiaryWriteWeatherBox from './weather-box';
 import DiaryWriteCancelBottomSheet from './cancel-bottom-sheet';
+import { isTimelineState } from '@/lib/store/ui';
+import { DiaryContent } from '@/models/diary.model';
+import useToast from '@/hooks/useToast';
+import { createDiaryAPI } from '@/apis/diaries';
 
 function DiaryWriteHeader() {
+  const showToast = useToast();
+  const router = useRouter();
   const { id } = useParams();
   const params = useSearchParams();
   const [isOpen, , open, close] = useBoolean();
   const writeData = useRecoilValue(diaryWriteState);
+  const isTimeline = useRecoilValue(isTimelineState);
 
   const {
     data: { startDate },
@@ -33,7 +41,54 @@ function DiaryWriteHeader() {
   const dayname = getDayname(startDate, date);
 
   const handleClickCreateIcon = async () => {
-    console.log(writeData);
+    let content: DiaryContent | null = null;
+
+    if (isTimeline) {
+      const data = Array.from(document.querySelectorAll('.timeline-box')).map(
+        (el) => {
+          return {
+            time: (el.querySelector('input') as HTMLInputElement).value,
+            content: (el.querySelector('.write-box') as HTMLDivElement)
+              .innerHTML,
+          };
+        },
+      );
+
+      content = {
+        type: 'TIMELINE',
+        data: JSON.stringify(data),
+      };
+    } else {
+      const data = {
+        content: (document.querySelector('#write-box') as HTMLDivElement)
+          .innerHTML,
+      };
+
+      content = {
+        type: 'DEFAULT',
+        data: JSON.stringify(data),
+      };
+    }
+
+    try {
+      await createDiaryAPI(id as string, {
+        travelDate: date,
+        title: writeData.title,
+        content: JSON.stringify(content),
+        mood: writeData.emotion,
+        weather: writeData.weather,
+      });
+
+      router.push(`/trip/${id}?${params}`);
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        showToast({
+          type: 'error',
+          message: '일기를 저장하는 도중 오류가 발생했어요!',
+        });
+      }
+      console.error(e);
+    }
   };
 
   return (

@@ -7,8 +7,8 @@ export const EMOTIONS: DiaryEmotion[] = [
     text: '행복한',
   },
   {
-    type: 'COMMON',
-    image: '/images/emotion-common.png',
+    type: 'NORMAL',
+    image: '/images/emotion-normal.png',
     text: '평범한',
   },
   {
@@ -17,8 +17,8 @@ export const EMOTIONS: DiaryEmotion[] = [
     text: '피곤한',
   },
   {
-    type: 'SAD',
-    image: '/images/emotion-sad.png',
+    type: 'UPSET',
+    image: '/images/emotion-upset.png',
     text: '속상한',
   },
   {
@@ -40,18 +40,18 @@ export const WEATHERS: DiaryWeather[] = [
     text: '흐림',
   },
   {
-    type: 'RAINY',
-    image: '/images/weather-rainy.png',
+    type: 'RAIN',
+    image: '/images/weather-rain.png',
     text: '비',
   },
   {
-    type: 'SNOWY',
-    image: '/images/weather-snowy.png',
+    type: 'SNOW',
+    image: '/images/weather-snow.png',
     text: '눈',
   },
   {
-    type: 'WINDY',
-    image: '/images/weather-windy.png',
+    type: 'WINDS',
+    image: '/images/weather-winds.png',
     text: '바람',
   },
 ];
