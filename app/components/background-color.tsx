@@ -27,10 +27,6 @@ function BackgroundColor() {
         case '/sign':
           el.style.backgroundColor = '#EDF6E1';
           return;
-        case '/signup/terms':
-        case '/signup/profile':
-          el.style.backgroundColor = '#EDF6E1';
-          return;
         case '/trip':
           el.style.backgroundColor = '#eaf2e4';
           return;

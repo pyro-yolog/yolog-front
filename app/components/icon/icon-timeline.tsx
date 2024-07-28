@@ -1,9 +1,9 @@
-function IconTimeline() {
+function IconTimeline({ size = 30 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="25"
+      width={size}
+      height={size}
       viewBox="0 0 30 25"
       fill="none"
     >
