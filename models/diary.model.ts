@@ -17,7 +17,6 @@ export interface DiaryWeather extends DiaryAdditionalData {
 
 export interface DiaryResponse {
   id: number;
-  dayName: string;
   content: string;
   mood: string;
   weather: string;
@@ -38,5 +37,10 @@ export interface DiaryCreateReqeust {
 
 export interface DiaryContent {
   type: 'DEFAULT' | 'TIMELINE';
-  data: string;
+  data: DiaryContentData | DiaryContentData[];
+}
+
+export interface DiaryContentData {
+  time?: string | null;
+  content: string;
 }

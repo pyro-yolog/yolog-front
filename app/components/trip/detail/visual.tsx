@@ -10,10 +10,10 @@ import { formatViewPeriod } from '@/lib/utils/date';
 import Image from 'next/image';
 
 function TripDetailVisual() {
-  const { id } = useParams();
+  const { tripId } = useParams();
   const { data } = useSuspenseQuery({
-    queryKey: ['trip', id],
-    queryFn: () => getTripAPI(id as string),
+    queryKey: ['trip', tripId],
+    queryFn: () => getTripAPI(tripId as string),
   });
 
   return (
@@ -46,7 +46,7 @@ function TripDetailVisual() {
             <IconNavigateLeft color={data.coverImageUrl ? 'white' : 'black'} />
           </Link>
 
-          <Link href={`/trip/${id}/setting`}>
+          <Link href={`/trip/${tripId}/setting`}>
             <div className="flex items-center justify-center w-35pxr h-35pxr rounded-[5px] bg-white/30">
               <IconSetting />
             </div>

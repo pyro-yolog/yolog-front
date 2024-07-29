@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useParams, useSearchParams } from 'next/navigation';
 
 function TripDetailDiaryListEmpty() {
-  const { id } = useParams();
+  const { tripId } = useParams();
   const params = useSearchParams();
 
   return (
@@ -21,7 +21,7 @@ function TripDetailDiaryListEmpty() {
           <br /> 여행의 발자취를 일기로 남겨보세요.
         </p>
 
-        <Link href={`/trip/${id}/diary/write?${params}`}>
+        <Link href={`/trip/${tripId}/diary/write?${params}`}>
           <Button
             size="small"
             styles="rounded-full bg-primary400 text-white !text-15pxr"
