@@ -1,6 +1,7 @@
 import {
   DiaryCreateReqeust,
   DiaryDetailResponse,
+  DiaryRequest,
   DiaryResponse,
 } from '@/models/diary.model';
 import axios from './config/instance';
@@ -28,4 +29,11 @@ export const createDiaryAPI = async (
 
 export const deleteDiaryAPI = async (diaryId: string | number) => {
   return await axios.delete<void>(`${PREFIX}/${diaryId}`);
+};
+
+export const updateDiaryAPI = async (
+  diaryId: string | number,
+  data: DiaryRequest,
+) => {
+  return await axios.put<void>(`${PREFIX}/${diaryId}`, data);
 };

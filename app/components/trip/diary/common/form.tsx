@@ -1,7 +1,7 @@
 'use client';
 
 import { AxiosError } from 'axios';
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { gowunBatang } from '@/app/components/ui/fonts';
 import { IconAlignLeft, IconImage, IconTimeline } from '@/app/components/icon';
@@ -22,6 +22,7 @@ function DiaryForm({ editable = false }) {
   const showToast = useToast();
   const [{ title }, setWriteData] = useRecoilState(diaryWriteState);
   const [isTimeline, setIsTimeline] = useRecoilState(isTimelineState);
+  const [loading, setLoading] = useState(false);
 
   const handleChangeTitle: ChangeEventHandler<HTMLInputElement> = (e) => {
     setWriteData((writeData) => {
@@ -70,6 +71,8 @@ function DiaryForm({ editable = false }) {
         writeBox.insertAdjacentElement('afterbegin', el);
       }
     }
+
+    setLoading(false);
   };
 
   const handleClickImageIcon = () => {
@@ -89,6 +92,7 @@ function DiaryForm({ editable = false }) {
         return;
       }
 
+      setLoading(true);
       const formData = new FormData();
       Array.from(input.files).forEach((image) =>
         formData.append('images', image),
@@ -135,56 +139,65 @@ function DiaryForm({ editable = false }) {
   };
 
   return (
-    <div className="flex flex-col w-full h-[calc(100%-100px)] pt-7pxr">
-      <div
-        className="flex flex-col gap-20pxr w-full px-21pxr pb-20pxr"
-        style={{ height: `calc(100% - ${editable ? 73 : 0}px)` }}
-      >
+    <>
+      <div className="flex flex-col w-full h-[calc(100%-100px)] pt-7pxr">
         <div
-          className="w-full px-7pxr py-6pxr border-b"
-          style={{ borderColor: editable ? '#E3E3E3' : '#D5E1C0' }}
+          className="flex flex-col gap-20pxr w-full px-21pxr pb-20pxr"
+          style={{ height: `calc(100% - ${editable ? 73 : 0}px)` }}
         >
-          <input
-            className={`${gowunBatang.className} w-full text-24pxr bg-transparent text-black font-bold outline-none placeholder:text-[#B1B1B1]`}
-            type="text"
-            placeholder="제목"
-            value={title}
-            onChange={handleChangeTitle}
-            disabled={!editable}
-          />
-        </div>
-
-        <div
-          className={`${gowunBatang.className} relative w-full h-[calc(100%-70px)] px-7pxr overflow-y-auto scrollbar-hide`}
-        >
-          {isTimeline ? (
-            <DiaryFormTimeline editable={editable} />
-          ) : (
-            <DiaryFormContent editable={editable} />
-          )}
-        </div>
-      </div>
-
-      {editable && (
-        <div className="flex items-center w-full gap-26pxr bg-[#EAF2E4] px-18pxr pt-16pxr pb-35pxr">
           <div
-            className="cursor-pointer"
-            onMouseDown={(e) => e.preventDefault()}
-            onClick={handleClickImageIcon}
+            className="w-full px-7pxr py-6pxr border-b"
+            style={{ borderColor: editable ? '#E3E3E3' : '#D5E1C0' }}
           >
-            <IconImage size={22} />
+            <input
+              className={`${gowunBatang.className} w-full text-24pxr bg-transparent text-black font-bold outline-none placeholder:text-[#B1B1B1]`}
+              type="text"
+              placeholder="제목"
+              value={title}
+              onChange={handleChangeTitle}
+              disabled={!editable}
+            />
           </div>
 
-          <span className="cursor-pointer" onClick={handleClickTimelineIcon}>
+          <div
+            className={`${gowunBatang.className} relative w-full h-[calc(100%-70px)] px-7pxr overflow-y-auto scrollbar-hide`}
+          >
             {isTimeline ? (
-              <IconAlignLeft size={22} />
+              <DiaryFormTimeline editable={editable} />
             ) : (
-              <IconTimeline size={22} />
+              <DiaryFormContent editable={editable} />
             )}
-          </span>
+          </div>
         </div>
+
+        {editable && (
+          <div className="flex items-center w-full gap-26pxr bg-[#EAF2E4] px-18pxr pt-16pxr pb-35pxr">
+            <div
+              className="cursor-pointer"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={handleClickImageIcon}
+            >
+              <IconImage size={22} />
+            </div>
+
+            <span className="cursor-pointer" onClick={handleClickTimelineIcon}>
+              {isTimeline ? (
+                <IconAlignLeft size={22} />
+              ) : (
+                <IconTimeline size={22} />
+              )}
+            </span>
+          </div>
+        )}
+      </div>
+
+      {loading && (
+        <div
+          className="fixed z-50 left-0pxr top-0pxr w-full h-full bg-black/20"
+          onMouseDown={(e) => e.preventDefault()}
+        />
       )}
-    </div>
+    </>
   );
 }
 

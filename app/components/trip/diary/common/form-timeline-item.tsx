@@ -1,5 +1,5 @@
 import { DiaryContentData } from '@/models/diary.model';
-import { ChangeEventHandler, FocusEventHandler, useState } from 'react';
+import React, { ChangeEventHandler, FocusEventHandler, useState } from 'react';
 
 interface Props {
   editable: boolean;
@@ -7,9 +7,7 @@ interface Props {
 }
 
 function DiaryFormTimelineItem({ editable = false, data = null }: Props) {
-  const [time, setTime] = useState(
-    editable ? '' : (data as DiaryContentData).time || '',
-  );
+  const [time, setTime] = useState((data as DiaryContentData)?.time || '');
 
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     setTime(e.target.value);
@@ -40,7 +38,7 @@ function DiaryFormTimelineItem({ editable = false, data = null }: Props) {
 
       <div
         className="write-box w-full min-h-120pxr py-20pxr pl-20pxr outline-none write-box border-l-[2px] border-primary300/0 transition-colors focus:border-primary300"
-        aria-placeholder="내용을 입력하세요"
+        aria-placeholder={editable ? '내용을 입력하세요' : ''}
         contentEditable={editable}
         dangerouslySetInnerHTML={{ __html: data?.content || '' }}
       />
@@ -48,4 +46,4 @@ function DiaryFormTimelineItem({ editable = false, data = null }: Props) {
   );
 }
 
-export default DiaryFormTimelineItem;
+export default React.memo(DiaryFormTimelineItem);

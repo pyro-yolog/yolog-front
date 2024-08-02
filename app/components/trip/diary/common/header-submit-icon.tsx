@@ -3,7 +3,7 @@
 import { AxiosError } from 'axios';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
-import { createDiaryAPI } from '@/apis/diaries';
+import { createDiaryAPI, updateDiaryAPI } from '@/apis/diaries';
 import { IconCheck } from '@/app/components/icon';
 import useToast from '@/hooks/useToast';
 import { diaryWriteState } from '@/lib/store/diary';
@@ -12,7 +12,7 @@ import { DiaryContent } from '@/models/diary.model';
 
 function DiaryHeaderCreateIcon() {
   const showToast = useToast();
-  const { tripId } = useParams();
+  const { tripId, diaryId } = useParams();
   const router = useRouter();
   const params = useSearchParams();
   const writeData = useRecoilValue(diaryWriteState);
@@ -51,15 +51,28 @@ function DiaryHeaderCreateIcon() {
     }
 
     try {
-      await createDiaryAPI(tripId as string, {
-        travelDate: date,
-        title: writeData.title,
-        content: JSON.stringify(content),
-        mood: writeData.emotion,
-        weather: writeData.weather,
-      });
+      // 일기 생성
+      if (!diaryId) {
+        await createDiaryAPI(tripId as string, {
+          travelDate: date,
+          title: writeData.title,
+          content: JSON.stringify(content),
+          mood: writeData.emotion,
+          weather: writeData.weather,
+        });
 
-      router.push(`/trip/${tripId}?${params}`);
+        router.push(`/trip/${tripId}?${params}`);
+      } else {
+        // 일기 수정
+        await updateDiaryAPI(diaryId as string, {
+          title: writeData.title,
+          content: JSON.stringify(content),
+          mood: writeData.emotion,
+          weather: writeData.weather,
+        });
+
+        router.push(`/trip/${tripId}/diary/${diaryId}`);
+      }
     } catch (e) {
       if (e instanceof AxiosError) {
         showToast({

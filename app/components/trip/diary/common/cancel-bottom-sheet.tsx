@@ -8,8 +8,12 @@ interface Props {
 }
 
 function DiaryCancelBottomSheet({ isOpen, onClose }: Props) {
-  const { tripId } = useParams();
+  const { tripId, diaryId } = useParams();
   const params = useSearchParams();
+
+  const link = !diaryId
+    ? `/trip/${tripId}?${params}`
+    : `/trip/${tripId}/diary/${diaryId}`;
 
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose}>
@@ -24,7 +28,7 @@ function DiaryCancelBottomSheet({ isOpen, onClose }: Props) {
       </div>
 
       <Link
-        href={`/trip/${tripId}?${params}`}
+        href={link}
         className="block w-full py-24pxr px-20pxr text-[red] text-16pxr leading-[22px] border-b border-[#E3E3E3] cursor-pointer"
       >
         작성 취소

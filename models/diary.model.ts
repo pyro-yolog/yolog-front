@@ -27,12 +27,15 @@ export interface DiaryDetailResponse extends DiaryResponse {
   title: string;
 }
 
-export interface DiaryCreateReqeust {
+export interface DiaryRequest {
   title: string;
   content: string | null;
-  travelDate: string;
   mood: string | null;
   weather: string | null;
+}
+
+export interface DiaryCreateReqeust extends DiaryRequest {
+  travelDate: string;
 }
 
 export interface DiaryContent {

@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getTripAPI } from '@/apis/trips';
 import { diaryWriteState } from '@/lib/store/diary';
 import { DiaryForm } from '@/app/components';
+import { isTimelineState } from '@/lib/store/ui';
 
 const DiaryHeader = dynamic(
   () => import('@/app/components/trip/diary/common/header'),
@@ -23,6 +24,7 @@ function DiaryWritePage({
   searchParams: { date?: string };
 }) {
   const setWriteData = useResetRecoilState(diaryWriteState);
+  const setIsTimeline = useResetRecoilState(isTimelineState);
   const { error } = useQuery({
     queryKey: ['trip', tripId],
     queryFn: () => getTripAPI(tripId),
@@ -40,7 +42,9 @@ function DiaryWritePage({
 
   useEffect(() => {
     setWriteData();
-  }, [setWriteData]);
+    setIsTimeline();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="flex flex-col w-full h-full">

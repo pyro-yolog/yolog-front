@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { IconPlusCircle } from '@/app/components/icon';
 import DiaryFormTimelineItem from './form-timeline-item';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -14,7 +14,7 @@ function DiaryFormTimeline({ editable = false }) {
   const { data } = useSuspenseQuery({
     queryKey: ['diary', diaryId],
     queryFn: () => {
-      if (editable) {
+      if (!diaryId) {
         return dumpDiaryDetailData;
       }
       return getDiaryAPI(diaryId as string);
@@ -24,15 +24,15 @@ function DiaryFormTimeline({ editable = false }) {
     data.content,
   );
 
-  const [count, setCount] = useState(editable ? 3 : timelineList.length);
+  const [count, setCount] = useState(!diaryId ? 3 : timelineList.length);
 
   return (
     <div className="relative flex flex-col border-l border-[#BEBEBE] mt-16pxr animate-fadeInRight">
       {new Array(count).fill(null).map((_, i) => (
         <DiaryFormTimelineItem
-          key={i}
+          key={`${Date.now()}-${i}`}
           editable={editable}
-          data={editable ? null : timelineList[i]}
+          data={!diaryId ? null : timelineList[i]}
         />
       ))}
 
@@ -48,4 +48,4 @@ function DiaryFormTimeline({ editable = false }) {
   );
 }
 
-export default DiaryFormTimeline;
+export default React.memo(DiaryFormTimeline);

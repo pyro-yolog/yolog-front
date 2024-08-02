@@ -13,7 +13,7 @@ import { dumpDiaryDetailData } from '@/lib/utils/dump';
 import DiaryEmotionBox from './emotion-box';
 import DiaryWeatherBox from './weather-box';
 import DiaryCancelBottomSheet from './cancel-bottom-sheet';
-import DiaryHeaderCreateIcon from './header-create-icon';
+import DiaryHeaderSubmitIcon from './header-submit-icon';
 import DiaryHeaderOptionIcon from './header-option-icon';
 
 function DiaryHeader({ editable = false }) {
@@ -34,10 +34,10 @@ function DiaryHeader({ editable = false }) {
   } = useSuspenseQuery({
     queryKey: ['diary', diaryId],
     queryFn: () => {
-      if (!editable) {
-        return getDiaryAPI(diaryId as string);
+      if (!diaryId) {
+        return dumpDiaryDetailData;
       }
-      return dumpDiaryDetailData;
+      return getDiaryAPI(diaryId as string);
     },
   });
 
@@ -70,7 +70,7 @@ function DiaryHeader({ editable = false }) {
             {dateObj.format('YYYY년 M월 D일')}
           </span>
 
-          {editable ? <DiaryHeaderCreateIcon /> : <DiaryHeaderOptionIcon />}
+          {editable ? <DiaryHeaderSubmitIcon /> : <DiaryHeaderOptionIcon />}
         </div>
 
         <div className="flex items-center justify-between w-full px-28pxr">

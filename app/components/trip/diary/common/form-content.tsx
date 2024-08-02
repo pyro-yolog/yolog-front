@@ -6,14 +6,14 @@ import { dumpDiaryDetailData } from '@/lib/utils/dump';
 import { DiaryContentData } from '@/models/diary.model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
-import { ClipboardEventHandler } from 'react';
+import React, { ClipboardEventHandler } from 'react';
 
 function DiaryFormContent({ editable = false }) {
   const { diaryId } = useParams();
   const { data } = useSuspenseQuery({
     queryKey: ['diary', diaryId],
     queryFn: () => {
-      if (editable) {
+      if (!diaryId) {
         return dumpDiaryDetailData;
       }
       return getDiaryAPI(diaryId as string);
@@ -54,12 +54,12 @@ function DiaryFormContent({ editable = false }) {
     <div
       id="write-box"
       className="w-full min-h-full outline-none animate-fadeInRight"
-      aria-placeholder="내용을 입력하세요"
+      aria-placeholder={editable ? '내용을 입력하세요' : ''}
       contentEditable={editable}
       onPaste={handlePaste}
-      dangerouslySetInnerHTML={{ __html: content }}
+      dangerouslySetInnerHTML={{ __html: content || '' }}
     />
   );
 }
 
-export default DiaryFormContent;
+export default React.memo(DiaryFormContent);
