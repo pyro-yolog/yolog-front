@@ -13,7 +13,7 @@ import { isOpenDatePickerState } from '@/lib/store/ui';
 
 function TripDetailDatePicker() {
   const [isOpen, setIsOpen] = useRecoilState(isOpenDatePickerState);
-  const { id } = useParams();
+  const { tripId } = useParams();
   const params = useSearchParams();
   const date = params.get('date') as string;
   const dateObj = dayjs(date);
@@ -21,8 +21,8 @@ function TripDetailDatePicker() {
   const {
     data: { startDate, finishDate },
   } = useSuspenseQuery({
-    queryKey: ['trip', id],
-    queryFn: () => getTripAPI(id as string),
+    queryKey: ['trip', tripId],
+    queryFn: () => getTripAPI(tripId as string),
   });
 
   const dateList = getBetweenDateList(startDate, finishDate);

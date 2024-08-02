@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { useRecoilValue } from 'recoil';
 import { toastState } from '@/lib/store/toast';
 import usePortal from '@/hooks/use-portal';
-import IconCheck from './ui/icon-check';
+import { IconCheck } from './icon';
 
 function ToastContainer() {
   const toastList = useRecoilValue(toastState);

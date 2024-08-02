@@ -7,13 +7,13 @@ import TripDetailDiaryListEmpty from './diary-list-empty';
 import TripDetailDiaryList from './diary-list';
 
 function TripDetailDiaryView() {
-  const { id } = useParams();
+  const { tripId } = useParams();
   const params = useSearchParams();
   const date = params.get('date') as string;
 
   const { data } = useSuspenseQuery({
-    queryKey: ['trip-diaries', id, date],
-    queryFn: () => getDiaryListByDateAPI(id as string, date),
+    queryKey: ['trip-diaries', tripId, date],
+    queryFn: () => getDiaryListByDateAPI(tripId as string, date),
   });
 
   return (

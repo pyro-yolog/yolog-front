@@ -10,7 +10,7 @@ interface Props {
 }
 
 function TripDetailDiaryList({ data }: Props) {
-  const { id } = useParams();
+  const { tripId } = useParams();
   const params = useSearchParams();
 
   return (
@@ -23,7 +23,7 @@ function TripDetailDiaryList({ data }: Props) {
 
       <Link
         className="text-14pxr text-[#9A9A9A] font-medium cursor-pointer"
-        href={`/trip/${id}/diary/write?${params}`}
+        href={`/trip/${tripId}/diary/write?${params}`}
       >
         일기 추가
       </Link>

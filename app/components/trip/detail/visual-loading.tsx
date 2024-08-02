@@ -5,7 +5,7 @@ import { IconNavigateLeft, IconSetting } from '@/app/components/icon';
 import { useParams } from 'next/navigation';
 
 function TripDetailVisualLoading() {
-  const { id } = useParams();
+  const { tripId } = useParams();
 
   return (
     <div className="relative flex flex-col gap-21pxr w-full h-162pxr pt-11pxr">
@@ -18,7 +18,7 @@ function TripDetailVisualLoading() {
           <IconNavigateLeft />
         </Link>
 
-        <Link href={`/trip/${id}/setting`}>
+        <Link href={`/trip/${tripId}/setting`}>
           <div className="flex items-center justify-center w-35pxr h-35pxr rounded-[5px] bg-white/30">
             <IconSetting />
           </div>

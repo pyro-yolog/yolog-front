@@ -64,6 +64,7 @@ const config: Config = {
         floatingButton: '0px 2px 10px rgba(0, 0, 0, 0.18)',
         tripViewBox: '-2px -2px 10px 0px rgba(0, 0, 0, 0.03)',
         trip: '2px -2px 5px 0px rgba(0, 0, 0, 0.10)',
+        diaryOption: '0px 2px 8px 0px rgba(0, 0, 0, 0.25)',
       },
       keyframes: {
         showToast: {
