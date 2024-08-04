@@ -14,12 +14,13 @@ import TripSettingDateConfirmModal from './date-confirm-modal';
 import { formatViewPeriod } from '@/lib/utils/date';
 import { tripWriteState } from '@/lib/store/trip';
 import { useRecoilState } from 'recoil';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function TripSettingForm() {
   const { tripId } = useParams();
   const [writeData, setWriteData] = useRecoilState(tripWriteState);
-  const [tempPeriod, setTimePeriod] = useState({ startDate: '', endDate: '' });
+  const [tempPeriod, setTempPeriod] = useState({ startDate: '', endDate: '' });
+  const [outOfDuration, setOutOfDuration] = useState(false);
 
   const [isCalendarOpen, , openCalendar, closeCalendar] = useBoolean();
   const [isDateConfirmOpen, , openDateConfirm, closeDateConfirm] = useBoolean();
@@ -38,19 +39,14 @@ function TripSettingForm() {
       endDate = startDate;
     }
 
-    setTimePeriod({ startDate, endDate });
-
     try {
       const { outOfDuration } = await outOfDurationTripAPI(tripId as string, {
         startDate,
         finishDate: endDate,
       });
 
-      if (outOfDuration) {
-        openDateConfirm();
-      } else {
-        handleConfirmPeriod();
-      }
+      setTempPeriod({ startDate, endDate });
+      setOutOfDuration(outOfDuration);
     } catch (e) {
       console.error(e);
     }
@@ -66,10 +62,21 @@ function TripSettingForm() {
       startDate: tempPeriod.startDate,
       finishDate: tempPeriod.endDate,
     });
-    setTimePeriod({ startDate: '', endDate: '' });
+    setTempPeriod({ startDate: '', endDate: '' });
 
     closeDateConfirm();
   };
+
+  useEffect(() => {
+    if (tempPeriod.startDate && tempPeriod.endDate) {
+      if (outOfDuration) {
+        openDateConfirm();
+      } else {
+        handleConfirmPeriod();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tempPeriod, outOfDuration]);
 
   if (!writeData) return null;
 
