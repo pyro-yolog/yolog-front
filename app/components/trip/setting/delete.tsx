@@ -1,13 +1,23 @@
 'use client';
 
+import { useParams, useRouter } from 'next/navigation';
+import { deleteTripAPI } from '@/apis/trips';
 import { Button, TripSettingDeleteModal } from '@/app/components';
 import useBoolean from '@/hooks/useBoolean';
 
 function TripSettingDelete() {
+  const router = useRouter();
+  const { tripId } = useParams();
   const [isOpen, , open, close] = useBoolean();
 
   const handleDelete = async () => {
-    console.log('delete');
+    try {
+      await deleteTripAPI(tripId as string);
+
+      router.push('/trip');
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

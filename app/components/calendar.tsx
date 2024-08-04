@@ -2,7 +2,7 @@
 
 import dayjs, { Dayjs } from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
-import { useMemo, useState } from 'react';
+import { MouseEventHandler, useMemo, useState } from 'react';
 import Button from './ui/button';
 import { IconChevronLeft, IconChevronRight } from './icon';
 
@@ -127,7 +127,9 @@ function Calendar({ startDate, endDate, onChange }: Props) {
     setViewDate(obj);
   };
 
-  const handleClickButton = () => {
+  const handleClickButton: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.stopPropagation();
+
     onChange &&
       onChange({
         startDate: start.format(DATE_DATA_FORMAT),

@@ -14,8 +14,9 @@ function TripSettingDateConfirmModal({ isOpen, onClose, onConfirm }: Props) {
           <p className="text-black text-17pxr font-semibold">기간 변경</p>
 
           <p className="text-black text-13pxr text-center">
-            변경된 여행 기간에 포함되지 않은 날짜에 작성된 일기가 존재해요.
-            기간을 변경하게 되면 해당 날짜의 일기가 영구적으로 삭제돼요.
+            변경된 기간에 포함되지 못한 일기가 존재해요.
+            <br />
+            기간을 변경하면 일기가 영구적으로 삭제돼요.
           </p>
         </div>
 
@@ -33,7 +34,7 @@ function TripSettingDateConfirmModal({ isOpen, onClose, onConfirm }: Props) {
             styles="w-1/2 bg-primary300 text-white"
             onClick={onConfirm}
           >
-            변경
+            기간 변경
           </Button>
         </div>
       </div>

@@ -11,3 +11,12 @@ export interface TripRequest {
 export interface TripResponse extends TripRequest {
   id: number;
 }
+
+export interface TripOutOfDurationRequest extends Record<string, string> {
+  startDate: string;
+  finishDate: string;
+}
+
+export interface TripOutOfDurationResponse {
+  outOfDuration: boolean;
+}

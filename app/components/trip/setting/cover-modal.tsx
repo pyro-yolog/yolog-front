@@ -13,18 +13,16 @@ interface Props {
 function TripSettingCoverModal({ isOpen, onClose }: Props) {
   const [option, setOption] = useState<string | null>(null);
 
-  const handleSelectOption = (option: string) => {
-    if (option === 'COLOR') {
-      setOption(option);
-      return;
-    }
-
-    // 이미지 업로드
+  const handleClose = () => {
+    onClose();
+    setOption(null);
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      {!option && <TripSettingCoverModalOption onSelect={handleSelectOption} />}
+    <Modal isOpen={isOpen} onClose={handleClose}>
+      {!option && (
+        <TripSettingCoverModalOption onSelect={(option) => setOption(option)} />
+      )}
 
       {option === 'COLOR' && (
         <TripSettingCoverModalPalette onClose={() => setOption(null)} />

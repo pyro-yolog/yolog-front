@@ -1,6 +1,8 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
+import { outOfDurationTripAPI } from '@/apis/trips';
 import { Input } from '@/app/components';
 import {
   TRIP_DESTINATION_VALIDATION,
@@ -9,25 +11,67 @@ import {
 import useBoolean from '@/hooks/useBoolean';
 import TripSettingCalendarModal from './calendar-modal';
 import TripSettingDateConfirmModal from './date-confirm-modal';
+import { formatViewPeriod } from '@/lib/utils/date';
+import { tripWriteState } from '@/lib/store/trip';
+import { useRecoilState } from 'recoil';
+import { useState } from 'react';
 
 function TripSettingForm() {
+  const { tripId } = useParams();
+  const [writeData, setWriteData] = useRecoilState(tripWriteState);
+  const [tempPeriod, setTimePeriod] = useState({ startDate: '', endDate: '' });
+
   const [isCalendarOpen, , openCalendar, closeCalendar] = useBoolean();
-  const [isDateConfirmOpen, , openDateConfirm, closeDateConfrim] = useBoolean();
+  const [isDateConfirmOpen, , openDateConfirm, closeDateConfirm] = useBoolean();
   const { control } = useForm({
     mode: 'onChange',
   });
 
-  const startDate = '2024-06-01';
-
-  const handleChangePeriod = ({
+  const handleChangePeriod = async ({
     startDate,
     endDate,
   }: {
     startDate: string;
     endDate?: string;
   }) => {
-    console.log(startDate, endDate);
+    if (!endDate) {
+      endDate = startDate;
+    }
+
+    setTimePeriod({ startDate, endDate });
+
+    try {
+      const { outOfDuration } = await outOfDurationTripAPI(tripId as string, {
+        startDate,
+        finishDate: endDate,
+      });
+
+      if (outOfDuration) {
+        openDateConfirm();
+      } else {
+        handleConfirmPeriod();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
+    closeCalendar();
   };
+
+  const handleConfirmPeriod = () => {
+    if (!writeData) return;
+
+    setWriteData({
+      ...writeData,
+      startDate: tempPeriod.startDate,
+      finishDate: tempPeriod.endDate,
+    });
+    setTimePeriod({ startDate: '', endDate: '' });
+
+    closeDateConfirm();
+  };
+
+  if (!writeData) return null;
 
   return (
     <>
@@ -42,7 +86,7 @@ function TripSettingForm() {
             control={control}
             rules={TRIP_NAME_VALIDATION}
             render={({
-              field: { name, value = 'aa', onChange },
+              field: { name, value = writeData.name, onChange },
               fieldState: { error },
             }) => (
               <Input
@@ -51,7 +95,9 @@ function TripSettingForm() {
                 helpText="1~17자 입력할 수 있어요."
                 value={value}
                 error={error}
-                onChange={onChange}
+                onChange={(e) => {
+                  setWriteData({ ...writeData, [name]: e.target.value });
+                }}
                 bgStyle
               />
             )}
@@ -62,7 +108,7 @@ function TripSettingForm() {
             control={control}
             rules={TRIP_DESTINATION_VALIDATION}
             render={({
-              field: { name, value = 'bb', onChange },
+              field: { name, value = writeData.destination, onChange },
               fieldState: { error },
             }) => (
               <Input
@@ -71,7 +117,9 @@ function TripSettingForm() {
                 helpText="1~35자 입력할 수 있어요."
                 value={value}
                 error={error}
-                onChange={onChange}
+                onChange={(e) => {
+                  setWriteData({ ...writeData, [name]: e.target.value });
+                }}
                 bgStyle
               />
             )}
@@ -86,7 +134,10 @@ function TripSettingForm() {
             <Input
               id="period"
               title="여행기간"
-              value={startDate}
+              value={formatViewPeriod(
+                writeData.startDate,
+                writeData.finishDate,
+              )}
               disabled
               bgStyle
             />
@@ -96,15 +147,16 @@ function TripSettingForm() {
 
       <TripSettingCalendarModal
         isOpen={isCalendarOpen}
-        startDate={startDate}
+        startDate={writeData.startDate}
+        endDate={writeData.finishDate}
         onClose={closeCalendar}
         onChange={handleChangePeriod}
       />
 
       <TripSettingDateConfirmModal
         isOpen={isDateConfirmOpen}
-        onClose={closeDateConfrim}
-        onConfirm={() => {}}
+        onClose={closeDateConfirm}
+        onConfirm={handleConfirmPeriod}
       />
     </>
   );

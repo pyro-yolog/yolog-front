@@ -1,3 +1,5 @@
+import { MouseEventHandler } from 'react';
+
 interface Props {
   type?: 'submit' | 'reset' | 'button';
   disabled?: boolean;
@@ -5,7 +7,7 @@ interface Props {
   size?: 'large' | 'small';
   styles?: string;
   children?: string | JSX.Element | (string | JSX.Element)[];
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 function Button({
