@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import TripSettingCoverModalOption from './cover-modal-option';
 import TripSettingCoverModalPalette from './cover-modal-palette';
+import TripSettingCoverModalImage from './cover-modal-image';
 import { Modal } from '@/app/components';
 
 interface Props {
@@ -26,6 +27,10 @@ function TripSettingCoverModal({ isOpen, onClose }: Props) {
 
       {option === 'COLOR' && (
         <TripSettingCoverModalPalette onClose={() => setOption(null)} />
+      )}
+
+      {option === 'IMAGE' && (
+        <TripSettingCoverModalImage onClose={() => setOption(null)} />
       )}
     </Modal>
   );
