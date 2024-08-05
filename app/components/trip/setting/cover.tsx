@@ -1,11 +1,18 @@
 'use client';
 
+import { useRecoilValue } from 'recoil';
+import Image from 'next/image';
 import { IconPen } from '@/app/components/icon';
 import TripSettingCoverModal from './cover-modal';
 import useBoolean from '@/hooks/useBoolean';
+import { tripWriteState } from '@/lib/store/trip';
 
 function TripSettingCover() {
+  const data = useRecoilValue(tripWriteState);
+
   const [isOpen, , open, close] = useBoolean();
+
+  if (!data) return null;
 
   return (
     <>
@@ -22,7 +29,21 @@ function TripSettingCover() {
             <IconPen />
           </div>
 
-          <div className="absolute w-full h-full bg-primary300" />
+          {data.coverImageUrl ? (
+            <Image
+              src={data.coverImageUrl}
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              sizes="100%"
+              alt="diary-cover-image"
+              fill
+              priority
+            />
+          ) : (
+            <div
+              className="absolute w-full h-full"
+              style={{ backgroundColor: data.coverColor }}
+            />
+          )}
         </div>
       </div>
 

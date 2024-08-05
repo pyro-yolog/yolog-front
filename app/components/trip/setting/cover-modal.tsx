@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import TripSettingCoverModalOption from './cover-modal-option';
 import TripSettingCoverModalPalette from './cover-modal-palette';
+import TripSettingCoverModalImage from './cover-modal-image';
 import { Modal } from '@/app/components';
 
 interface Props {
@@ -13,21 +14,23 @@ interface Props {
 function TripSettingCoverModal({ isOpen, onClose }: Props) {
   const [option, setOption] = useState<string | null>(null);
 
-  const handleSelectOption = (option: string) => {
-    if (option === 'COLOR') {
-      setOption(option);
-      return;
-    }
-
-    // 이미지 업로드
+  const handleClose = () => {
+    onClose();
+    setOption(null);
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      {!option && <TripSettingCoverModalOption onSelect={handleSelectOption} />}
+    <Modal isOpen={isOpen} onClose={handleClose}>
+      {!option && (
+        <TripSettingCoverModalOption onSelect={(option) => setOption(option)} />
+      )}
 
       {option === 'COLOR' && (
         <TripSettingCoverModalPalette onClose={() => setOption(null)} />
+      )}
+
+      {option === 'IMAGE' && (
+        <TripSettingCoverModalImage onClose={() => setOption(null)} />
       )}
     </Modal>
   );
