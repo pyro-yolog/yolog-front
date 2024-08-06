@@ -4,9 +4,9 @@
   "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
-  "name": "\uc5ec\ub85d: \uc5ec\ud589\uc744 \uae30\ub85d\ud558\ub2e4",
-  "short_name": "\uc5ec\ub85d",
-  "description": "\uc5ec\ud589\uc744 \uae30\ub85d\ud558\ub2e4",
+  "name": "여록: 여행을 기록하다",
+  "short_name": "여록: Yolog",
+  "description": "여행을 기록하다",
   "icons": [
     {
       "src": "manifest/icon-192x192.png",
@@ -28,5 +28,10 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "id": "yolog",
+  "dir": "auto",
+  "lang": "ko",
+  "orientation": "portrait",
+  "categories": ["lifestyle", "photo", "travel"]
 }
