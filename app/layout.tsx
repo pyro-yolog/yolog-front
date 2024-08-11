@@ -30,7 +30,7 @@ export default function RootLayout({
       <link rel="manifest" href="/manifest.json" />
 
       <body
-        className={`${pretendard.className} max-w-600pxr w-full h-full`}
+        className={`${pretendard.className} max-w-600pxr w-full h-full overflow-x-hidden`}
         suppressHydrationWarning={true}
       >
         <Providers>

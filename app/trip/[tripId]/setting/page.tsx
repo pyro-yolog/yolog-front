@@ -11,10 +11,15 @@ import {
   IconCheck,
   IconNavigateLeft,
   TripSettingCover,
-  TripSettingDelete,
   TripSettingForm,
 } from '@/app/components';
 import { tripWriteState } from '@/lib/store/trip';
+import dynamic from 'next/dynamic';
+
+const TripSettingDelete = dynamic(
+  () => import('@/app/components/trip/setting/delete'),
+  { ssr: false },
+);
 
 function TripSetting({ params: { tripId } }: { params: { tripId: string } }) {
   const router = useRouter();

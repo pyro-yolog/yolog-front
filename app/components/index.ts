@@ -11,7 +11,6 @@ export { default as SocialButton } from './ui/social-button';
 export { default as SwitchCase } from './ui/switch-case';
 export { default as ToastContainer } from './toast-container';
 export { default as MainHeader } from './ui/main-header';
-export { default as MainMenu } from './ui/main-menu';
 export { default as MainMenuHeader } from './ui/main-menu-header';
 export { default as Menu } from './menu';
 export { default as MenuBarButton } from './ui/menu-bar-button';
