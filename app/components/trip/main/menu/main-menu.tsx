@@ -9,6 +9,7 @@ import Viewer from '@/app/components/viewer';
 import useBoolean from '@/hooks/useBoolean';
 import AccountMenu from './account-menu';
 import MenuItem from './menu-items';
+import CustomerServiceMenu from './customer-service-menu';
 
 interface Props {
   isOpen: boolean;
@@ -50,6 +51,7 @@ const MainMenu = ({ isOpen, onClose }: Props) => {
       </Viewer>
 
       <AccountMenu isOpen={isOpenAccount} onClose={closeAccount} />
+      <CustomerServiceMenu isOpen={isOpenInquiry} onClose={closeInquiry} />
     </>
   );
 };

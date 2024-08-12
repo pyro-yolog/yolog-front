@@ -23,6 +23,7 @@ export { default as DialogAccountWithDrawal } from './ui/dialog-account-withdraw
 export { default as ChangeEmailMenu } from './ui/change-email-menu';
 export { default as InquiryMenu } from './ui/inquiry-menu';
 export { default as InquiryForm } from './inquiry-form';
+export { default as Viewer } from './viewer';
 
 export * from './icon';
 export * from './onboarding';

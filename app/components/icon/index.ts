@@ -28,3 +28,4 @@ export { default as IconSmile } from './icon-smile';
 export { default as IconSun } from './icon-sun';
 export { default as IconTimeline } from './icon-timeline';
 export { default as IconToggle } from './icon-toggle';
+export { default as IconTriangleRight } from './icon-triangle-right';

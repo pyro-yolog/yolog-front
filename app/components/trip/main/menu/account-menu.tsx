@@ -1,12 +1,16 @@
 'use client';
 
+import Image from 'next/image';
+import { useResetRecoilState } from 'recoil';
+import { useRouter } from 'next/navigation';
 import Viewer from '@/app/components/viewer';
 import { IconNavigateRight } from '@/app/components/icon';
 import useBoolean from '@/hooks/useBoolean';
+import { tokenState } from '@/lib/store/user';
 import MenuItem from './menu-items';
-import Image from 'next/image';
 import LogoutModal from './logout-modal';
 import RemoveModal from './remove-modal';
+import useToast from '@/hooks/useToast';
 
 interface Props {
   isOpen: boolean;
@@ -17,6 +21,24 @@ const AccountMenu = ({ isOpen, onClose }: Props) => {
   const [isChangeOpen, , open, close] = useBoolean();
   const [isOpenLogout, , openLogout, closeLogout] = useBoolean();
   const [isOpenRemove, , openRemove, closeRemove] = useBoolean();
+  const resetToken = useResetRecoilState(tokenState);
+  const router = useRouter();
+  const showToast = useToast();
+
+  const handleSubmitLogout = () => {
+    resetToken();
+    closeLogout();
+    router.push('/');
+  }
+
+  const handleSubmitRemove = async () => {
+    try {
+      // router.push('/');
+    } catch (e) {
+      console.error(e);
+      showToast({ type: 'error', message: '탈퇴 요청하는 도중 오류가 발생했어요!' })
+    }
+  }
 
   return (
     <>
@@ -59,13 +81,13 @@ const AccountMenu = ({ isOpen, onClose }: Props) => {
       <LogoutModal
         isOpen={isOpenLogout}
         onClose={closeLogout}
-        onSubmit={() => {}}
+        onSubmit={handleSubmitLogout}
       />
 
       <RemoveModal
         isOpen={isOpenRemove}
         onClose={closeRemove}
-        onSubmit={() => {}}
+        onSubmit={handleSubmitRemove}
       />
     </>
   );
