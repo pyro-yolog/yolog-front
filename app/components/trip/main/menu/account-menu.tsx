@@ -11,6 +11,7 @@ import MenuItem from './menu-items';
 import LogoutModal from './logout-modal';
 import RemoveModal from './remove-modal';
 import useToast from '@/hooks/useToast';
+import { withdrawalAPI } from '@/apis/withdrawal';
 
 interface Props {
   isOpen: boolean;
@@ -18,7 +19,6 @@ interface Props {
 }
 
 const AccountMenu = ({ isOpen, onClose }: Props) => {
-  const [isChangeOpen, , open, close] = useBoolean();
   const [isOpenLogout, , openLogout, closeLogout] = useBoolean();
   const [isOpenRemove, , openRemove, closeRemove] = useBoolean();
   const resetToken = useResetRecoilState(tokenState);
@@ -33,7 +33,11 @@ const AccountMenu = ({ isOpen, onClose }: Props) => {
 
   const handleSubmitRemove = async () => {
     try {
-      // router.push('/');
+      await withdrawalAPI();
+
+      closeRemove();
+      resetToken();
+      router.push('/');
     } catch (e) {
       console.error(e);
       showToast({
