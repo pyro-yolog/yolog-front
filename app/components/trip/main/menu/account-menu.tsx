@@ -29,16 +29,19 @@ const AccountMenu = ({ isOpen, onClose }: Props) => {
     resetToken();
     closeLogout();
     router.push('/');
-  }
+  };
 
   const handleSubmitRemove = async () => {
     try {
       // router.push('/');
     } catch (e) {
       console.error(e);
-      showToast({ type: 'error', message: '탈퇴 요청하는 도중 오류가 발생했어요!' })
+      showToast({
+        type: 'error',
+        message: '탈퇴 요청하는 도중 오류가 발생했어요!',
+      });
     }
-  }
+  };
 
   return (
     <>
@@ -56,12 +59,12 @@ const AccountMenu = ({ isOpen, onClose }: Props) => {
               <span className="font-semibold">Google로 로그인 됨</span>
             </div>
 
-            <button
+            {/* <button
               className="py-6pxr px-16pxr text-13pxr font-semibold bg-primary300 rounded-[8px]"
               onClick={open}
             >
               변경하기
-            </button>
+            </button> */}
           </MenuItem>
 
           <MenuItem onClick={openLogout}>

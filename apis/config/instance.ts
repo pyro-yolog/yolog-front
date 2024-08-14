@@ -22,7 +22,6 @@ axiosInstance.interceptors.request.use((config) => {
     const token = getToken();
 
     if (token) {
-      console.log(errorCount);
       if (errorCount) {
         config.headers['Authorization-refresh'] =
           `Bearer ${token.refreshToken}`;
@@ -44,8 +43,17 @@ axiosInstance.interceptors.response.use(
 
     if (error.response?.status === 401 && errorCount < 5) {
       try {
-        const data = await refreshTokenAPI();
-        console.log(data);
+        const headers = await refreshTokenAPI();
+        const accessToken = headers['authorization'];
+        const refreshToken = headers['authorization-refresh'];
+
+        if (accessToken && refreshToken) {
+          const storage = JSON.parse(localStorage.yolog);
+          storage.token = { accessToken, refreshToken };
+          localStorage.yolog = JSON.stringify(storage);
+        }
+
+        location.reload();
       } catch (e) {
         location.href = '/';
         return Promise.reject(e);

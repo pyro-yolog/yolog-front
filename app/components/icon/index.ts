@@ -6,6 +6,7 @@ export { default as IconCheck } from './icon-check';
 export { default as IconChevronDown } from './icon-chevron-down';
 export { default as IconChevronLeft } from './icon-chevron-left';
 export { default as IconChevronRight } from './icon-chevron-right';
+export { default as IconClose } from './icon-close';
 export { default as IconDiarySetting } from './icon-diary-setting';
 export { default as IconDiaryShare } from './icon-diary-share';
 export { default as IconEdit } from './icon-edit';

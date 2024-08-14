@@ -12,7 +12,7 @@ const Viewer = ({ isOpen, title, children, onClose }: Props) => {
     isOpen && (
       <div className="flex justify-center fixed left-0pxr top-0pxr z-100 w-full h-full bg-white">
         <div className="flex flex-col max-w-600pxr w-full h-full">
-          <div className="relative flex justify-center py-20pxr">
+          <div className="relative flex justify-center py-20pxr min-h-67pxr">
             <div
               className="absolute left-16pxr top-1/2 -translate-y-1/2 cursor-pointer"
               onClick={onClose}

@@ -1,6 +1,10 @@
+'use client';
+
 import { Button, Viewer } from '@/app/components';
 import { ACCOUNT_INQUIRIES, FUNCTION_INQUIRIES } from '@/lib/constants/inquiry';
+import useBoolean from '@/hooks/useBoolean';
 import CustomerServiceItem from './customer-service-item';
+import InquiryMenu from './inquiry-menu';
 
 interface Props {
   isOpen: boolean;
@@ -8,6 +12,8 @@ interface Props {
 }
 
 const CustomerServiceMenu = ({ isOpen, onClose }: Props) => {
+  const [isOpenInquiry, , openInquiry, closeInquiry] = useBoolean();
+
   return (
     <>
       <Viewer isOpen={isOpen} onClose={onClose} title="고객센터">
@@ -40,9 +46,11 @@ const CustomerServiceMenu = ({ isOpen, onClose }: Props) => {
             </div>
           </div>
 
-          <Button>문의하기</Button>
+          <Button onClick={openInquiry}>문의하기</Button>
         </div>
       </Viewer>
+
+      <InquiryMenu isOpen={isOpenInquiry} onClose={closeInquiry} />
     </>
   );
 };
