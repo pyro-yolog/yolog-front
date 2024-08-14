@@ -1,18 +1,16 @@
+const withPWA = require('next-pwa')({
+  dest: 'pwa',
+  register: true,
+  skipWaiting: true,
+});
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withPWA({
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 's3.ap-northeast-2.amazonaws.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 't2.daumcdn.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
       },
     ],
   },
@@ -24,6 +22,6 @@ const nextConfig = {
       },
     ];
   },
-};
+});
 
-export default nextConfig;
+module.exports = nextConfig;

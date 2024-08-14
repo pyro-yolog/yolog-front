@@ -27,8 +27,10 @@ export default function RootLayout({
       lang="kr"
       className={`${pretendard.variable} flex items-center justify-center`}
     >
+      <link rel="manifest" href="/manifest.json" />
+
       <body
-        className={`${pretendard.className} max-w-600pxr w-full h-full`}
+        className={`${pretendard.className} max-w-600pxr w-full h-full overflow-x-hidden`}
         suppressHydrationWarning={true}
       >
         <Providers>
