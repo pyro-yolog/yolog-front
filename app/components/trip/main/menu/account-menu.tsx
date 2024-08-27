@@ -1,17 +1,18 @@
 'use client';
 
-import Image from 'next/image';
 import { useResetRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
-import Viewer from '@/app/components/viewer';
+import { useQuery } from '@tanstack/react-query';
+import { withdrawalAPI } from '@/apis/withdrawal';
+import { getSocialTypeAPI } from '@/apis/members';
+import { SocialLogo, Viewer } from '@/app/components';
 import { IconNavigateRight } from '@/app/components/icon';
 import useBoolean from '@/hooks/useBoolean';
 import { tokenState } from '@/lib/store/user';
+import useToast from '@/hooks/useToast';
 import MenuItem from './menu-items';
 import LogoutModal from './logout-modal';
 import RemoveModal from './remove-modal';
-import useToast from '@/hooks/useToast';
-import { withdrawalAPI } from '@/apis/withdrawal';
 
 interface Props {
   isOpen: boolean;
@@ -24,6 +25,11 @@ const AccountMenu = ({ isOpen, onClose }: Props) => {
   const resetToken = useResetRecoilState(tokenState);
   const router = useRouter();
   const showToast = useToast();
+
+  const { data: socialData } = useQuery({
+    queryKey: ['social-type'],
+    queryFn: () => getSocialTypeAPI(),
+  });
 
   const handleSubmitLogout = () => {
     resetToken();
@@ -47,20 +53,28 @@ const AccountMenu = ({ isOpen, onClose }: Props) => {
     }
   };
 
+  const getSocialTypeText = () => {
+    if (!socialData) return '';
+
+    switch (socialData.socialType) {
+      case 'GOOGLE':
+        return 'Google로';
+      case 'KAKAO':
+        return '카카오톡으로';
+    }
+  };
+
   return (
     <>
       <Viewer isOpen={isOpen} onClose={onClose} title="계정">
         <div className="flex flex-col w-full pt-10pxr px-16pxr">
           <MenuItem>
             <div className="flex gap-14pxr">
-              <Image
-                src="/images/google-logo.png"
-                width={25}
-                height={25}
-                alt="social-image"
-              />
+              {socialData && <SocialLogo type={socialData.socialType} />}
 
-              <span className="font-semibold">Google로 로그인 됨</span>
+              <span className="font-semibold">
+                {getSocialTypeText()} 로그인 됨
+              </span>
             </div>
 
             {/* <button

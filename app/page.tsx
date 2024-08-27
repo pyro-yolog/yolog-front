@@ -3,17 +3,29 @@
 import { useEffect } from 'react';
 import { gowunBatang } from './components/ui/fonts';
 import { useRouter } from 'next/navigation';
+import { useRecoilValue } from 'recoil';
+import { tokenState } from '@/lib/store/user';
 
 function Home() {
   const router = useRouter();
+  const { accessToken } = useRecoilValue(tokenState);
 
   useEffect(() => {
-    router.prefetch('/onboarding');
+    if (accessToken) {
+      router.prefetch('/trip');
+    } else {
+      router.prefetch('/onboarding');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   const routeToOnboarding = () => {
     setTimeout(() => {
-      router.replace('/onboarding');
+      if (accessToken) {
+        router.replace('/trip');
+      } else {
+        router.replace('/onboarding');
+      }
     }, 1000);
   };
 
