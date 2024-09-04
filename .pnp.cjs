@@ -41,6 +41,7 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-query", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:5.49.2"],\
           ["@tanstack/react-query-devtools", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:5.49.2"],\
           ["@types/draft-js", "npm:0.11.18"],\
+          ["@types/js-cookie", "npm:3.0.6"],\
           ["@types/node", "npm:20.14.9"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
@@ -53,6 +54,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-config-prettier", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:9.1.0"],\
           ["eslint-plugin-prettier", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:5.1.3"],\
           ["eslint-plugin-storybook", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:0.8.0"],\
+          ["js-cookie", "npm:3.0.5"],\
           ["next", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:14.2.3"],\
           ["next-pwa", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:5.6.0"],\
           ["postcss", "npm:8.4.39"],\
@@ -6534,6 +6536,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/js-cookie", [\
+      ["npm:3.0.6", {\
+        "packageLocation": "../.yarn/berry/cache/@types-js-cookie-npm-3.0.6-c9126e5b48-10c0.zip/node_modules/@types/js-cookie/",\
+        "packageDependencies": [\
+          ["@types/js-cookie", "npm:3.0.6"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/json-schema", [\
       ["npm:7.0.15", {\
         "packageLocation": "../.yarn/berry/cache/@types-json-schema-npm-7.0.15-fd16381786-10c0.zip/node_modules/@types/json-schema/",\
@@ -12896,6 +12907,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["js-cookie", [\
+      ["npm:3.0.5", {\
+        "packageLocation": "../.yarn/berry/cache/js-cookie-npm-3.0.5-8fc8fcc9b4-10c0.zip/node_modules/js-cookie/",\
+        "packageDependencies": [\
+          ["js-cookie", "npm:3.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["js-tokens", [\
       ["npm:4.0.0", {\
         "packageLocation": "../.yarn/berry/cache/js-tokens-npm-4.0.0-0ac852e9e2-10c0.zip/node_modules/js-tokens/",\
@@ -19109,6 +19129,7 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-query", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:5.49.2"],\
           ["@tanstack/react-query-devtools", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:5.49.2"],\
           ["@types/draft-js", "npm:0.11.18"],\
+          ["@types/js-cookie", "npm:3.0.6"],\
           ["@types/node", "npm:20.14.9"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
@@ -19121,6 +19142,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-config-prettier", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:9.1.0"],\
           ["eslint-plugin-prettier", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:5.1.3"],\
           ["eslint-plugin-storybook", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:0.8.0"],\
+          ["js-cookie", "npm:3.0.5"],\
           ["next", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:14.2.3"],\
           ["next-pwa", "virtual:9ca3b1e34a74076f530e396d43f2a33975a7c7dd3cc486b4ff2cfd8b44d9218a954026e2e871d963969d819dc0547619c710b7d405abdc7ec7876ffa59d80108#npm:5.6.0"],\
           ["postcss", "npm:8.4.39"],\

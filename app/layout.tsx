@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { BackgroundColor, Middleware, ToastContainer } from './components';
+import { BackgroundColor, ToastContainer } from './components';
 import { Providers } from '@/lib/Providers';
 
 import './globals.css';
@@ -34,12 +34,10 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <Providers>
-          <Middleware>
-            <ToastContainer />
-            <BackgroundColor />
+          <ToastContainer />
+          <BackgroundColor />
 
-            {children}
-          </Middleware>
+          {children}
         </Providers>
       </body>
     </html>

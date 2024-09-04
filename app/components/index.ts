@@ -13,7 +13,6 @@ export { default as ToastContainer } from './toast-container';
 export { default as MainHeader } from './ui/main-header';
 export { default as MainMenuHeader } from './ui/main-menu-header';
 export { default as Menu } from './menu';
-export { default as Middleware } from './middleware';
 export { default as MenuBarButton } from './ui/menu-bar-button';
 export { default as Modal } from './modal';
 export { default as SocialLogo } from './social-logo';
