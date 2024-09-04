@@ -1,10 +1,11 @@
+import Cookies from 'js-cookie';
 import { IToken } from '@/models/token.model';
 
 export const getToken = () => {
-  if (localStorage.yolog) {
-    const storage = JSON.parse(localStorage.yolog);
+  const token = Cookies.get('token');
 
-    return storage['token'] as IToken | null;
+  if (token) {
+    return JSON.parse(token) as IToken;
   }
 
   return null;

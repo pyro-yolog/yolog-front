@@ -1,4 +1,5 @@
 import axios, { AxiosError } from 'axios';
+import Cookies from 'js-cookie';
 import { getToken } from '@/lib/utils/token';
 import { refreshTokenAPI } from '../token';
 
@@ -8,16 +9,13 @@ const axiosInstance = axios.create({ baseURL, timeout: 1000 * 60 * 5 });
 let errorCount = 0;
 
 axiosInstance.interceptors.request.use((config) => {
-  if (localStorage.yolog) {
-    const token = getToken();
+  const token = getToken();
 
-    if (token) {
-      if (errorCount) {
-        config.headers['Authorization-refresh'] =
-          `Bearer ${token.refreshToken}`;
-      } else {
-        config.headers['Authorization'] = `Bearer ${token.accessToken}`;
-      }
+  if (token) {
+    if (errorCount) {
+      config.headers['Authorization-refresh'] = `Bearer ${token.refreshToken}`;
+    } else {
+      config.headers['Authorization'] = `Bearer ${token.accessToken}`;
     }
   }
 
@@ -40,7 +38,7 @@ axiosInstance.interceptors.response.use(
         if (accessToken && refreshToken) {
           const storage = JSON.parse(localStorage.yolog);
           storage.token = { accessToken, refreshToken };
-          localStorage.yolog = JSON.stringify(storage);
+          Cookies.set('token', JSON.stringify(storage), { expires: 30 });
         }
 
         location.reload();
