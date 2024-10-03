@@ -36,6 +36,14 @@ function BackgroundColor() {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    window.addEventListener('message', (e) => {
+      console.log('Message Event', e);
+    });
+
+    console.log(window.ReactNativeWebView);
+  }, []);
+
   return <></>;
 }
 
