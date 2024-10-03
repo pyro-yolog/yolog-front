@@ -41,7 +41,7 @@ function BackgroundColor() {
       console.log('Message Event', e);
     });
 
-    console.log(window.ReactNativeWebView);
+    window.ReactNativeWebView.postMessage('test');
   }, []);
 
   return <></>;
