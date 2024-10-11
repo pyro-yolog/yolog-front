@@ -32,18 +32,26 @@ const AccountMenu = ({ isOpen, onClose }: Props) => {
   });
 
   const handleSubmitLogout = () => {
-    resetToken();
-    closeLogout();
-    router.push('/');
+    if (window.ReactNativeWebView) {
+      window.ReactNativeWebView.postMessage('LOGOUT');
+    } else {
+      resetToken();
+      closeLogout();
+      router.push('/');
+    }
   };
 
   const handleSubmitRemove = async () => {
     try {
       await withdrawalAPI();
 
-      closeRemove();
-      resetToken();
-      router.push('/');
+      if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage('WITHDRAWAL');
+      } else {
+        closeRemove();
+        resetToken();
+        router.push('/');
+      }
     } catch (e) {
       console.error(e);
       showToast({

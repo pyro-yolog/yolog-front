@@ -36,16 +36,6 @@ function BackgroundColor() {
     }
   }, [pathname]);
 
-  useEffect(() => {
-    document.addEventListener('message', (e) => {
-      alert('test');
-      console.log('Message Event', e);
-    });
-
-    console.log(window.ReactNativeWebView);
-    window.ReactNativeWebView?.postMessage('test');
-  }, []);
-
   return <></>;
 }
 
