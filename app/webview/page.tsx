@@ -2,6 +2,7 @@
 
 import { tokenState } from '@/lib/store/user';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import { useSetRecoilState } from 'recoil';
 
 const WebviewPage = () => {
@@ -19,4 +20,12 @@ const WebviewPage = () => {
   return <></>;
 };
 
-export default WebviewPage;
+const Webview = () => {
+  return (
+    <Suspense>
+      <WebviewPage />
+    </Suspense>
+  );
+};
+
+export default Webview;
