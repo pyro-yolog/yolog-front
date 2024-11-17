@@ -10,7 +10,6 @@ import {
   IconNavigateLeft,
   IconPalette,
 } from '@/app/components';
-import { gowunBatang } from '@/app/components/ui/fonts';
 import useToast from '@/hooks/useToast';
 import { TripRequest } from '@/models/trip.model';
 import TripCreateCoverPalette from './cover-palette';
@@ -108,7 +107,7 @@ function TripCreateCover() {
         </Link>
 
         <div className="flex flex-col gap-19pxr px-16pxr h-[calc(100%-63px)]">
-          <h1 className={`${gowunBatang.className} text-20pxr`}>
+          <h1 className={`font-gowunBatang text-20pxr`}>
             <p className="animate-fadeInRight">일기장 커버를 선택해주세요.</p>
           </h1>
 

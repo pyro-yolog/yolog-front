@@ -1,4 +1,3 @@
-import { gowunBatang } from '@/app/components/ui/fonts';
 import { DiaryEmotion, DiaryWeather } from '@/models/diary.model';
 import Image from 'next/image';
 
@@ -12,7 +11,7 @@ interface Props {
 function DiaryAdditionalBox({ title, datas, selectData, onSelect }: Props) {
   return (
     <div
-      className={`${gowunBatang.className} flex flex-col gap-7pxr w-255pxr border border-[#E6E3C8] bg-[#F8F7EE] rounded-[15px] pt-14pxr px-16pxr pb-16pxr`}
+      className={`font-gowunBatang flex flex-col gap-7pxr w-255pxr border border-[#E6E3C8] bg-[#F8F7EE] rounded-[15px] pt-14pxr px-16pxr pb-16pxr`}
     >
       <span className="text-black text-14pxr font-semibold">{title}</span>
 

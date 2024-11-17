@@ -1,6 +1,5 @@
 'use client';
 
-import { gowunBatang } from '../ui/fonts';
 import Button from '../ui/button';
 import { useSwiper } from 'swiper/react';
 import { useRouter } from 'next/navigation';
@@ -26,11 +25,13 @@ function OnboardingBottom() {
         <Button onClick={handleNextSlide}>다음</Button>
 
         <span
-          className={`${gowunBatang.className} text-14pxr text-[#646464] underline cursor-pointer`}
+          className={`font-gowunBatang text-14pxr text-[#646464] underline cursor-pointer`}
           onClick={open}
         >
           기존 계정으로{' '}
-          <strong className="text-primary400 underline">로그인</strong>
+          <strong className="font-gowunBatang text-primary400 underline">
+            로그인
+          </strong>
         </span>
       </div>
 

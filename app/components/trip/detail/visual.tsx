@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { getTripAPI } from '@/apis/trips';
 import { IconNavigateLeft, IconSetting } from '@/app/components/icon';
-import { gowunBatang } from '@/app/components/ui/fonts';
 import { formatViewPeriod } from '@/lib/utils/date';
 import Image from 'next/image';
 
@@ -54,7 +53,7 @@ function TripDetailVisual() {
         </div>
 
         <div
-          className={`${gowunBatang.className} text-${data.coverImageUrl ? 'white' : 'black'} flex flex-col px-32pxr`}
+          className={`font-gowunBatang text-${data.coverImageUrl ? 'white' : 'black'} flex flex-col px-32pxr`}
         >
           <p className="text-24pxr opacity-0 animate-[fadeInLeft_1.2s_0.2s_forwards]">
             {data.name}

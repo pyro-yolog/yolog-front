@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { TripResponse } from '@/models/trip.model';
-import { diphylleia, gowunBatang } from '@/app/components/ui/fonts';
 import { formatViewDate } from '@/lib/utils/date';
 
 function TripMainItem({
@@ -28,14 +27,14 @@ function TripMainItem({
           <div className="flex flex-col gap-10pxr pl-17pxr py-35pxr">
             <div className="flex flex-col">
               <p
-                className={`${gowunBatang.className} text-30pxr font-bold`}
+                className={`font-gowunBatang text-30pxr font-bold`}
                 style={{ color: color, filter: 'brightness(0.9)' }}
               >
                 {name}
               </p>
 
               <p
-                className={`${diphylleia.className} text-20pxr`}
+                className={`font-diphylleia text-20pxr`}
                 style={{ color: color, filter: 'brightness(0.9)' }}
               >
                 {destination}

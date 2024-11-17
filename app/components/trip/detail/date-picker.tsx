@@ -8,7 +8,6 @@ import Link from 'next/link';
 import { getTripAPI } from '@/apis/trips';
 import { getBetweenDateList } from '@/lib/utils/date';
 import { IconCalendar, IconChevronDown } from '@/app/components/icon';
-import { gowunBatang } from '@/app/components/ui/fonts';
 import { isOpenDatePickerState } from '@/lib/store/ui';
 
 function TripDetailDatePicker() {
@@ -57,7 +56,7 @@ function TripDetailDatePicker() {
               className={`flex flex-col items-center flex-[0_0_38px] cursor-pointer transition-colors`}
               style={{ color: dateObj.isSame(date) ? 'black' : '#C1C1C1' }}
             >
-              <span className={`${gowunBatang.className} text-12pxr font-bold`}>
+              <span className={`font-gowunBatang text-12pxr font-bold`}>
                 {date.format('ddd')}
               </span>
               <span className="text-20pxr font-bold">{date.date()}</span>
