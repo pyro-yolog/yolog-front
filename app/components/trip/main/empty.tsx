@@ -1,5 +1,3 @@
-import { gowunBatang } from '../../ui/fonts';
-
 function TripMainEmpty() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-13pxr">

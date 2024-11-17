@@ -1,5 +1,3 @@
-import { gowunBatang } from './fonts';
-
 function MainDiaryList() {
   return (
     <div className="h-725pxr rounded-tl-[27px] rounded-tr-[27px] shadow-mainDiaryList flex items-center justify-center bg-white w-full">
