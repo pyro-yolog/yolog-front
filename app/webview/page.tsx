@@ -10,6 +10,13 @@ const WebviewPage = () => {
   const router = useRouter();
   const params = useSearchParams();
 
+  if (!params.get('refreshToken')) {
+    if (window.ReactNativeWebView) {
+      window.ReactNativeWebView.postMessage('LOGOUT');
+      return;
+    }
+  }
+
   setToken({
     accessToken: params.get('accessToken'),
     refreshToken: params.get('refreshToken'),
