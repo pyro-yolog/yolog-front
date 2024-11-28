@@ -5,6 +5,7 @@ import { BackgroundColor, ToastContainer } from './components';
 import { Providers } from '@/lib/Providers';
 
 import './globals.css';
+import AppListener from './components/app-listener';
 
 const pretendard = localFont({
   src: '../public/fonts/PretendardVariable.woff2',
@@ -49,6 +50,7 @@ export default function RootLayout({
         <Providers>
           <ToastContainer />
           <BackgroundColor />
+          <AppListener />
 
           {children}
         </Providers>
