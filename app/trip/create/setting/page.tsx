@@ -73,21 +73,21 @@ function DiaryBookCreateSetting() {
         <div className="flex flex-col gap-28pxr w-full px-16pxr">
           <TripCreateSettingTitle step={step} />
 
-          {step === 2 && (
+          <div className="flex flex-col-reverse gap-28pxr">
             <div className="animate-fadeInRight">
               <Controller
-                name="name"
+                name="destination"
                 control={control}
-                rules={TRIP_NAME_VALIDATION}
+                rules={TRIP_DESTINATION_VALIDATION}
                 render={({
                   field: { value = '', onChange },
                   fieldState: { error },
                 }) => (
                   <Input
-                    id="name"
-                    title="일기장 이름"
-                    placeholder="일기장 이름을 입력해주세요."
-                    helpText="1~17자 입력할 수 있어요."
+                    id="destination"
+                    title="여행지"
+                    placeholder="여행지를 입력해주세요."
+                    helpText="1~35자 입력할 수 있어요."
                     value={value}
                     error={error}
                     onChange={onChange}
@@ -95,36 +95,38 @@ function DiaryBookCreateSetting() {
                 )}
               />
             </div>
-          )}
 
-          {step > 0 && (
-            <TripCreateSettingPeriod
-              startDate={startDate}
-              endDate={endDate}
-              onChangePeriod={handleChangePeriod}
-            />
-          )}
+            {step > 0 && (
+              <TripCreateSettingPeriod
+                startDate={startDate}
+                endDate={endDate}
+                onChangePeriod={handleChangePeriod}
+              />
+            )}
 
-          <div className="animate-fadeInRight">
-            <Controller
-              name="destination"
-              control={control}
-              rules={TRIP_DESTINATION_VALIDATION}
-              render={({
-                field: { value = '', onChange },
-                fieldState: { error },
-              }) => (
-                <Input
-                  id="destination"
-                  title="여행지"
-                  placeholder="여행지를 입력해주세요."
-                  helpText="1~35자 입력할 수 있어요."
-                  value={value}
-                  error={error}
-                  onChange={onChange}
+            {step === 2 && (
+              <div className="animate-fadeInRight">
+                <Controller
+                  name="name"
+                  control={control}
+                  rules={TRIP_NAME_VALIDATION}
+                  render={({
+                    field: { value = '', onChange },
+                    fieldState: { error },
+                  }) => (
+                    <Input
+                      id="name"
+                      title="일기장 이름"
+                      placeholder="일기장 이름을 입력해주세요."
+                      helpText="1~17자 입력할 수 있어요."
+                      value={value}
+                      error={error}
+                      onChange={onChange}
+                    />
+                  )}
                 />
-              )}
-            />
+              </div>
+            )}
           </div>
         </div>
 
