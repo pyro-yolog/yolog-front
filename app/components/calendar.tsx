@@ -147,25 +147,6 @@ function Calendar({ startDate, endDate, onChange }: Props) {
         <div className="flex justify-between w-128pxr">
           <span
             className="cursor-pointer"
-            onClick={() => setViewDate(viewDate.subtract(1, 'month'))}
-          >
-            <IconChevronLeft />
-          </span>
-
-          <span className="text-15pxr font-medium text-primary400 tracking-[-0.4px]">
-            {viewDate.format('M월')}
-          </span>
-
-          <span
-            className="cursor-pointer"
-            onClick={() => setViewDate(viewDate.add(1, 'month'))}
-          >
-            <IconChevronRight />
-          </span>
-        </div>
-        <div className="flex justify-between w-128pxr">
-          <span
-            className="cursor-pointer"
             onClick={() => setViewDate(viewDate.subtract(1, 'year'))}
           >
             <IconChevronLeft />
@@ -178,6 +159,26 @@ function Calendar({ startDate, endDate, onChange }: Props) {
           <span
             className="cursor-pointer"
             onClick={() => setViewDate(viewDate.add(1, 'year'))}
+          >
+            <IconChevronRight />
+          </span>
+        </div>
+
+        <div className="flex justify-between w-128pxr">
+          <span
+            className="cursor-pointer"
+            onClick={() => setViewDate(viewDate.subtract(1, 'month'))}
+          >
+            <IconChevronLeft />
+          </span>
+
+          <span className="text-15pxr font-medium text-primary400 tracking-[-0.4px]">
+            {viewDate.format('M월')}
+          </span>
+
+          <span
+            className="cursor-pointer"
+            onClick={() => setViewDate(viewDate.add(1, 'month'))}
           >
             <IconChevronRight />
           </span>
