@@ -12,12 +12,13 @@ import {
   TRIP_NAME_VALIDATION,
 } from '@/lib/constants/validation';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 
 function DiaryBookCreateSetting() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const {
     handleSubmit,
     control,
@@ -25,9 +26,11 @@ function DiaryBookCreateSetting() {
   } = useForm({
     mode: 'onChange',
   });
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(-1);
   const [startDate, setStartDate] = useState<string>();
   const [endDate, setEndDate] = useState<string>();
+  const [destination, setDestination] = useState<string>();
+  const [name, setName] = useState<string>();
 
   const isDisabled = !isValid || (step > 0 && !startDate);
 
@@ -47,11 +50,11 @@ function DiaryBookCreateSetting() {
       const params = new URLSearchParams(data);
 
       if (startDate) {
-        params.append('startDate', startDate);
+        params.set('startDate', startDate);
       }
 
       if (endDate) {
-        params.append('endDate', endDate);
+        params.set('endDate', endDate);
       }
 
       router.push(`/trip/create/cover?${params}`);
@@ -59,6 +62,45 @@ function DiaryBookCreateSetting() {
       setStep(step + 1);
     }
   };
+
+  useEffect(() => {
+    setDestination(searchParams.get('destination') || '');
+    setStartDate(searchParams.get('startDate') || undefined);
+    setEndDate(searchParams.get('endDate') || undefined);
+    setName(searchParams.get('name') || '');
+
+    if (searchParams.get('startDate')) {
+      setStep(2);
+    } else if (searchParams.get('destination')) {
+      setStep(1);
+    } else {
+      setStep(0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    if (destination) {
+      params.set('destination', destination);
+    }
+
+    if (startDate) {
+      params.set('startDate', startDate);
+    }
+
+    if (endDate) {
+      params.set('endDate', endDate);
+    }
+
+    if (name) {
+      params.set('name', name);
+    }
+
+    router.replace(`/trip/create/setting?${params}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [destination, startDate, endDate, name]);
 
   return (
     <div className="flex flex-col justify-between gap-30pxr w-full h-full pt-21pxr">
@@ -74,27 +116,35 @@ function DiaryBookCreateSetting() {
           <TripCreateSettingTitle step={step} />
 
           <div className="flex flex-col-reverse gap-28pxr">
-            <div className="animate-fadeInRight">
-              <Controller
-                name="destination"
-                control={control}
-                rules={TRIP_DESTINATION_VALIDATION}
-                render={({
-                  field: { value = '', onChange },
-                  fieldState: { error },
-                }) => (
-                  <Input
-                    id="destination"
-                    title="여행지"
-                    placeholder="여행지를 입력해주세요."
-                    helpText="1~35자 입력할 수 있어요."
-                    value={value}
-                    error={error}
-                    onChange={onChange}
-                  />
-                )}
-              />
-            </div>
+            {step > -1 && (
+              <div className="animate-fadeInRight">
+                <Controller
+                  name="destination"
+                  control={control}
+                  rules={TRIP_DESTINATION_VALIDATION}
+                  defaultValue={destination}
+                  render={({
+                    field: { value, onChange },
+                    fieldState: { error },
+                  }) => {
+                    return (
+                      <Input
+                        id="destination"
+                        title="여행지"
+                        placeholder="여행지를 입력해주세요."
+                        helpText="1~35자 입력할 수 있어요."
+                        value={value}
+                        error={error}
+                        onChange={(e) => {
+                          setDestination(e.target.value);
+                          onChange(e);
+                        }}
+                      />
+                    );
+                  }}
+                />
+              </div>
+            )}
 
             {step > 0 && (
               <TripCreateSettingPeriod
@@ -110,8 +160,9 @@ function DiaryBookCreateSetting() {
                   name="name"
                   control={control}
                   rules={TRIP_NAME_VALIDATION}
+                  defaultValue={name}
                   render={({
-                    field: { value = '', onChange },
+                    field: { value, onChange },
                     fieldState: { error },
                   }) => (
                     <Input
@@ -121,7 +172,10 @@ function DiaryBookCreateSetting() {
                       helpText="1~17자 입력할 수 있어요."
                       value={value}
                       error={error}
-                      onChange={onChange}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                        onChange(e);
+                      }}
                     />
                   )}
                 />
@@ -138,4 +192,12 @@ function DiaryBookCreateSetting() {
   );
 }
 
-export default DiaryBookCreateSetting;
+const DiaryBookCreateSettingPage = () => {
+  return (
+    <Suspense>
+      <DiaryBookCreateSetting />
+    </Suspense>
+  );
+};
+
+export default DiaryBookCreateSettingPage;

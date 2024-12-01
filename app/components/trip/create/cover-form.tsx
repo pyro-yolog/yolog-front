@@ -102,9 +102,9 @@ function TripCreateCover() {
   return (
     <div className="flex flex-col justify-between w-full h-full pt-32pxr pb-13pxr">
       <div className="flex flex-col gap-30pxr w-full h-[calc(100%-68px)]">
-        <Link href="/trip/create/setting" className="px-8pxr">
+        <div className="px-8pxr" onClick={() => router.back()}>
           <IconNavigateLeft />
-        </Link>
+        </div>
 
         <div className="flex flex-col gap-19pxr px-16pxr h-[calc(100%-63px)]">
           <h1 className={`font-gowunBatang text-20pxr`}>
