@@ -5,7 +5,6 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import { gowunBatang } from '@/app/components/ui/fonts';
 import { IconSmile, IconSun } from '@/app/components/icon';
 import { getTripAPI } from '@/apis/trips';
 import { DiaryContent, DiaryResponse } from '@/models/diary.model';
@@ -36,7 +35,7 @@ function TripDetailDiaryItem({
   return (
     <Link
       href={`/trip/${tripId}/diary/${id}`}
-      className={`${gowunBatang.className} flex flex-col w-full bg-white border border-[#E3E3E3] rounded-[5px] px-16pxr`}
+      className={`font-gowunBatang flex flex-col w-full bg-white border border-[#E3E3E3] rounded-[5px] px-16pxr`}
     >
       <div className="w-full flex justify-between pt-11pxr pb-13pxr border-b border-[#E3E3E3]">
         <div className="flex flex-col">

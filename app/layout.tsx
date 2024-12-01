@@ -1,15 +1,29 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { Diphylleia, Gowun_Batang } from 'next/font/google';
 import { BackgroundColor, ToastContainer } from './components';
 import { Providers } from '@/lib/Providers';
 
 import './globals.css';
+import AppListener from './components/app-listener';
 
 const pretendard = localFont({
   src: '../public/fonts/PretendardVariable.woff2',
   display: 'swap',
   weight: '45 920',
   variable: '--font-pretendard',
+});
+
+const gowunBatang = Gowun_Batang({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-gowun-batang',
+});
+
+const diphylleia = Diphylleia({
+  weight: ['400'],
+  subsets: ['latin'],
+  variable: '--font-diphylleia',
 });
 
 export const metadata: Metadata = {
@@ -25,17 +39,18 @@ export default function RootLayout({
   return (
     <html
       lang="kr"
-      className={`${pretendard.variable} flex items-center justify-center`}
+      className={`${pretendard.variable} ${gowunBatang.variable} ${diphylleia.variable} flex items-center justify-center`}
     >
       <link rel="manifest" href="/manifest.json" />
 
       <body
-        className={`${pretendard.className} max-w-600pxr w-full h-full overflow-x-hidden`}
+        className="max-w-600pxr w-full h-full overflow-x-hidden"
         suppressHydrationWarning={true}
       >
         <Providers>
           <ToastContainer />
           <BackgroundColor />
+          <AppListener />
 
           {children}
         </Providers>

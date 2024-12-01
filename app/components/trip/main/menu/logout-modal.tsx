@@ -17,9 +17,7 @@ const LogoutModal = ({ isOpen, onClose, onSubmit }: Props) => {
           </span>
 
           <p className="text-13pxr leading-[18px] text-center">
-            로그아웃 상태에서 실수로 앱을 삭제하거나
-            <br />
-            기기를 바꾸면 기록이 저장되지 않습니다.
+            로그아웃 하시겠습니까?
           </p>
         </div>
 

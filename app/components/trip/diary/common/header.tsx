@@ -6,7 +6,6 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { getDiaryAPI } from '@/apis/diaries';
 import { getTripAPI } from '@/apis/trips';
 import { IconNavigateLeft } from '@/app/components/icon';
-import { gowunBatang } from '@/app/components/ui/fonts';
 import useBoolean from '@/hooks/useBoolean';
 import { getDayname } from '@/lib/utils/date';
 import { dumpDiaryDetailData } from '@/lib/utils/dump';
@@ -65,7 +64,7 @@ function DiaryHeader({ editable = false }) {
           </div>
 
           <span
-            className={`${gowunBatang.className} text-[#697A53] text-18pxr font-bold cursor-pointer`}
+            className={`font-gowunBatang text-[#697A53] text-18pxr font-bold cursor-pointer`}
           >
             {dateObj.format('YYYY년 M월 D일')}
           </span>
@@ -74,9 +73,7 @@ function DiaryHeader({ editable = false }) {
         </div>
 
         <div className="flex items-center justify-between w-full px-28pxr">
-          <span
-            className={`${gowunBatang.className} text-[#313131] text-24pxr`}
-          >
+          <span className={`font-gowunBatang text-[#313131] text-24pxr`}>
             {dayname}
           </span>
 

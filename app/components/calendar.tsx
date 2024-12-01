@@ -34,7 +34,7 @@ function Calendar({ startDate, endDate, onChange }: Props) {
   const [start, setStart] = useState(dayjs(startDate));
   const [end, setEnd] = useState<Dayjs | null>(endDate ? dayjs(endDate) : null);
   const [viewDate, setViewDate] = useState(start);
-  const [cursor, setCursor] = useState(!!end); // true - 시작 날짜, false - 마지막 날짜
+  const [cursor, setCursor] = useState(true); // true - 시작 날짜, false - 마지막 날짜
 
   const getTitle = () => {
     if (end) {
@@ -110,18 +110,13 @@ function Calendar({ startDate, endDate, onChange }: Props) {
   const handleClickDate = ({ obj }: DateData) => {
     if (obj.isSame(start) || obj.isSame(end)) return;
 
-    if (obj.isBefore(start) || obj.isAfter(end)) {
+    if (obj.isBefore(start) || cursor) {
       setStart(obj);
       setEnd(null);
       setCursor(false);
     } else {
-      if (cursor) {
-        setStart(obj);
-      } else {
-        setEnd(obj);
-      }
-
-      setCursor(!cursor);
+      setEnd(obj);
+      setCursor(true);
     }
 
     setViewDate(obj);
@@ -147,25 +142,6 @@ function Calendar({ startDate, endDate, onChange }: Props) {
         <div className="flex justify-between w-128pxr">
           <span
             className="cursor-pointer"
-            onClick={() => setViewDate(viewDate.subtract(1, 'month'))}
-          >
-            <IconChevronLeft />
-          </span>
-
-          <span className="text-15pxr font-medium text-primary400 tracking-[-0.4px]">
-            {viewDate.format('M월')}
-          </span>
-
-          <span
-            className="cursor-pointer"
-            onClick={() => setViewDate(viewDate.add(1, 'month'))}
-          >
-            <IconChevronRight />
-          </span>
-        </div>
-        <div className="flex justify-between w-128pxr">
-          <span
-            className="cursor-pointer"
             onClick={() => setViewDate(viewDate.subtract(1, 'year'))}
           >
             <IconChevronLeft />
@@ -178,6 +154,26 @@ function Calendar({ startDate, endDate, onChange }: Props) {
           <span
             className="cursor-pointer"
             onClick={() => setViewDate(viewDate.add(1, 'year'))}
+          >
+            <IconChevronRight />
+          </span>
+        </div>
+
+        <div className="flex justify-between w-128pxr">
+          <span
+            className="cursor-pointer"
+            onClick={() => setViewDate(viewDate.subtract(1, 'month'))}
+          >
+            <IconChevronLeft />
+          </span>
+
+          <span className="text-15pxr font-medium text-primary400 tracking-[-0.4px]">
+            {viewDate.format('M월')}
+          </span>
+
+          <span
+            className="cursor-pointer"
+            onClick={() => setViewDate(viewDate.add(1, 'month'))}
           >
             <IconChevronRight />
           </span>

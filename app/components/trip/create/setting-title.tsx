@@ -1,9 +1,8 @@
 import { SwitchCase } from '@/app/components';
-import { gowunBatang } from '@/app/components/ui/fonts';
 
 function TripCreateSettingTitle({ step }: { step: number }) {
   return (
-    <h1 className={`${gowunBatang.className} text-20pxr`}>
+    <h1 className={`font-gowunBatang text-20pxr`}>
       <SwitchCase
         value={step}
         caseBy={{

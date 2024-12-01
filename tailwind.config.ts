@@ -44,6 +44,8 @@ const config: Config = {
       },
       fontFamily: {
         pretendard: ['var(--font-pretendard)'],
+        gowunBatang: ['var(--font-gowun-batang)'],
+        diphylleia: ['var(--font-diphylleia)'],
       },
       colors: {
         primary100: '#EEF9E7',

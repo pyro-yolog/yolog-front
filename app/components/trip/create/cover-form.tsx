@@ -10,7 +10,6 @@ import {
   IconNavigateLeft,
   IconPalette,
 } from '@/app/components';
-import { gowunBatang } from '@/app/components/ui/fonts';
 import useToast from '@/hooks/useToast';
 import { TripRequest } from '@/models/trip.model';
 import TripCreateCoverPalette from './cover-palette';
@@ -29,6 +28,7 @@ function TripCreateCover() {
   const [coverColor, setCoverColor] = useState<string | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [spineColor, setSpineColor] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState(false);
   const isEnabled =
     (selectOption === 'COLOR' && coverColor) ||
     (selectOption === 'IMAGE' && imageUrl && spineColor);
@@ -70,6 +70,8 @@ function TripCreateCover() {
   };
 
   const handleClickButton = async () => {
+    setIsPending(true);
+
     const name = params.get('name') as string;
     const startDate = params.get('startDate') as string;
     const finishDate = params.get('endDate') || startDate;
@@ -98,17 +100,19 @@ function TripCreateCover() {
 
       showToast({ type: 'error', message: '서버 요청에 문제가 발생했어요!' });
     }
+
+    setIsPending(false);
   };
 
   return (
     <div className="flex flex-col justify-between w-full h-full pt-32pxr pb-13pxr">
       <div className="flex flex-col gap-30pxr w-full h-[calc(100%-68px)]">
-        <Link href="/trip/create/setting" className="px-8pxr">
+        <div className="px-8pxr" onClick={() => router.back()}>
           <IconNavigateLeft />
-        </Link>
+        </div>
 
         <div className="flex flex-col gap-19pxr px-16pxr h-[calc(100%-63px)]">
-          <h1 className={`${gowunBatang.className} text-20pxr`}>
+          <h1 className={`font-gowunBatang text-20pxr`}>
             <p className="animate-fadeInRight">일기장 커버를 선택해주세요.</p>
           </h1>
 
@@ -164,7 +168,7 @@ function TripCreateCover() {
       </div>
 
       <div className="w-full px-16pxr">
-        <Button disabled={!isEnabled} onClick={handleClickButton}>
+        <Button disabled={isPending || !isEnabled} onClick={handleClickButton}>
           다음
         </Button>
       </div>

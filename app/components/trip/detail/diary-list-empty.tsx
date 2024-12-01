@@ -1,4 +1,3 @@
-import { gowunBatang } from '@/app/components/ui/fonts';
 import Button from '@/app/components/ui/button';
 import Link from 'next/link';
 import { useParams, useSearchParams } from 'next/navigation';
@@ -10,7 +9,7 @@ function TripDetailDiaryListEmpty() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
       <p
-        className={`${gowunBatang.className} text-black text-22pxr font-bold animate-fadeInTop`}
+        className={`font-gowunBatang text-black text-22pxr font-bold animate-fadeInTop`}
       >
         일기장이 공백이에요!
       </p>

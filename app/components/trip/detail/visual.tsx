@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { getTripAPI } from '@/apis/trips';
 import { IconNavigateLeft, IconSetting } from '@/app/components/icon';
-import { gowunBatang } from '@/app/components/ui/fonts';
 import { formatViewPeriod } from '@/lib/utils/date';
 import Image from 'next/image';
 
@@ -54,17 +53,17 @@ function TripDetailVisual() {
         </div>
 
         <div
-          className={`${gowunBatang.className} text-${data.coverImageUrl ? 'white' : 'black'} flex flex-col px-32pxr`}
+          className={`font-gowunBatang text-${data.coverImageUrl ? 'white' : 'black'} flex flex-col px-32pxr`}
         >
-          <p className="text-24pxr opacity-0 animate-[fadeInLeft_1.2s_0.2s_forwards]">
+          <p className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-24pxr opacity-0 animate-[fadeInLeft_1.2s_0.2s_forwards]">
             {data.name}
           </p>
 
-          <p className="text-15pxr mt-3pxr opacity-0 animate-[fadeInLeft_1.2s_0.5s_forwards]">
+          <p className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-15pxr mt-3pxr opacity-0 animate-[fadeInLeft_1.2s_0.5s_forwards]">
             {data.destination}
           </p>
 
-          <p className="text-12pxr mt-8pxr opacity-0 animate-[fadeInLeft_1.2s_0.8s_forwards]">
+          <p className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-12pxr mt-8pxr opacity-0 animate-[fadeInLeft_1.2s_0.8s_forwards]">
             {formatViewPeriod(data.startDate, data.finishDate)}
           </p>
         </div>

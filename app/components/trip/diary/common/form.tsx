@@ -3,7 +3,6 @@
 import { AxiosError } from 'axios';
 import { ChangeEventHandler, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { gowunBatang } from '@/app/components/ui/fonts';
 import { IconAlignLeft, IconImage, IconTimeline } from '@/app/components/icon';
 import { uploadImageAPI } from '@/apis/images';
 import useToast from '@/hooks/useToast';
@@ -150,7 +149,7 @@ function DiaryForm({ editable = false }) {
             style={{ borderColor: editable ? '#E3E3E3' : '#D5E1C0' }}
           >
             <input
-              className={`${gowunBatang.className} w-full text-24pxr bg-transparent text-black font-bold outline-none placeholder:text-[#B1B1B1]`}
+              className={`font-gowunBatang w-full text-24pxr bg-transparent text-black font-bold outline-none placeholder:text-[#B1B1B1]`}
               type="text"
               placeholder="제목"
               value={title}
@@ -160,7 +159,7 @@ function DiaryForm({ editable = false }) {
           </div>
 
           <div
-            className={`${gowunBatang.className} relative w-full h-[calc(100%-70px)] px-7pxr overflow-y-auto scrollbar-hide`}
+            className={`font-gowunBatang relative w-full h-[calc(100%-70px)] px-7pxr overflow-y-auto scrollbar-hide`}
           >
             {isTimeline ? (
               <DiaryFormTimeline editable={editable} />

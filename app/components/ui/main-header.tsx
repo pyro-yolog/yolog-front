@@ -1,9 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { IconMenu } from '../icon';
 import Menu from '../menu';
-import { gowunBatang } from './fonts';
 import MainMenu from './main-menu';
 import useMenu from '@/hooks/use-menu';
 
@@ -22,7 +20,7 @@ function MainHeader() {
       </Menu>
 
       <div className="mx-16pxr flex justify-center pt-20pxr items-center">
-        <span className={`${gowunBatang.className} text-primary500 text-20pxr`}>
+        <span className="font-gowunBatang text-primary500 text-20pxr">
           여록
         </span>
 

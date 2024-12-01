@@ -1,12 +1,12 @@
 import { atom } from 'recoil';
-import localStorageEffect from './effects/localStorageEffect';
 import { IToken } from '@/models/token.model';
+import cookieEffect from './effects/cookieEffect';
 
-export const tokenState = atom<IToken | null>({
+export const tokenState = atom<IToken>({
   key: 'token',
   default: {
     accessToken: null,
     refreshToken: null,
   },
-  effects_UNSTABLE: [localStorageEffect],
+  effects_UNSTABLE: [cookieEffect('token')],
 });

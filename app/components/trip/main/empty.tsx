@@ -1,10 +1,8 @@
-import { gowunBatang } from '../../ui/fonts';
-
 function TripMainEmpty() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-13pxr">
       <p
-        className={`${gowunBatang.className} text-black text-22pxr font-bold animate-fadeInTop`}
+        className={`font-gowunBatang text-black text-22pxr font-bold animate-fadeInTop`}
       >
         여행 일기 시작하기
       </p>

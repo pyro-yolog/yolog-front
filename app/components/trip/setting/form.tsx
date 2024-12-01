@@ -92,8 +92,9 @@ function TripSettingForm() {
             name="name"
             control={control}
             rules={TRIP_NAME_VALIDATION}
+            defaultValue={writeData.name}
             render={({
-              field: { name, value = writeData.name, onChange },
+              field: { name, value, onChange },
               fieldState: { error },
             }) => (
               <Input
@@ -104,6 +105,7 @@ function TripSettingForm() {
                 error={error}
                 onChange={(e) => {
                   setWriteData({ ...writeData, [name]: e.target.value });
+                  onChange(e);
                 }}
                 bgStyle
               />
@@ -114,8 +116,9 @@ function TripSettingForm() {
             name="destination"
             control={control}
             rules={TRIP_DESTINATION_VALIDATION}
+            defaultValue={writeData.destination}
             render={({
-              field: { name, value = writeData.destination, onChange },
+              field: { name, value, onChange },
               fieldState: { error },
             }) => (
               <Input
@@ -126,6 +129,7 @@ function TripSettingForm() {
                 error={error}
                 onChange={(e) => {
                   setWriteData({ ...writeData, [name]: e.target.value });
+                  onChange(e);
                 }}
                 bgStyle
               />

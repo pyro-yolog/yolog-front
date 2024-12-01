@@ -1,7 +1,6 @@
 'use client';
 
 import { useSwiper } from 'swiper/react';
-import { gowunBatang } from '../ui/fonts';
 
 interface Props {
   index: number;
@@ -12,9 +11,7 @@ function OnboardingPagination({ index }: Props) {
 
   return (
     <div className="flex flex-col items-center gap-12pxr">
-      <span
-        className={`${gowunBatang.className} text-primary500 text-17pxr font-bold`}
-      >
+      <span className={`font-gowunBatang text-primary500 text-17pxr font-bold`}>
         여록
       </span>
 
