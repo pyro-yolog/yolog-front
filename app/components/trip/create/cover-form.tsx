@@ -28,6 +28,7 @@ function TripCreateCover() {
   const [coverColor, setCoverColor] = useState<string | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [spineColor, setSpineColor] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState(false);
   const isEnabled =
     (selectOption === 'COLOR' && coverColor) ||
     (selectOption === 'IMAGE' && imageUrl && spineColor);
@@ -69,6 +70,8 @@ function TripCreateCover() {
   };
 
   const handleClickButton = async () => {
+    setIsPending(true);
+
     const name = params.get('name') as string;
     const startDate = params.get('startDate') as string;
     const finishDate = params.get('endDate') || startDate;
@@ -97,6 +100,8 @@ function TripCreateCover() {
 
       showToast({ type: 'error', message: '서버 요청에 문제가 발생했어요!' });
     }
+
+    setIsPending(false);
   };
 
   return (
@@ -163,7 +168,7 @@ function TripCreateCover() {
       </div>
 
       <div className="w-full px-16pxr">
-        <Button disabled={!isEnabled} onClick={handleClickButton}>
+        <Button disabled={isPending || !isEnabled} onClick={handleClickButton}>
           다음
         </Button>
       </div>
