@@ -34,7 +34,7 @@ function Calendar({ startDate, endDate, onChange }: Props) {
   const [start, setStart] = useState(dayjs(startDate));
   const [end, setEnd] = useState<Dayjs | null>(endDate ? dayjs(endDate) : null);
   const [viewDate, setViewDate] = useState(start);
-  const [cursor, setCursor] = useState(!!end); // true - 시작 날짜, false - 마지막 날짜
+  const [cursor, setCursor] = useState(true); // true - 시작 날짜, false - 마지막 날짜
 
   const getTitle = () => {
     if (end) {
@@ -110,18 +110,13 @@ function Calendar({ startDate, endDate, onChange }: Props) {
   const handleClickDate = ({ obj }: DateData) => {
     if (obj.isSame(start) || obj.isSame(end)) return;
 
-    if (obj.isBefore(start) || obj.isAfter(end)) {
+    if (obj.isBefore(start) || cursor) {
       setStart(obj);
       setEnd(null);
       setCursor(false);
     } else {
-      if (cursor) {
-        setStart(obj);
-      } else {
-        setEnd(obj);
-      }
-
-      setCursor(!cursor);
+      setEnd(obj);
+      setCursor(true);
     }
 
     setViewDate(obj);
